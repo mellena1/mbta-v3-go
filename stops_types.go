@@ -16,11 +16,11 @@ type StopLocationType int
 
 const (
 	// StopLocationSTOP A location where passengers board or disembark from a transit vehicle
-	StopLocationSTOP StopLocationType = 0
+	StopLocationSTOP StopLocationType = iota
 	// StopLocationSTATION A physical structure or area that contains one or more stops
-	StopLocationSTATION StopLocationType = 1
+	StopLocationSTATION
 	// StopLocationSTATIONENTRANCEEXIT A location where passengers can enter or exit a station from the street
-	StopLocationSTATIONENTRANCEEXIT StopLocationType = 2
+	StopLocationSTATIONENTRANCEEXIT
 )
 
 // StopWheelchairBoardingType enum for the possible wheelchair boarding types at a stop
@@ -28,11 +28,11 @@ type StopWheelchairBoardingType int
 
 const (
 	// StopWheelchairBoardingNOINFO No information
-	StopWheelchairBoardingNOINFO StopWheelchairBoardingType = 0
+	StopWheelchairBoardingNOINFO StopWheelchairBoardingType = iota
 	// StopWheelchairBoardingACCESSIBLE Accessible (if trip is wheelchair accessible)
-	StopWheelchairBoardingACCESSIBLE StopWheelchairBoardingType = 1
+	StopWheelchairBoardingACCESSIBLE
 	// StopWheelchairBoardingINACCESSIBLE Inaccessible
-	StopWheelchairBoardingINACCESSIBLE StopWheelchairBoardingType = 2
+	StopWheelchairBoardingINACCESSIBLE
 )
 
 // StopAttributes all attributes that a Stop has
