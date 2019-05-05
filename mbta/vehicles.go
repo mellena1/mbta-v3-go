@@ -7,6 +7,9 @@ import (
 	"strings"
 )
 
+// VehicleService service handling all of the vehicle related API calls
+type VehicleService service
+
 // GetAllVehiclesSortByType all of the possible ways to sort by for a GetAllVehicles request
 type GetAllVehiclesSortByType string
 
@@ -85,13 +88,13 @@ func (config *GetAllVehiclesRequestConfig) addHTTPParamsToRequest(req *http.Requ
 }
 
 // GetAllVehicles returns all vehicles from the mbta API
-func (c *Client) GetAllVehicles(config GetAllVehiclesRequestConfig) ([]Vehicle, error) {
-	return c.GetAllVehiclesContext(context.Background(), config)
+func (s *VehicleService) GetAllVehicles(config GetAllVehiclesRequestConfig) ([]Vehicle, error) {
+	return s.GetAllVehiclesContext(context.Background(), config)
 }
 
 // GetAllVehiclesContext returns all vehicles from the mbta API given a context
-func (c *Client) GetAllVehiclesContext(ctx context.Context, config GetAllVehiclesRequestConfig) ([]Vehicle, error) {
-	req, err := c.newRequest("GET", "/vehicles", nil)
+func (s *VehicleService) GetAllVehiclesContext(ctx context.Context, config GetAllVehiclesRequestConfig) ([]Vehicle, error) {
+	req, err := s.client.newRequest("GET", "/vehicles", nil)
 	config.addHTTPParamsToRequest(req)
 	req = req.WithContext(ctx)
 	if err != nil {
@@ -101,7 +104,7 @@ func (c *Client) GetAllVehiclesContext(ctx context.Context, config GetAllVehicle
 	var data struct {
 		Vehicles []Vehicle `json:"data"`
 	}
-	_, err = c.do(req, &data)
+	_, err = s.client.do(req, &data)
 	return data.Vehicles, err
 }
 
@@ -134,14 +137,14 @@ func (config *GetVehicleRequestConfig) addHTTPParamsToRequest(req *http.Request)
 }
 
 // GetVehicle returns a vehicle from the mbta API
-func (c *Client) GetVehicle(id string, config GetVehicleRequestConfig) (Vehicle, error) {
-	return c.GetVehicleContext(context.Background(), id, config)
+func (s *VehicleService) GetVehicle(id string, config GetVehicleRequestConfig) (Vehicle, error) {
+	return s.GetVehicleContext(context.Background(), id, config)
 }
 
 // GetVehicleContext returns a vehicle from the mbta API given a context
-func (c *Client) GetVehicleContext(ctx context.Context, id string, config GetVehicleRequestConfig) (Vehicle, error) {
+func (s *VehicleService) GetVehicleContext(ctx context.Context, id string, config GetVehicleRequestConfig) (Vehicle, error) {
 	path := fmt.Sprintf("/vehicles/%s", id)
-	req, err := c.newRequest("GET", path, nil)
+	req, err := s.client.newRequest("GET", path, nil)
 	config.addHTTPParamsToRequest(req)
 	req = req.WithContext(ctx)
 	if err != nil {
@@ -151,6 +154,6 @@ func (c *Client) GetVehicleContext(ctx context.Context, id string, config GetVeh
 	var data struct {
 		Vehicle Vehicle `json:"data"`
 	}
-	_, err = c.do(req, &data)
+	_, err = s.client.do(req, &data)
 	return data.Vehicle, err
 }

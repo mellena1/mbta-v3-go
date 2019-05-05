@@ -19,6 +19,10 @@ type Config struct {
 	UserAgent string
 }
 
+type service struct {
+	client *Client
+}
+
 // Client the client for the MBTA API
 type Client struct {
 	client *http.Client
@@ -27,11 +31,15 @@ type Client struct {
 
 	BaseURL   *url.URL
 	UserAgent string
+
+	common   service // Reuse a single struct instead of allocating one for each service on the heap. (same as github.com/google/go-github)
+	Stops    *StopService
+	Vehicles *VehicleService
 }
 
 // NewClient creates a new Client using the given config options
 func NewClient(config Config) *Client {
-	c := Client{
+	c := &Client{
 		client:    http.DefaultClient,
 		APIKey:    config.APIKey,
 		UserAgent: config.UserAgent,
@@ -47,7 +55,11 @@ func NewClient(config Config) *Client {
 		c.BaseURL = parsedURL
 	}
 
-	return &c
+	c.common.client = c
+	c.Stops = (*StopService)(&c.common)
+	c.Vehicles = (*VehicleService)(&c.common)
+
+	return c
 }
 
 func (c *Client) newRequest(method, path string, body interface{}) (*http.Request, error) {
