@@ -6,6 +6,8 @@ import (
 	"net/http"
 )
 
+const stopsAPIPath = "/stops"
+
 // StopService service handling all of the stop related API calls
 type StopService service
 
@@ -81,7 +83,7 @@ func (s *StopService) GetAllStops(config GetAllStopsRequestConfig) ([]Stop, erro
 
 // GetAllStopsContext returns all stops from the mbta API given a context
 func (s *StopService) GetAllStopsContext(ctx context.Context, config GetAllStopsRequestConfig) ([]Stop, error) {
-	req, err := s.client.newRequest("GET", "/stops", nil)
+	req, err := s.client.newRequest("GET", stopsAPIPath, nil)
 	config.addHTTPParamsToRequest(req)
 	req = req.WithContext(ctx)
 	if err != nil {
@@ -113,7 +115,7 @@ func (s *StopService) GetStop(id string, config GetStopRequestConfig) (Stop, err
 
 // GetStopContext returns a stop from the mbta API given a context
 func (s *StopService) GetStopContext(ctx context.Context, id string, config GetStopRequestConfig) (Stop, error) {
-	path := fmt.Sprintf("/stops/%s", id)
+	path := fmt.Sprintf("/%s/%s", stopsAPIPath, id)
 	req, err := s.client.newRequest("GET", path, nil)
 	config.addHTTPParamsToRequest(req)
 	req = req.WithContext(ctx)

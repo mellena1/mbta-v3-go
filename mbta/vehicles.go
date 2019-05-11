@@ -7,6 +7,8 @@ import (
 	"strings"
 )
 
+const vehiclesAPIPath = "/vehicles"
+
 // VehicleService service handling all of the vehicle related API calls
 type VehicleService service
 
@@ -39,9 +41,9 @@ type GetAllVehiclesRequestConfig struct {
 	PageOffset        string                   // Offset (0-based) of first element in the page
 	PageLimit         string                   // Max number of elements to return
 	Sort              GetAllVehiclesSortByType // Results can be sorted by the id or any GetAllVehiclesSortByType
-	IncludeTrip       bool                     // Include Trip object in response
-	IncludeStop       bool                     // Include Stop object in response
-	IncludeRoute      bool                     // Include Route object in response
+	IncludeTrip       bool                     // Include Trip data in response
+	IncludeStop       bool                     // Include Stop data in response
+	IncludeRoute      bool                     // Include Route data in response
 	FilterIDs         []string                 // Filter by multiple IDs
 	FilterTripIDs     []string                 // Filter by trip IDs
 	FilterLabels      []string                 // Filter by label
@@ -80,7 +82,7 @@ func (s *VehicleService) GetAllVehicles(config GetAllVehiclesRequestConfig) ([]V
 
 // GetAllVehiclesContext returns all vehicles from the mbta API given a context
 func (s *VehicleService) GetAllVehiclesContext(ctx context.Context, config GetAllVehiclesRequestConfig) ([]Vehicle, error) {
-	req, err := s.client.newRequest("GET", "/vehicles", nil)
+	req, err := s.client.newRequest("GET", vehiclesAPIPath, nil)
 	config.addHTTPParamsToRequest(req)
 	req = req.WithContext(ctx)
 	if err != nil {
@@ -126,7 +128,7 @@ func (s *VehicleService) GetVehicle(id string, config GetVehicleRequestConfig) (
 
 // GetVehicleContext returns a vehicle from the mbta API given a context
 func (s *VehicleService) GetVehicleContext(ctx context.Context, id string, config GetVehicleRequestConfig) (Vehicle, error) {
-	path := fmt.Sprintf("/vehicles/%s", id)
+	path := fmt.Sprintf("/%s/%s", vehiclesAPIPath, id)
 	req, err := s.client.newRequest("GET", path, nil)
 	config.addHTTPParamsToRequest(req)
 	req = req.WithContext(ctx)
