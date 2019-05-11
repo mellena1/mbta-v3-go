@@ -11,11 +11,12 @@ import (
 )
 
 const (
-	defaultBaseURL = "https://api-v3.mbta.com"
+	defaultBaseURL   = "https://api-v3.mbta.com"
+	defaultUserAgent = "mbta-v3-go"
 )
 
-// Config the options for creating a Client
-type Config struct {
+// ClientConfig the options for creating a Client
+type ClientConfig struct {
 	BaseURL   string
 	APIKey    string
 	UserAgent string
@@ -40,7 +41,7 @@ type Client struct {
 }
 
 // NewClient creates a new Client using the given config options
-func NewClient(config Config) *Client {
+func NewClient(config ClientConfig) *Client {
 	c := &Client{
 		client:    http.DefaultClient,
 		APIKey:    config.APIKey,
@@ -55,6 +56,10 @@ func NewClient(config Config) *Client {
 			panic(err)
 		}
 		c.BaseURL = parsedURL
+	}
+
+	if config.UserAgent == "" {
+		c.UserAgent = defaultUserAgent
 	}
 
 	c.common.client = c
