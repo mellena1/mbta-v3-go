@@ -6,6 +6,8 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+
+	jsonapi "github.com/michele/go.jsonapi"
 )
 
 const (
@@ -95,6 +97,6 @@ func (c *Client) do(req *http.Request, v interface{}) (*http.Response, error) {
 	}
 	defer resp.Body.Close()
 
-	err = json.NewDecoder(resp.Body).Decode(v)
+	err = jsonapi.UnmarshalPayload(resp.Body, v)
 	return resp, err
 }

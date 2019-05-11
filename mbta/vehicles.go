@@ -60,29 +60,15 @@ func (config *GetAllVehiclesRequestConfig) addHTTPParamsToRequest(req *http.Requ
 	includes.addHTTPParamsToRequest(req)
 
 	q := req.URL.Query()
-	if config.PageOffset != "" {
-		q.Add("page[offset]", config.PageOffset)
-	}
-	if config.PageLimit != "" {
-		q.Add("page[limit]", config.PageLimit)
-	}
-	if config.Sort != "" {
-		q.Add("sort", string(config.Sort))
-	}
-	if config.FilterDirectionID != "" {
-		q.Add("filter[direction_id]", config.FilterDirectionID)
-	}
-
-	addCommaSeparatedList := func(key string, l []string) {
-		if len(l) > 0 {
-			q.Add(key, strings.Join(l, ","))
-		}
-	}
-	addCommaSeparatedList("filter[id]", config.FilterIDs)
-	addCommaSeparatedList("filter[trip]", config.FilterTripIDs)
-	addCommaSeparatedList("filter[label]", config.FilterLabels)
-	addCommaSeparatedList("filter[route]", config.FilterRouteIDs)
-	addCommaSeparatedList("filter[route_type]", config.FilterRouteTypes)
+	addToQuery(q, "page[offset]", config.PageOffset)
+	addToQuery(q, "page[limit]", config.PageLimit)
+	addToQuery(q, "sort", string(config.Sort))
+	addToQuery(q, "filter[direction_id]", config.FilterDirectionID)
+	addCommaSeparatedListToQuery(q, "filter[id]", config.FilterIDs)
+	addCommaSeparatedListToQuery(q, "filter[trip]", config.FilterTripIDs)
+	addCommaSeparatedListToQuery(q, "filter[label]", config.FilterLabels)
+	addCommaSeparatedListToQuery(q, "filter[route]", config.FilterRouteIDs)
+	addCommaSeparatedListToQuery(q, "filter[route_type]", config.FilterRouteTypes)
 
 	req.URL.RawQuery = q.Encode()
 }
@@ -101,15 +87,12 @@ func (s *VehicleService) GetAllVehiclesContext(ctx context.Context, config GetAl
 		return nil, err
 	}
 
-	var data struct {
-		Vehicles []Vehicle `json:"data"`
-	}
-	_, err = s.client.do(req, &data)
-	return data.Vehicles, err
+	var vehicles []Vehicle
+	_, err = s.client.do(req, &vehicles)
+	return vehicles, err
 }
 
 // GetVehicleRequestConfig extra options for the GetVehicle request
-// TODO: Figure out how to give the included objs back to the user
 type GetVehicleRequestConfig struct {
 	IncludeTrip  bool
 	IncludeStop  bool
@@ -151,9 +134,7 @@ func (s *VehicleService) GetVehicleContext(ctx context.Context, id string, confi
 		return Vehicle{}, err
 	}
 
-	var data struct {
-		Vehicle Vehicle `json:"data"`
-	}
-	_, err = s.client.do(req, &data)
-	return data.Vehicle, err
+	var vehicle Vehicle
+	_, err = s.client.do(req, &vehicle)
+	return vehicle, err
 }
