@@ -1,11 +1,9 @@
 package mbta
 
 import (
-	"bytes"
-	"encoding/json"
-	"io"
 	"net/http"
 	"net/url"
+	"reflect"
 
 	jsonapi "github.com/michele/go.jsonapi"
 )
@@ -69,23 +67,12 @@ func NewClient(config ClientConfig) *Client {
 	return c
 }
 
-func (c *Client) newRequest(method, path string, body interface{}) (*http.Request, error) {
+func (c *Client) newGETRequest(path string) (*http.Request, error) {
 	rel := &url.URL{Path: path}
 	u := c.BaseURL.ResolveReference(rel)
-	var buf io.ReadWriter
-	if body != nil {
-		buf = new(bytes.Buffer)
-		err := json.NewEncoder(buf).Encode(body)
-		if err != nil {
-			return nil, err
-		}
-	}
-	req, err := http.NewRequest(method, u.String(), buf)
+	req, err := http.NewRequest("GET", u.String(), nil)
 	if err != nil {
 		return nil, err
-	}
-	if body != nil {
-		req.Header.Set("Content-Type", "application/json")
 	}
 	if c.APIKey != "" {
 		req.Header.Set("x-api-key", c.APIKey)
@@ -95,7 +82,7 @@ func (c *Client) newRequest(method, path string, body interface{}) (*http.Reques
 	return req, nil
 }
 
-func (c *Client) do(req *http.Request, v interface{}) (*http.Response, error) {
+func (c *Client) doSinglePayload(req *http.Request, v interface{}) (*http.Response, error) {
 	resp, err := c.client.Do(req)
 	if err != nil {
 		return nil, err
@@ -104,4 +91,15 @@ func (c *Client) do(req *http.Request, v interface{}) (*http.Response, error) {
 
 	err = jsonapi.UnmarshalPayload(resp.Body, v)
 	return resp, err
+}
+
+func (c *Client) doManyPayload(req *http.Request, v interface{}) ([]interface{}, *http.Response, error) {
+	resp, err := c.client.Do(req)
+	if err != nil {
+		return nil, nil, err
+	}
+	defer resp.Body.Close()
+
+	vals, err := jsonapi.UnmarshalManyPayload(resp.Body, reflect.TypeOf(v))
+	return vals, resp, err
 }

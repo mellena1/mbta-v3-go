@@ -1,0 +1,43 @@
+{
+	"data": {
+		"attributes": {
+			"bearing": 270,
+			"current_status": "IN_TRANSIT_TO",
+			"current_stop_sequence": 1,
+			"direction_id": 1,
+			"label": "1772",
+			"latitude": 42.349491119384766,
+			"longitude": -71.07652282714844,
+			"speed": null,
+			"updated_at": "2019-05-14T16:05:53-04:00"
+		},
+		"id": "y1772",
+		"links": {
+			"self": "/vehicles/y1772"
+		},
+		"relationships": {
+			"route": {
+				"data": {
+					"id": "10",
+					"type": "route"
+				}
+			},
+			"stop": {
+				"data": {
+					"id": "178",
+					"type": "stop"
+				}
+			},
+			"trip": {
+				"data": {
+					"id": "39915343",
+					"type": "trip"
+				}
+			}
+		},
+		"type": "vehicle"
+	},
+	"jsonapi": {
+		"version": "1.0"
+	}
+}

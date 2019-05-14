@@ -15,11 +15,19 @@ type TimeISO8601 struct {
 // UnmarshalJSON unmarshal time.Time as ISO8601
 func (t *TimeISO8601) UnmarshalJSON(b []byte) error {
 	strTime := strings.Trim(string(b), "\"")
-	parsed, err := time.Parse(time.RFC3339, strTime)
+	parsed, err := parseISO8601Time(strTime)
 	if err != nil {
 		return err
 	}
 
 	t.Time = parsed
 	return nil
+}
+
+func parseISO8601Time(timeStr string) (time.Time, error) {
+	return time.Parse(iso8601Format, timeStr)
+}
+
+func timeToTimeISO8601(t time.Time) TimeISO8601 {
+	return TimeISO8601{Time: t}
 }

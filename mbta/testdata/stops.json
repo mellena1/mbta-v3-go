@@ -1,0 +1,78 @@
+{
+    "data": [
+        {
+            "attributes": {
+                "address": null,
+                "description": null,
+                "latitude": 42.303676,
+                "location_type": 0,
+                "longitude": -70.919766,
+                "name": "Pemberton Point",
+                "platform_code": null,
+                "platform_name": null,
+                "wheelchair_boarding": 0
+            },
+            "id": "111146",
+            "links": {
+                "self": "/stops/111146"
+            },
+            "relationships": {
+                "child_stops": {},
+                "facilities": {
+                    "links": {
+                        "related": "/facilities/?filter[stop]=111146"
+                    }
+                },
+                "parent_station": {
+                    "data": null
+                },
+                "recommended_transfers": {},
+                "zone": {
+                    "data": null
+                }
+            },
+            "type": "stop"
+        },
+        {
+            "attributes": {
+                "address": null,
+                "description": null,
+                "latitude": 42.416769,
+                "location_type": 0,
+                "longitude": -71.105122,
+                "name": "116 Riverside Ave",
+                "platform_code": null,
+                "platform_name": null,
+                "wheelchair_boarding": 0
+            },
+            "id": "9172",
+            "links": {
+                "self": "/stops/9172"
+            },
+            "relationships": {
+                "child_stops": {},
+                "facilities": {
+                    "links": {
+                        "related": "/facilities/?filter[stop]=9172"
+                    }
+                },
+                "parent_station": {
+                    "data": null
+                },
+                "recommended_transfers": {},
+                "zone": {
+                    "data": null
+                }
+            },
+            "type": "stop"
+        }
+    ],
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "links": {
+        "first": "https://api-v3.mbta.com/stops?page[limit]=2&page[offset]=0",
+        "last": "https://api-v3.mbta.com/stops?page[limit]=2&page[offset]=9192",
+        "next": "https://api-v3.mbta.com/stops?page[limit]=2&page[offset]=2"
+    }
+}

@@ -1,0 +1,88 @@
+{
+    "data": [
+        {
+            "attributes": {
+                "bearing": 194,
+                "current_status": "IN_TRANSIT_TO",
+                "current_stop_sequence": 12,
+                "direction_id": 1,
+                "label": "1772",
+                "latitude": 42.335472106933594,
+                "longitude": -71.0453109741211,
+                "speed": null,
+                "updated_at": "2019-05-14T17:25:37-04:00"
+            },
+            "id": "y1772",
+            "links": {
+                "self": "/vehicles/y1772"
+            },
+            "relationships": {
+                "route": {
+                    "data": {
+                        "id": "10",
+                        "type": "route"
+                    }
+                },
+                "stop": {
+                    "data": {
+                        "id": "46",
+                        "type": "stop"
+                    }
+                },
+                "trip": {
+                    "data": {
+                        "id": "39915358",
+                        "type": "trip"
+                    }
+                }
+            },
+            "type": "vehicle"
+        },
+        {
+            "attributes": {
+                "bearing": 231,
+                "current_status": "IN_TRANSIT_TO",
+                "current_stop_sequence": 24,
+                "direction_id": 1,
+                "label": "1869",
+                "latitude": 42.331825256347656,
+                "longitude": -71.07601165771484,
+                "speed": null,
+                "updated_at": "2019-05-14T17:25:36-04:00"
+            },
+            "id": "y1869",
+            "links": {
+                "self": "/vehicles/y1869"
+            },
+            "relationships": {
+                "route": {
+                    "data": {
+                        "id": "1",
+                        "type": "route"
+                    }
+                },
+                "stop": {
+                    "data": {
+                        "id": "10100",
+                        "type": "stop"
+                    }
+                },
+                "trip": {
+                    "data": {
+                        "id": "39914092",
+                        "type": "trip"
+                    }
+                }
+            },
+            "type": "vehicle"
+        }
+    ],
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "links": {
+        "first": "https://api-v3.mbta.com/vehicles?page[limit]=2&page[offset]=0",
+        "last": "https://api-v3.mbta.com/vehicles?page[limit]=2&page[offset]=928",
+        "next": "https://api-v3.mbta.com/vehicles?page[limit]=2&page[offset]=2"
+    }
+}
