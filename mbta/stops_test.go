@@ -26,7 +26,7 @@ func Test_GetStop(t *testing.T) {
 	mbtaClient := NewClient(ClientConfig{BaseURL: server.URL})
 	mbtaClient.client = server.Client()
 
-	actual, err := mbtaClient.Stops.GetStop("55", GetStopRequestConfig{})
+	actual, _, err := mbtaClient.Stops.GetStop("55", GetStopRequestConfig{})
 	ok(t, err)
 	equals(t, expected, actual)
 }
@@ -66,7 +66,7 @@ func Test_GetAllStops(t *testing.T) {
 	mbtaClient := NewClient(ClientConfig{BaseURL: server.URL})
 	mbtaClient.client = server.Client()
 
-	actual, err := mbtaClient.Stops.GetAllStops(GetAllStopsRequestConfig{})
+	actual, _, err := mbtaClient.Stops.GetAllStops(GetAllStopsRequestConfig{})
 	ok(t, err)
 	equals(t, expected, actual)
 }

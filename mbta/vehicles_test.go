@@ -28,7 +28,7 @@ func Test_GetVehicle(t *testing.T) {
 	mbtaClient := NewClient(ClientConfig{BaseURL: server.URL})
 	mbtaClient.client = server.Client()
 
-	actual, err := mbtaClient.Vehicles.GetVehicle("y1772", GetVehicleRequestConfig{})
+	actual, _, err := mbtaClient.Vehicles.GetVehicle("y1772", GetVehicleRequestConfig{})
 	ok(t, err)
 	equals(t, expected, actual)
 }
@@ -72,7 +72,7 @@ func Test_GetAllVehicles(t *testing.T) {
 	mbtaClient := NewClient(ClientConfig{BaseURL: server.URL})
 	mbtaClient.client = server.Client()
 
-	actual, err := mbtaClient.Vehicles.GetAllVehicles(GetAllVehiclesRequestConfig{})
+	actual, _, err := mbtaClient.Vehicles.GetAllVehicles(GetAllVehiclesRequestConfig{})
 	ok(t, err)
 	equals(t, expected, actual)
 }
