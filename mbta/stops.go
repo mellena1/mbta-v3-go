@@ -24,7 +24,7 @@ func (s *StopService) GetAllStopsContext(ctx context.Context, config GetAllStops
 		return nil, err
 	}
 
-	untypedStops, _, err := s.client.doManyPayload(req, Stop{})
+	untypedStops, _, err := s.client.doManyPayload(req, &Stop{})
 	stops := make([]*Stop, len(untypedStops))
 	for i := 0; i < len(untypedStops); i++ {
 		stops[i] = untypedStops[i].(*Stop)
