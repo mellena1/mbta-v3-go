@@ -25,6 +25,6 @@ type Vehicle struct {
 	Speed               *float32      `jsonapi:"attr,speed"`                 // meters per second
 	UpdatedAt           TimeISO8601   `jsonapi:"attr,updated_at"`            // Time at which vehicle information was last updated. Format is ISO8601
 	Stop                *Stop         `jsonapi:"relation,stop"`              // Stop that the vehicle is at. Only includes id by default, use IncludeStop config option to get all data
-	// TODO: Trip *Trip `jsonapi:"relation,trip"`
+	Trip                *Trip         `jsonapi:"relation,trip"`              // Trip that the current vehicle is on
 	// TODO: Route *Route `jsonapi:"relation,route"`
 }

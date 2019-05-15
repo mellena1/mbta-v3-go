@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestGetVehicle(t *testing.T) {
+func Test_GetVehicle(t *testing.T) {
 	parsedTime, _ := parseISO8601Time("2019-05-14T16:05:53-04:00")
 	expected := &Vehicle{
 		ID:                  "y1772",
@@ -20,6 +20,7 @@ func TestGetVehicle(t *testing.T) {
 		Speed:               nil,
 		UpdatedAt:           timeToTimeISO8601(parsedTime),
 		Stop:                &Stop{ID: "178"},
+		Trip:                &Trip{ID: "39915343"},
 	}
 	server := httptest.NewServer(handlerForServer(t, fmt.Sprintf("%s/%s", vehiclesAPIPath, "y1772")))
 	defer server.Close()
@@ -32,7 +33,7 @@ func TestGetVehicle(t *testing.T) {
 	equals(t, expected, actual)
 }
 
-func TestGetVehicles(t *testing.T) {
+func Test_GetAllVehicles(t *testing.T) {
 	parsedTime1, _ := parseISO8601Time("2019-05-14T17:25:37-04:00")
 	parsedTime2, _ := parseISO8601Time("2019-05-14T17:25:36-04:00")
 	expected := []*Vehicle{
@@ -48,6 +49,7 @@ func TestGetVehicles(t *testing.T) {
 			Speed:               nil,
 			UpdatedAt:           timeToTimeISO8601(parsedTime1),
 			Stop:                &Stop{ID: "46"},
+			Trip:                &Trip{ID: "39915358"},
 		},
 		&Vehicle{
 			ID:                  "y1869",
@@ -61,6 +63,7 @@ func TestGetVehicles(t *testing.T) {
 			Speed:               nil,
 			UpdatedAt:           timeToTimeISO8601(parsedTime2),
 			Stop:                &Stop{ID: "10100"},
+			Trip:                &Trip{ID: "39914092"},
 		},
 	}
 	server := httptest.NewServer(handlerForServer(t, vehiclesAPIPath))

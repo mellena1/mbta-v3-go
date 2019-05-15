@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestGetStop(t *testing.T) {
+func Test_GetStop(t *testing.T) {
 	expected := &Stop{
 		ID:                 "55",
 		Address:            nil,
@@ -17,7 +17,7 @@ func TestGetStop(t *testing.T) {
 		Name:               "Washington St @ Massachusetts Ave",
 		PlatformCode:       nil,
 		PlatformName:       strPtr("Dudley"),
-		WheelchairBoarding: StopWheelchairBoardingACCESSIBLE,
+		WheelchairBoarding: WheelchairBoardingACCESSIBLE,
 		ParentStation:      nil,
 	}
 	server := httptest.NewServer(handlerForServer(t, fmt.Sprintf("%s/%s", stopsAPIPath, "55")))
@@ -31,7 +31,7 @@ func TestGetStop(t *testing.T) {
 	equals(t, expected, actual)
 }
 
-func TestGetStops(t *testing.T) {
+func Test_GetAllStops(t *testing.T) {
 	expected := []*Stop{
 		&Stop{
 			ID:                 "111146",
@@ -43,7 +43,7 @@ func TestGetStops(t *testing.T) {
 			Name:               "Pemberton Point",
 			PlatformCode:       nil,
 			PlatformName:       nil,
-			WheelchairBoarding: StopWheelchairBoardingNOINFO,
+			WheelchairBoarding: WheelchairBoardingNOINFO,
 			ParentStation:      nil,
 		},
 		&Stop{
@@ -56,7 +56,7 @@ func TestGetStops(t *testing.T) {
 			Name:               "116 Riverside Ave",
 			PlatformCode:       nil,
 			PlatformName:       nil,
-			WheelchairBoarding: StopWheelchairBoardingNOINFO,
+			WheelchairBoarding: WheelchairBoardingNOINFO,
 			ParentStation:      nil,
 		},
 	}
