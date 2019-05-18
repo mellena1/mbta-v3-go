@@ -33,9 +33,10 @@ type GetAllVehiclesRequestConfig struct {
 	PageOffset        string                   // Offset (0-based) of first element in the page
 	PageLimit         string                   // Max number of elements to return
 	Sort              GetAllVehiclesSortByType // Results can be sorted by the id or any GetAllVehiclesSortByType
-	IncludeTrip       bool                     // Include Trip data in response
-	IncludeStop       bool                     // Include Stop data in response
-	IncludeRoute      bool                     // Include Route data in response
+	Fields            []string                 // Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
+	IncludeTrip       bool                     // Include Trip data in response (The trip which the vehicle is currently operating)
+	IncludeStop       bool                     // Include Stop data in response (The vehicle’s current (when current_status is StoppedAt) or next stop)
+	IncludeRoute      bool                     // Include Route data in response (The one route that is designated for that trip, as in GTFS trips.txt. A trip might also provide service on other routes, identified by the MBTA’s multi_route_trips.txt GTFS extension. filter[route] does consider the multi_route_trips GTFS extension, so it is possible to filter for one route and get a different route included in the response)
 	FilterIDs         []string                 // Filter by multiple IDs
 	FilterTripIDs     []string                 // Filter by trip IDs
 	FilterLabels      []string                 // Filter by label
@@ -45,8 +46,9 @@ type GetAllVehiclesRequestConfig struct {
 }
 
 func (config *GetAllVehiclesRequestConfig) addHTTPParamsToRequest(req *http.Request) {
-	// Add includes params to request
+	// Add fields and includes params to request
 	includes := GetVehicleRequestConfig{
+		Fields:       config.Fields,
 		IncludeTrip:  config.IncludeTrip,
 		IncludeStop:  config.IncludeStop,
 		IncludeRoute: config.IncludeRoute,
@@ -69,9 +71,10 @@ func (config *GetAllVehiclesRequestConfig) addHTTPParamsToRequest(req *http.Requ
 
 // GetVehicleRequestConfig extra options for the GetVehicle request
 type GetVehicleRequestConfig struct {
-	IncludeTrip  bool
-	IncludeStop  bool
-	IncludeRoute bool
+	Fields       []string // Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
+	IncludeTrip  bool     // Include Trip data in response (The trip which the vehicle is currently operating)
+	IncludeStop  bool     // Include Stop data in response (The vehicle’s current (when current_status is StoppedAt) or next stop)
+	IncludeRoute bool     // Include Route data in response (The one route that is designated for that trip, as in GTFS trips.txt. A trip might also provide service on other routes, identified by the MBTA’s multi_route_trips.txt GTFS extension. filter[route] does consider the multi_route_trips GTFS extension, so it is possible to filter for one route and get a different route included in the response)
 }
 
 func (config *GetVehicleRequestConfig) addHTTPParamsToRequest(req *http.Request) {
@@ -89,5 +92,6 @@ func (config *GetVehicleRequestConfig) addHTTPParamsToRequest(req *http.Request)
 	}
 
 	addCommaSeparatedListToQuery(q, "include", includes)
+	addCommaSeparatedListToQuery(q, "fields[vehicle]", config.Fields)
 	req.URL.RawQuery = q.Encode()
 }

@@ -33,6 +33,7 @@ type GetAllStopsRequestConfig struct {
 	PageOffset           string                // Offset (0-based) of first element in the page
 	PageLimit            string                // Max number of elements to return
 	Sort                 GetAllStopsSortByType // Results can be sorted by the id or any GetAllStopsSortByType
+	Fields               []string              // Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
 	IncludeParentStation bool                  // Include IncludeParentStation data in response
 	FilterDirectionID    string                // Filter by Direction ID (Either "0" or "1")
 	FilterLatitude       string                // Latitude in degrees North in the WGS-84 coordinate system to search filter[radius] degrees around with filter[longitude]
@@ -45,7 +46,7 @@ type GetAllStopsRequestConfig struct {
 }
 
 func (config *GetAllStopsRequestConfig) addHTTPParamsToRequest(req *http.Request) {
-	// Add includes params to request
+	// Add fields and includes params to request
 	includes := GetStopRequestConfig{
 		IncludeParentStation: config.IncludeParentStation,
 	}
@@ -69,13 +70,16 @@ func (config *GetAllStopsRequestConfig) addHTTPParamsToRequest(req *http.Request
 
 // GetStopRequestConfig extra options for the GetStop request
 type GetStopRequestConfig struct {
-	IncludeParentStation bool
+	Fields               []string // Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
+	IncludeParentStation bool     // Include IncludeParentStation data in response
 }
 
 func (config *GetStopRequestConfig) addHTTPParamsToRequest(req *http.Request) {
 	q := req.URL.Query()
+
 	if config.IncludeParentStation {
 		q.Add("include", "parent_station")
-		req.URL.RawQuery = q.Encode()
 	}
+	addCommaSeparatedListToQuery(q, "fields[stop]", config.Fields)
+	req.URL.RawQuery = q.Encode()
 }

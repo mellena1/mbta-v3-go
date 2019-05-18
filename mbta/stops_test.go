@@ -7,8 +7,10 @@ import (
 )
 
 func Test_GetStop(t *testing.T) {
+	id := "55"
+
 	expected := &Stop{
-		ID:                 "55",
+		ID:                 id,
 		Address:            nil,
 		Description:        strPtr("Washington St @ Massachusetts Ave - Silver Line - Dudley"),
 		Latitute:           42.336361,
@@ -20,13 +22,13 @@ func Test_GetStop(t *testing.T) {
 		WheelchairBoarding: WheelchairBoardingACCESSIBLE,
 		ParentStation:      nil,
 	}
-	server := httptest.NewServer(handlerForServer(t, fmt.Sprintf("%s/%s", stopsAPIPath, "55")))
+	server := httptest.NewServer(handlerForServer(t, fmt.Sprintf("%s/%s", stopsAPIPath, id)))
 	defer server.Close()
 
 	mbtaClient := NewClient(ClientConfig{BaseURL: server.URL})
 	mbtaClient.client = server.Client()
 
-	actual, _, err := mbtaClient.Stops.GetStop("55", GetStopRequestConfig{})
+	actual, _, err := mbtaClient.Stops.GetStop(id, GetStopRequestConfig{})
 	ok(t, err)
 	equals(t, expected, actual)
 }

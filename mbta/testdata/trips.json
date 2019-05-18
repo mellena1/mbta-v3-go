@@ -1,0 +1,94 @@
+{
+    "data": [
+        {
+            "attributes": {
+                "bikes_allowed": 0,
+                "block_id": "S931_-4-0-L-0-BraintreeQuincyCenter",
+                "direction_id": 0,
+                "headsign": "Ashmont",
+                "name": "",
+                "wheelchair_accessible": 1
+            },
+            "id": "40119998-BraintreeQuincyCenterL",
+            "links": {
+                "self": "/trips/40119998-BraintreeQuincyCenterL"
+            },
+            "relationships": {
+                "route": {
+                    "data": {
+                        "id": "Red",
+                        "type": "route"
+                    }
+                },
+                "route_pattern": {
+                    "data": {
+                        "id": "Red-1-0",
+                        "type": "route_pattern"
+                    }
+                },
+                "service": {
+                    "data": {
+                        "id": "RTL22019-hms29016-Saturday-01-BraintreeQuincyCenterL",
+                        "type": "service"
+                    }
+                },
+                "shape": {
+                    "data": {
+                        "id": "931_0009",
+                        "type": "shape"
+                    }
+                }
+            },
+            "type": "trip"
+        },
+        {
+            "attributes": {
+                "bikes_allowed": 0,
+                "block_id": "S931_-4-0-L",
+                "direction_id": 0,
+                "headsign": "Ashmont",
+                "name": "",
+                "wheelchair_accessible": 1
+            },
+            "id": "40119998-L",
+            "links": {
+                "self": "/trips/40119998-L"
+            },
+            "relationships": {
+                "route": {
+                    "data": {
+                        "id": "Red",
+                        "type": "route"
+                    }
+                },
+                "route_pattern": {
+                    "data": {
+                        "id": "Red-1-0",
+                        "type": "route_pattern"
+                    }
+                },
+                "service": {
+                    "data": {
+                        "id": "RTL22019-hms29016-Saturday-01-L",
+                        "type": "service"
+                    }
+                },
+                "shape": {
+                    "data": {
+                        "id": "931_0009",
+                        "type": "shape"
+                    }
+                }
+            },
+            "type": "trip"
+        }
+    ],
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "links": {
+        "first": "https://api-v3.mbta.com/trips?filter[route]=Red&page[limit]=2&page[offset]=0",
+        "last": "https://api-v3.mbta.com/trips?filter[route]=Red&page[limit]=2&page[offset]=3340",
+        "next": "https://api-v3.mbta.com/trips?filter[route]=Red&page[limit]=2&page[offset]=2"
+    }
+}
