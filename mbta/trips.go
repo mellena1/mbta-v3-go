@@ -40,6 +40,10 @@ func (s *TripService) GetTrip(id string, config GetTripRequestConfig) (*Trip, *h
 
 // GetTripContext returns a vehicle from the mbta API given a context
 func (s *TripService) GetTripContext(ctx context.Context, id string, config GetTripRequestConfig) (*Trip, *http.Response, error) {
+	if id == "" {
+		return nil, nil, ErrMustSpecifyID
+	}
+
 	path := fmt.Sprintf("%s/%s", tripsAPIPath, id)
 	req, err := s.client.newGETRequest(path)
 	if err != nil {

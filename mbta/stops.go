@@ -40,6 +40,10 @@ func (s *StopService) GetStop(id string, config GetStopRequestConfig) (*Stop, *h
 
 // GetStopContext returns a stop from the mbta API given a context
 func (s *StopService) GetStopContext(ctx context.Context, id string, config GetStopRequestConfig) (*Stop, *http.Response, error) {
+	if id == "" {
+		return nil, nil, ErrMustSpecifyID
+	}
+
 	path := fmt.Sprintf("%s/%s", stopsAPIPath, id)
 	req, err := s.client.newGETRequest(path)
 	if err != nil {

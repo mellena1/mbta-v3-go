@@ -40,6 +40,10 @@ func (s *VehicleService) GetVehicle(id string, config GetVehicleRequestConfig) (
 
 // GetVehicleContext returns a vehicle from the mbta API given a context
 func (s *VehicleService) GetVehicleContext(ctx context.Context, id string, config GetVehicleRequestConfig) (*Vehicle, *http.Response, error) {
+	if id == "" {
+		return nil, nil, ErrMustSpecifyID
+	}
+
 	path := fmt.Sprintf("%s/%s", vehiclesAPIPath, id)
 	req, err := s.client.newGETRequest(path)
 	if err != nil {

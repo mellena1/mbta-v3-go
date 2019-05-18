@@ -9,8 +9,9 @@ import (
 )
 
 var (
-	ErrRateLimitExceeded = errors.New("You have exceeded your allowed usage rate")
+	ErrRateLimitExceeded = errors.New("you have exceeded your allowed usage rate")
 	ErrForbidden         = errors.New("forbidden")
+	ErrMustSpecifyID     = errors.New("must specify an id (cannot be an empty string)")
 )
 
 // BadRequestError error type holding the returned info about the bad request
