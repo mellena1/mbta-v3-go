@@ -90,6 +90,9 @@ func (c *Client) doSinglePayload(req *http.Request, v interface{}) (*http.Respon
 		return nil, err
 	}
 	defer resp.Body.Close()
+	if err = getSpecialError(resp, err); err != nil {
+		return nil, err
+	}
 
 	err = jsonapi.UnmarshalPayload(resp.Body, v)
 	return resp, err
@@ -101,6 +104,9 @@ func (c *Client) doManyPayload(req *http.Request, v interface{}) ([]interface{},
 		return nil, nil, err
 	}
 	defer resp.Body.Close()
+	if err = getSpecialError(resp, err); err != nil {
+		return nil, nil, err
+	}
 
 	vals, err := jsonapi.UnmarshalManyPayload(resp.Body, reflect.TypeOf(v))
 	return vals, resp, err

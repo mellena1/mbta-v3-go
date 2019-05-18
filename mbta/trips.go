@@ -19,11 +19,11 @@ func (s *TripService) GetAllTrips(config GetAllTripsRequestConfig) ([]*Trip, *ht
 // GetAllTripsContext returns all vehicles from the mbta API given a context
 func (s *TripService) GetAllTripsContext(ctx context.Context, config GetAllTripsRequestConfig) ([]*Trip, *http.Response, error) {
 	req, err := s.client.newGETRequest(tripsAPIPath)
-	config.addHTTPParamsToRequest(req)
-	req = req.WithContext(ctx)
 	if err != nil {
 		return nil, nil, err
 	}
+	config.addHTTPParamsToRequest(req)
+	req = req.WithContext(ctx)
 
 	untypedTrips, resp, err := s.client.doManyPayload(req, &Trip{})
 	trips := make([]*Trip, len(untypedTrips))
@@ -42,11 +42,11 @@ func (s *TripService) GetTrip(id string, config GetTripRequestConfig) (*Trip, *h
 func (s *TripService) GetTripContext(ctx context.Context, id string, config GetTripRequestConfig) (*Trip, *http.Response, error) {
 	path := fmt.Sprintf("%s/%s", tripsAPIPath, id)
 	req, err := s.client.newGETRequest(path)
-	config.addHTTPParamsToRequest(req)
-	req = req.WithContext(ctx)
 	if err != nil {
 		return nil, nil, err
 	}
+	config.addHTTPParamsToRequest(req)
+	req = req.WithContext(ctx)
 
 	var trip Trip
 	resp, err := s.client.doSinglePayload(req, &trip)

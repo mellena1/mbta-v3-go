@@ -19,11 +19,11 @@ func (s *VehicleService) GetAllVehicles(config GetAllVehiclesRequestConfig) ([]*
 // GetAllVehiclesContext returns all vehicles from the mbta API given a context
 func (s *VehicleService) GetAllVehiclesContext(ctx context.Context, config GetAllVehiclesRequestConfig) ([]*Vehicle, *http.Response, error) {
 	req, err := s.client.newGETRequest(vehiclesAPIPath)
-	config.addHTTPParamsToRequest(req)
-	req = req.WithContext(ctx)
 	if err != nil {
 		return nil, nil, err
 	}
+	config.addHTTPParamsToRequest(req)
+	req = req.WithContext(ctx)
 
 	untypedVehicles, resp, err := s.client.doManyPayload(req, &Vehicle{})
 	vehicles := make([]*Vehicle, len(untypedVehicles))
@@ -42,11 +42,11 @@ func (s *VehicleService) GetVehicle(id string, config GetVehicleRequestConfig) (
 func (s *VehicleService) GetVehicleContext(ctx context.Context, id string, config GetVehicleRequestConfig) (*Vehicle, *http.Response, error) {
 	path := fmt.Sprintf("%s/%s", vehiclesAPIPath, id)
 	req, err := s.client.newGETRequest(path)
-	config.addHTTPParamsToRequest(req)
-	req = req.WithContext(ctx)
 	if err != nil {
 		return nil, nil, err
 	}
+	config.addHTTPParamsToRequest(req)
+	req = req.WithContext(ctx)
 
 	var vehicle Vehicle
 	resp, err := s.client.doSinglePayload(req, &vehicle)
