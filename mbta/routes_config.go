@@ -38,6 +38,8 @@ type GetAllRoutesRequestConfig struct {
 	FilterDirectionID string   // Filter by Direction ID (Either "0" or "1")
 	FilterDate        string   // Filter by date that route is active
 	FilterIDs         []string // Filter by multiple IDs
+	FilterStop        string
+	FilterRouteTypes  []RouteType // Filter by different route types
 }
 
 // GetRouteRequestConfig extra options for GetRoute request
@@ -58,6 +60,13 @@ func (config *GetAllRoutesRequestConfig) addHTTPParamsToRequest(req *http.Reques
 	addToQuery(q, "sort", string(config.Sort))
 	addToQuery(q, "filter[direction_id]", config.FilterDirectionID)
 	addToQuery(q, "filter[date]", config.FilterDate)
+	addToQuery(q, "filter[stop]", config.FilterStop)
+	addCommaSeparatedListToQuery(q, "filter[id]", config.FilterIDs)
+	filterRouteTypesString := []string{}
+	for _, i := range config.FilterRouteTypes {
+		filterRouteTypesString = append(filterRouteTypesString, string(i))
+	}
+	addCommaSeparatedListToQuery(q, "filter[type]", filterRouteTypesString)
 
 	req.URL.RawQuery = q.Encode()
 }
