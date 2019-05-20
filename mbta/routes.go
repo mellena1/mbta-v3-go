@@ -32,14 +32,14 @@ func (s *RouteService) GetAllRoutesWithContext(ctx context.Context, config GetAl
 	return routes, err
 }
 
-// GetRoute return a stop from the mbta API
+// GetRoute return a route from the mbta API
 func (s *RouteService) GetRoute(id string, config GetRouteRequestConfig) (*Route, error) {
 	return s.GetRouteWithContext(context.Background(), id, config)
 }
 
-// GetRouteWithContext return a stop from the mbta API given a context
+// GetRouteWithContext return a route from the mbta API given a context
 func (s *RouteService) GetRouteWithContext(ctx context.Context, id string, config GetRouteRequestConfig) (*Route, error) {
-	path := fmt.Sprintf("%s/%s", stopsAPIPath, id)
+	path := fmt.Sprintf("%s/%s", routesAPIPath, id)
 	req, err := s.client.newGETRequest(path)
 	config.addHTTPParamsToRequest(req)
 	req = req.WithContext(ctx)
