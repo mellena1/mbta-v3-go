@@ -33,13 +33,13 @@ type GetAllRoutesRequestConfig struct {
 	PageOffset        string                 // Offset (0-based) of first element in the page
 	PageLimit         string                 // Max number of elements to return
 	Sort              GetAllRoutesSortByType // Results can be sorted by the id or any GetAllRoutesSortType
-	IncludeStop       bool
-	IncludeLine       bool
-	FilterDirectionID string   // Filter by Direction ID (Either "0" or "1")
-	FilterDate        string   // Filter by date that route is active
-	FilterIDs         []string // Filter by multiple IDs
-	FilterStop        string
-	FilterRouteTypes  []RouteType // Filter by different route types
+	IncludeStop       bool                   // Include Stop data is request
+	IncludeLine       bool                   // Include Line Data
+	FilterDirectionID string                 // Filter by Direction ID (Either "0" or "1")
+	FilterDate        string                 // Filter by date that route is active
+	FilterIDs         []string               // Filter by multiple IDs
+	FilterStop        string                 // Filter by stops
+	FilterRouteTypes  []RouteType            // Filter by different route types
 }
 
 // GetRouteRequestConfig extra options for GetRoute request
