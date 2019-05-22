@@ -24,7 +24,7 @@ func (s *RouteService) GetAllRoutesWithContext(ctx context.Context, config GetAl
 		return nil, err
 	}
 
-	untypedRoutes, _, err := s.client.doManyPayload(req, Route{})
+	untypedRoutes, _, err := s.client.doManyPayload(req, &Route{})
 	routes := make([]*Route, len(untypedRoutes))
 	for i := 0; i < len(untypedRoutes); i++ {
 		routes[i] = untypedRoutes[i].(*Route)
