@@ -62,11 +62,7 @@ func (config *GetAllRoutesRequestConfig) addHTTPParamsToRequest(req *http.Reques
 	addToQuery(q, "filter[date]", config.FilterDate)
 	addToQuery(q, "filter[stop]", config.FilterStop)
 	addCommaSeparatedListToQuery(q, "filter[id]", config.FilterIDs)
-	filterRouteTypesString := []string{}
-	for _, i := range config.FilterRouteTypes {
-		filterRouteTypesString = append(filterRouteTypesString, string(i))
-	}
-	addCommaSeparatedListToQuery(q, "filter[type]", filterRouteTypesString)
+	addCommaSeparatedListToQuery(q, "filter[type]", routeTypeSliceToStringSlice(config.FilterRouteTypes))
 
 	req.URL.RawQuery = q.Encode()
 }
@@ -77,4 +73,12 @@ func (config *GetRouteRequestConfig) addHTTPParamsToRequest(req *http.Request) {
 		q.Add("include", "line")
 		req.URL.RawQuery = q.Encode()
 	}
+}
+
+func routeTypeSliceToStringSlice(routeTypes []RouteType) []string {
+	filterRouteTypesStringSlice := []string{}
+	for _, i := range routeTypes {
+		filterRouteTypesStringSlice = append(filterRouteTypesStringSlice, string(i))
+	}
+	return filterRouteTypesStringSlice
 }
