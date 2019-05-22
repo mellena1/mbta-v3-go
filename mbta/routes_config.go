@@ -36,6 +36,7 @@ type GetAllRoutesRequestConfig struct {
 	IncludeStop          bool                   // Include Stop in response
 	IncludeLine          bool                   // Include Line in response
 	IncludeRoutePatterns bool                   // Include RoutePatterns in response
+	Fields               []string               // Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
 	FilterDirectionID    string                 // Filter by Direction ID (Either "0" or "1")
 	FilterDate           string                 // Filter by date that route is active
 	FilterIDs            []string               // Filter by multiple IDs
@@ -45,18 +46,27 @@ type GetAllRoutesRequestConfig struct {
 
 // GetRouteRequestConfig extra options for GetRoute request
 type GetRouteRequestConfig struct {
-	IncludeLine          bool // Include Line in response
-	IncludeRoutePatterns bool // Include RoutePatterns in response
+	Fields               []string // Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
+	IncludeLine          bool     // Include Line in response
+	IncludeRoutePatterns bool     // Include RoutePatterns in response
 }
 
 func (config *GetAllRoutesRequestConfig) addHTTPParamsToRequest(req *http.Request) {
 	// Add include params to request
-	includes := GetRouteRequestConfig{
-		IncludeLine: config.IncludeLine,
-	}
-	includes.addHTTPParamsToRequest(req)
-
 	q := req.URL.Query()
+
+	includes := []string{}
+	if config.IncludeLine {
+		includes = append(includes, "line")
+	}
+	if config.IncludeStop {
+		includes = append(includes, "stop")
+	}
+	if config.IncludeRoutePatterns {
+		includes = append(includes, "route_paterns")
+	}
+
+	addCommaSeparatedListToQuery(q, "includes", includes)
 	addToQuery(q, "page[offset]", config.PageOffset)
 	addToQuery(q, "page[limit]", config.PageLimit)
 	addToQuery(q, "sort", string(config.Sort))
@@ -71,10 +81,17 @@ func (config *GetAllRoutesRequestConfig) addHTTPParamsToRequest(req *http.Reques
 
 func (config *GetRouteRequestConfig) addHTTPParamsToRequest(req *http.Request) {
 	q := req.URL.Query()
+
+	includes := []string{}
 	if config.IncludeLine {
-		q.Add("include", "line")
-		req.URL.RawQuery = q.Encode()
+		includes = append(includes, "line")
 	}
+	if config.IncludeRoutePatterns {
+		includes = append(includes, "route_paterns")
+	}
+	addCommaSeparatedListToQuery(q, "includes", includes)
+	addCommaSeparatedListToQuery(q, "fields[route]", config.Fields)
+	req.URL.RawQuery = q.Encode()
 }
 
 func routeTypeSliceToStringSlice(routeTypes []RouteType) []string {
