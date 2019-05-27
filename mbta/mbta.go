@@ -37,6 +37,7 @@ type Client struct {
 	Stops    *StopService
 	Trips    *TripService
 	Vehicles *VehicleService
+	Routes   *RouteService
 }
 
 // NewClient creates a new Client using the given config options
@@ -65,6 +66,7 @@ func NewClient(config ClientConfig) *Client {
 	c.Stops = (*StopService)(&c.common)
 	c.Trips = (*TripService)(&c.common)
 	c.Vehicles = (*VehicleService)(&c.common)
+	c.Routes = (*RouteService)(&c.common)
 
 	return c
 }
