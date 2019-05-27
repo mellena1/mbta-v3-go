@@ -1,0 +1,75 @@
+{
+    "data": [
+        {
+            "attributes": {
+                "color": "FFC72C",
+                "description": "Key Bus",
+                "direction_destinations": [
+                    "Harvard",
+                    "Dudley"
+                ],
+                "direction_names": [
+                    "Outbound",
+                    "Inbound"
+                ],
+                "fare_class": "Local Bus",
+                "long_name": "Harvard - Dudley via Allston",
+                "short_name": "66",
+                "sort_order": 50660,
+                "text_color": "000000",
+                "type": 3
+            },
+            "id": "66",
+            "links": {
+                "self": "/routes/66"
+            },
+            "relationships": {
+                "line": {
+                    "data": {
+                        "id": "line-66",
+                        "type": "line"
+                    }
+                },
+                "route_patterns": {}
+            },
+            "type": "route"
+        },
+        {
+            "attributes": {
+                "color": "FFC72C",
+                "description": "Key Bus",
+                "direction_destinations": [
+                    "Forest Hills",
+                    "Back Bay Station"
+                ],
+                "direction_names": [
+                    "Outbound",
+                    "Inbound"
+                ],
+                "fare_class": "Local Bus",
+                "long_name": "Forest Hills - Back Bay Station",
+                "short_name": "39",
+                "sort_order": 50390,
+                "text_color": "000000",
+                "type": 3
+            },
+            "id": "39",
+            "links": {
+                "self": "/routes/39"
+            },
+            "relationships": {
+                "line": {
+                    "data": {
+                        "id": "line-39",
+                        "type": "line"
+                    }
+                },
+                "route_patterns": {}
+            },
+            "type": "route"
+        }
+    ],
+    "jsonapi": {
+        "version": "1.0"
+    }
+}
