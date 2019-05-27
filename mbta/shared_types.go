@@ -23,3 +23,15 @@ const (
 	// BikesAllowedNO No bicycles are allowed on this trip
 	BikesAllowedNO
 )
+
+const (
+	includeStop  = "stop"
+	includeTrip  = "trip"
+	includeRoute = "route"
+	includeParentStation = "parent_station"
+	includeVehicle = "vehicle"
+	includeService = "service"
+	includeShape = "shape"
+	includePredictions = "predictions"
+	includeRoutePattern = "route_pattern"
+)

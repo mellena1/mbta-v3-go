@@ -5,7 +5,8 @@ import (
 	"net/url"
 	"reflect"
 
-	jsonapi "github.com/michele/go.jsonapi"
+	"github.com/google/go-querystring/query"
+	"github.com/google/jsonapi"
 )
 
 const (
@@ -82,6 +83,29 @@ func (c *Client) newGETRequest(path string) (*http.Request, error) {
 	req.Header.Set("Accept", "application/vnd.api+json")
 	req.Header.Set("User-Agent", c.UserAgent)
 	return req, nil
+}
+
+// addOptions adds the parameters in opt as URL query parameters to s. opt
+// must be a struct whose fields may contain "url" tags.
+// copied from the go-github library: https://github.com/google/go-github
+func addOptions(s string, opt interface{}) (string, error) {
+	v := reflect.ValueOf(opt)
+	if v.Kind() == reflect.Ptr && v.IsNil() {
+		return s, nil
+	}
+
+	u, err := url.Parse(s)
+	if err != nil {
+		return s, err
+	}
+
+	qs, err := query.Values(opt)
+	if err != nil {
+		return s, err
+	}
+
+	u.RawQuery = qs.Encode()
+	return u.String(), nil
 }
 
 func (c *Client) doSinglePayload(req *http.Request, v interface{}) (*http.Response, error) {
