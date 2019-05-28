@@ -90,11 +90,11 @@ type GetAllStopsRequestConfig struct {
 
 // GetAllStops returns all stops from the mbta API
 func (s *StopService) GetAllStops(config *GetAllStopsRequestConfig) ([]*Stop, *http.Response, error) {
-	return s.GetAllStopsContext(context.Background(), config)
+	return s.GetAllStopsWithContext(context.Background(), config)
 }
 
-// GetAllStopsContext returns all stops from the mbta API given a context
-func (s *StopService) GetAllStopsContext(ctx context.Context, config *GetAllStopsRequestConfig) ([]*Stop, *http.Response, error) {
+// GetAllStopsWithContext returns all stops from the mbta API given a context
+func (s *StopService) GetAllStopsWithContext(ctx context.Context, config *GetAllStopsRequestConfig) ([]*Stop, *http.Response, error) {
 	u, err := addOptions(stopsAPIPath, config)
 	if err != nil {
 		return nil, nil, err
@@ -121,11 +121,11 @@ type GetStopRequestConfig struct {
 
 // GetStop returns a stop from the mbta API
 func (s *StopService) GetStop(id string, config *GetStopRequestConfig) (*Stop, *http.Response, error) {
-	return s.GetStopContext(context.Background(), id, config)
+	return s.GetStopWithContext(context.Background(), id, config)
 }
 
-// GetStopContext returns a stop from the mbta API given a context
-func (s *StopService) GetStopContext(ctx context.Context, id string, config *GetStopRequestConfig) (*Stop, *http.Response, error) {
+// GetStopWithContext returns a stop from the mbta API given a context
+func (s *StopService) GetStopWithContext(ctx context.Context, id string, config *GetStopRequestConfig) (*Stop, *http.Response, error) {
 	if id == "" {
 		return nil, nil, ErrMustSpecifyID
 	}
