@@ -84,22 +84,22 @@ const (
 
 // GetAllRoutesRequestConfig extra options for the GetAllRoutes request
 type GetAllRoutesRequestConfig struct {
-	PageOffset        string                 // Offset (0-based) of first element in the page
-	PageLimit         string                 // Max number of elements to return
-	Sort              GetAllRoutesSortByType // Results can be sorted by the id or any GetAllRoutesSortType
-	Include           []RouteInclude         `url:"include,comma,omitempty"` // Include extra data in response
-	Fields            []string               // Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
-	FilterDirectionID string                 // Filter by Direction ID (Either "0" or "1")
-	FilterDate        string                 // Filter by date that route is active
-	FilterIDs         []string               // Filter by multiple IDs
-	FilterStop        string                 // Filter by stops
-	FilterRouteTypes  []RouteType            // Filter by different route types
+	PageOffset        string                 `url:"page[offset],omitempty"`         // Offset (0-based) of first element in the page// Offset (0-based) of first element in the page
+	PageLimit         string                 `url:"page[limit],omitempty"`          // Max number of elements to return// Max number of elements to return
+	Sort              GetAllRoutesSortByType `url:"sort,omitempty"`                 // Results can be sorted by the id or any GetAllRoutesSortByType
+	Include           []RouteInclude         `url:"include,comma,omitempty"`        // Include extra data in response
+	Fields            []string               `url:"fields[stop],comma,omitempty"`   // Fields to include with the response. Note that fields can also be selected for included data types// Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
+	FilterDirectionID string                 `url:"filter[direction_id],omitempty"` // Filter by Direction ID (Either "0" or "1")
+	FilterDate        string                 `url:"filter[data],omitempty"`         // Filter by date that route is active
+	FilterIDs         []string               `url:"filter[id],comma,omitempty"`     // Filter by multiple IDs
+	FilterStop        string                 `url:"filter[stop],omitempty"`         // Filter by stops
+	FilterRouteTypes  []RouteType            `url:"filter[type],comma,omitempty"`   // Filter by different route types
 }
 
 // GetRouteRequestConfig extra options for GetRoute request
 type GetRouteRequestConfig struct {
-	Fields  []string       // Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
-	Include []RouteInclude `url:"include,comma,omitempty"` // Include extra data in response
+	Fields  []string       `url:"fields[stop],comma,omitempty"` // Fields to include with the response. Note that fields can also be selected for included data types// Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
+	Include []RouteInclude `url:"include,comma,omitempty"`      // Include extra data in response
 }
 
 // GetAllRoutes returns all routes from the mbta API
@@ -109,7 +109,7 @@ func (s *RouteService) GetAllRoutes(config GetAllRoutesRequestConfig) ([]*Route,
 
 // GetAllRoutesWithContext returns all routes from the mbta API given a context
 func (s *RouteService) GetAllRoutesWithContext(ctx context.Context, config GetAllRoutesRequestConfig) ([]*Route, *http.Response, error) {
-	u, err := addOptions(stopsAPIPath, config)
+	u, err := addOptions(routesAPIPath, config)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -119,7 +119,7 @@ func (s *RouteService) GetAllRoutesWithContext(ctx context.Context, config GetAl
 	}
 	req = req.WithContext(ctx)
 
-	untypedRoutes, resp, err := s.client.doManyPayload(req, &Stop{})
+	untypedRoutes, resp, err := s.client.doManyPayload(req, &Route{})
 	routes := make([]*Route, len(untypedRoutes))
 	for i := 0; i < len(untypedRoutes); i++ {
 		routes[i] = untypedRoutes[i].(*Route)
