@@ -25,13 +25,15 @@ const (
 )
 
 const (
-	includeStop  = "stop"
-	includeTrip  = "trip"
-	includeRoute = "route"
+	includeLine          = "line"
+	includeStop          = "stop"
+	includeTrip          = "trip"
+	includeRoute         = "route"
 	includeParentStation = "parent_station"
-	includeVehicle = "vehicle"
-	includeService = "service"
-	includeShape = "shape"
-	includePredictions = "predictions"
-	includeRoutePattern = "route_pattern"
+	includeVehicle       = "vehicle"
+	includeService       = "service"
+	includeShape         = "shape"
+	includePredictions   = "predictions"
+	includeRoutePattern  = "route_pattern"
+	includeRoutePatterns = "route_patterns"
 )
