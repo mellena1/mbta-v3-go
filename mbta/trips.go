@@ -73,11 +73,11 @@ type GetAllTripsRequestConfig struct {
 
 // GetAllTrips returns all vehicles from the mbta API
 func (s *TripService) GetAllTrips(config GetAllTripsRequestConfig) ([]*Trip, *http.Response, error) {
-	return s.GetAllTripsContext(context.Background(), config)
+	return s.GetAllTripsWithContext(context.Background(), config)
 }
 
-// GetAllTripsContext returns all vehicles from the mbta API given a context
-func (s *TripService) GetAllTripsContext(ctx context.Context, config GetAllTripsRequestConfig) ([]*Trip, *http.Response, error) {
+// GetAllTripsWithContext returns all vehicles from the mbta API given a context
+func (s *TripService) GetAllTripsWithContext(ctx context.Context, config GetAllTripsRequestConfig) ([]*Trip, *http.Response, error) {
 	u, err := addOptions(tripsAPIPath, config)
 	if err != nil {
 		return nil, nil, err
@@ -104,11 +104,11 @@ type GetTripRequestConfig struct {
 
 // GetTrip returns a vehicle from the mbta API
 func (s *TripService) GetTrip(id string, config GetTripRequestConfig) (*Trip, *http.Response, error) {
-	return s.GetTripContext(context.Background(), id, config)
+	return s.GetTripWithContext(context.Background(), id, config)
 }
 
-// GetTripContext returns a vehicle from the mbta API given a context
-func (s *TripService) GetTripContext(ctx context.Context, id string, config GetTripRequestConfig) (*Trip, *http.Response, error) {
+// GetTripWithContext returns a vehicle from the mbta API given a context
+func (s *TripService) GetTripWithContext(ctx context.Context, id string, config GetTripRequestConfig) (*Trip, *http.Response, error) {
 	if id == "" {
 		return nil, nil, ErrMustSpecifyID
 	}
