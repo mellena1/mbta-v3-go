@@ -29,6 +29,7 @@ const (
 	includeStop          = "stop"
 	includeTrip          = "trip"
 	includeRoute         = "route"
+	includeRoutes        = "routes"
 	includeParentStation = "parent_station"
 	includeVehicle       = "vehicle"
 	includeService       = "service"

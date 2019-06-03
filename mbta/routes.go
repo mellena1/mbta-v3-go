@@ -88,7 +88,7 @@ type GetAllRoutesRequestConfig struct {
 	PageLimit         string                 `url:"page[limit],omitempty"`          // Max number of elements to return// Max number of elements to return
 	Sort              GetAllRoutesSortByType `url:"sort,omitempty"`                 // Results can be sorted by the id or any GetAllRoutesSortByType
 	Include           []RouteInclude         `url:"include,comma,omitempty"`        // Include extra data in response
-	Fields            []string               `url:"fields[stop],comma,omitempty"`   // Fields to include with the response. Note that fields can also be selected for included data types// Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
+	Fields            []string               `url:"fields[route],comma,omitempty"`  // Fields to include with the response. Note that fields can also be selected for included data types// Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
 	FilterDirectionID string                 `url:"filter[direction_id],omitempty"` // Filter by Direction ID (Either "0" or "1")
 	FilterDate        string                 `url:"filter[data],omitempty"`         // Filter by date that route is active
 	FilterIDs         []string               `url:"filter[id],comma,omitempty"`     // Filter by multiple IDs
