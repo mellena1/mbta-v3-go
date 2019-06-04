@@ -4,24 +4,24 @@ package mbta
 type WheelchairBoardingType int
 
 const (
-	// WheelchairBoardingNOINFO No information
-	WheelchairBoardingNOINFO WheelchairBoardingType = iota
-	// WheelchairBoardingACCESSIBLE Accessible (if trip is wheelchair accessible)
-	WheelchairBoardingACCESSIBLE
-	// WheelchairBoardingINACCESSIBLE Inaccessible
-	WheelchairBoardingINACCESSIBLE
+	// WheelchairBoardingNoInfo No information
+	WheelchairBoardingNoInfo WheelchairBoardingType = iota
+	// WheelchairBoardingAccessible Accessible (if trip is wheelchair accessible)
+	WheelchairBoardingAccessible
+	// WheelchairBoardingInaccessible Inaccessible
+	WheelchairBoardingInaccessible
 )
 
 // BikesAllowedType enum for whether or not bikes are allowed
 type BikesAllowedType int
 
 const (
-	// BikesAllowedNOINFO No information
-	BikesAllowedNOINFO BikesAllowedType = iota
-	// BikesAllowedYES Vehicle being used on this particular trip can accommodate at least one bicycle
-	BikesAllowedYES
-	// BikesAllowedNO No bicycles are allowed on this trip
-	BikesAllowedNO
+	// BikesAllowedNoInfo No information
+	BikesAllowedNoInfo BikesAllowedType = iota
+	// BikesAllowedYes Vehicle being used on this particular trip can accommodate at least one bicycle
+	BikesAllowedYes
+	// BikesAllowedNo No bicycles are allowed on this trip
+	BikesAllowedNo
 )
 
 const (

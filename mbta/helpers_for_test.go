@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"path/filepath"
 	"reflect"
 	"runtime"
@@ -49,8 +50,11 @@ func httpPathToTestData(path string) string {
 
 func handlerForServer(t *testing.T, path string) http.HandlerFunc {
 	return http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
-		equals(t, path, req.URL.String())
-		fpath := httpPathToTestData(path)
+		exp, _ := url.Parse(path)
+		act := req.URL
+		equals(t, exp.String(), act.String())
+
+		fpath := httpPathToTestData(req.URL.Path)
 		resp, err := ioutil.ReadFile(fpath)
 		ok(t, err)
 		rw.Write(resp)

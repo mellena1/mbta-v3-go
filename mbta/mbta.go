@@ -75,7 +75,10 @@ func NewClient(config ClientConfig) *Client {
 }
 
 func (c *Client) newGETRequest(path string) (*http.Request, error) {
-	rel := &url.URL{Path: path}
+	rel, err := url.Parse(path)
+	if err != nil {
+		return nil, err
+	}
 	u := c.BaseURL.ResolveReference(rel)
 	req, err := http.NewRequest("GET", u.String(), nil)
 	if err != nil {
