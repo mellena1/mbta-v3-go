@@ -1,5 +1,11 @@
 package mbta
 
+import (
+	"context"
+	"fmt"
+	"net/http"
+)
+
 const linesAPIPath = "/lines"
 
 type LineService service
@@ -35,16 +41,61 @@ const (
 	GetAllLinesSortByTextColorDescending GetAllLinesSortByType = "-text_color"
 )
 
-type GetAllLinesRequestConfig Struct {
-	PageOffset        string                 `url:"page[offset],omitempty"`         // Offset (0-based) of first element in the page// Offset (0-based) of first element in the page
-	PageLimit         string                 `url:"page[limit],omitempty"`          // Max number of elements to return// Max number of elements to return
-	Sort              GetAllLinesSortByType  `url:"sort,omitempty"`                 // Results can be sorted by the id or any GetAllRoutesSortByType
-	Fields            []string               `url:"fields[line],comma,omitempty"`   // Fields to include with the response. Note that fields can also be selected for included data types// Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
-	Include			  []LineInclude		     `url:"include,comma,omitempty"`        // Include extra data in response
-	FilterIDs         []string               `url:"filter[id],comma,omitempty"`     // Filter by multiple IDs
+type GetAllLinesRequestConfig struct {
+	PageOffset string                `url:"page[offset],omitempty"`       // Offset (0-based) of first element in the page// Offset (0-based) of first element in the page
+	PageLimit  string                `url:"page[limit],omitempty"`        // Max number of elements to return// Max number of elements to return
+	Sort       GetAllLinesSortByType `url:"sort,omitempty"`               // Results can be sorted by the id or any GetAllRoutesSortByType
+	Fields     []string              `url:"fields[line],comma,omitempty"` // Fields to include with the response. Note that fields can also be selected for included data types// Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
+	Include    []LineInclude         `url:"include,comma,omitempty"`      // Include extra data in response
+	FilterIDs  []string              `url:"filter[id],comma,omitempty"`   // Filter by multiple IDs
 }
 
 type GetLineRequestConfig struct {
-	Fields            []string               `url:"fields[line],comma,omitempty"`   // Fields to include with the response. Note that fields can also be selected for included data types// Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
-	Include			  []LineInclude		     `url:"include,comma,omitempty"`        // Include extra data in response
+	Fields  []string      `url:"fields[line],comma,omitempty"` // Fields to include with the response. Note that fields can also be selected for included data types// Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
+	Include []LineInclude `url:"include,comma,omitempty"`      // Include extra data in response
+}
+
+func (s *LineService) GetAllLines(config GetAllLinesRequestConfig) ([]*Line, *http.Response, error) {
+	return s.GetAllLinesWithContext(context.Background(), config)
+}
+
+func (s *LineService) GetAllLinesWithContext(ctx context.Context, config GetAllLinesRequestConfig) ([]*Line, *http.Response, error) {
+	u, err := addOptions(linesAPIPath, config)
+	if err != nil {
+		return nil, nil, err
+	}
+	req, err := s.client.newGETRequest(u)
+	if err != nil {
+		return nil, nil, err
+	}
+	req = req.WithContext(ctx)
+
+	untypedLines, resp, err := s.client.doManyPayload(req, &Line{})
+	lines := make([]*Line, len(untypedLines))
+	for i := 0; i < len(untypedLines); i++ {
+		lines[i] = untypedLines[i].(*Line)
+	}
+
+	return lines, resp, err
+}
+
+func (s *LineService) GetLine(id string, config GetLineRequestConfig) (*Line, *http.Response, error) {
+	return s.GetLineWithContext(context.Background(), id, config)
+}
+
+func (s *LineService) GetLineWithContext(ctx context.Context, id string, config GetLineRequestConfig) (*Line, *http.Response, error) {
+	path := fmt.Sprintf("%s/%s", linesAPIPath, id)
+	u, err := addOptions(path, config)
+	if err != nil {
+		return nil, nil, err
+	}
+	req, err := s.client.newGETRequest(u)
+	if err != nil {
+		return nil, nil, err
+	}
+	req = req.WithContext(ctx)
+
+	var line Line
+	resp, err := s.client.doSinglePayload(req, &line)
+	return &line, resp, err
 }
