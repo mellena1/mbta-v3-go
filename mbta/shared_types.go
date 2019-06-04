@@ -33,6 +33,7 @@ const (
 	includeVehicle       = "vehicle"
 	includeService       = "service"
 	includeShape         = "shape"
+	includePrediction    = "prediction"
 	includePredictions   = "predictions"
 	includeRoutePattern  = "route_pattern"
 	includeRoutePatterns = "route_patterns"
