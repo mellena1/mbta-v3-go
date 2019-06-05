@@ -1,0 +1,73 @@
+{
+    "data": [
+        {
+            "attributes": {
+                "added_dates": [
+                    "2019-05-28",
+                    "2019-05-29",
+                    "2019-05-30",
+                    "2019-05-31"
+                ],
+                "added_dates_notes": [
+                    null,
+                    null,
+                    null,
+                    null
+                ],
+                "description": "Weekday schedule",
+                "end_date": "2019-06-21",
+                "removed_dates": [
+                    "2019-05-27"
+                ],
+                "removed_dates_notes": [
+                    "Memorial Day"
+                ],
+                "schedule_name": "Weekday",
+                "schedule_type": "Weekday",
+                "schedule_typicality": 1,
+                "start_date": "2019-05-27",
+                "valid_days": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ]
+            },
+            "id": "BUS22019-hbb29011-Weekday-02",
+            "links": {
+                "self": "/services/BUS22019-hbb29011-Weekday-02"
+            },
+            "type": "service"
+        },
+        {
+            "attributes": {
+                "added_dates": [
+                    "2019-06-01"
+                ],
+                "added_dates_notes": [
+                    null
+                ],
+                "description": "Saturday schedule",
+                "end_date": "2019-06-22",
+                "removed_dates": [],
+                "removed_dates_notes": [],
+                "schedule_name": "Saturday",
+                "schedule_type": "Saturday",
+                "schedule_typicality": 1,
+                "start_date": "2019-05-27",
+                "valid_days": [
+                    6
+                ]
+            },
+            "id": "BUS22019-hbb29016-Saturday-02",
+            "links": {
+                "self": "/services/BUS22019-hbb29016-Saturday-02"
+            },
+            "type": "service"
+        },
+    ],
+    "jsonapi": {
+        "version": "1.0"
+    }
+}
