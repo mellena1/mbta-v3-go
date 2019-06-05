@@ -1,0 +1,39 @@
+kind: pipeline
+name: default
+
+steps:
+- name: Go-Mod-Download
+  image: golang:1.12.5
+  volumes:
+  - name: gomod_cache
+    path: /go/pkg/mod
+  commands:
+  - go mod download
+
+- name: Run-go-tests
+  image: golang:1.12.5
+  volumes:
+  - name: gomod_cache
+    path: /go/pkg/mod
+  commands:
+  - go test -v ./mbta/...
+
+- name: Backend-gofmt
+  image: golang:1.12.5
+  volumes:
+  - name: gomod_cache
+    path: /go/pkg/mod
+  commands:
+  - go fmt ./mbta/... | [ $(wc -l) -eq 0 ]
+
+volumes:
+- name: gomod_cache
+  temp: {}
+
+trigger:
+  event:
+  - pull_request
+  - push
+  branch:
+  - master
+    

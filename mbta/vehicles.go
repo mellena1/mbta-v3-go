@@ -35,9 +35,9 @@ type Vehicle struct {
 	Longitude           float64       `jsonapi:"attr,longitude"`             // Degrees East, in the WGS-84 coordinate system
 	Speed               *float32      `jsonapi:"attr,speed"`                 // meters per second
 	UpdatedAt           TimeISO8601   `jsonapi:"attr,updated_at"`            // Time at which vehicle information was last updated. Format is ISO8601
-	Stop                *Stop         `jsonapi:"relation,stop"`              // Stop that the vehicle is at. Only includes id by default, use IncludeStop config option to get all data
-	Trip                *Trip         `jsonapi:"relation,trip"`              // Trip that the current vehicle is on
-	// TODO: Route *Route `jsonapi:"relation,route"`
+	Route               *Route        `jsonapi:"relation,route"`             // Route that the current vehicle is on. Only includes id by default, use Include config option to get all data
+	Stop                *Stop         `jsonapi:"relation,stop"`              // Stop that the vehicle is at. Only includes id by default, use Include config option to get all data
+	Trip                *Trip         `jsonapi:"relation,trip"`              // Trip that the current vehicle is on. Only includes id by default, use Include config option to get all data
 }
 
 // VehicleInclude all of the includes for a vehicle request

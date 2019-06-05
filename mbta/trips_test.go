@@ -12,11 +12,12 @@ func Test_GetTrip(t *testing.T) {
 	expected := &Trip{
 		ID:                   id,
 		Name:                 "",
-		WheelchairAccessible: WheelchairBoardingACCESSIBLE,
+		WheelchairAccessible: WheelchairBoardingAccessible,
 		Headsign:             "Ashmont",
 		DirectionID:          0,
-		BikesAllowed:         BikesAllowedNOINFO,
+		BikesAllowed:         BikesAllowedNoInfo,
 		BlockID:              "S931_-5-0-L-0-BraintreeQuincyCenter",
+		Route:                &Route{ID: "Red"},
 	}
 	server := httptest.NewServer(handlerForServer(t, fmt.Sprintf("%s/%s", tripsAPIPath, id)))
 	defer server.Close()
@@ -34,20 +35,22 @@ func Test_GetAllTrips(t *testing.T) {
 		&Trip{
 			ID:                   "40119998-BraintreeQuincyCenterL",
 			Name:                 "",
-			WheelchairAccessible: WheelchairBoardingACCESSIBLE,
+			WheelchairAccessible: WheelchairBoardingAccessible,
 			Headsign:             "Ashmont",
 			DirectionID:          0,
-			BikesAllowed:         BikesAllowedNOINFO,
+			BikesAllowed:         BikesAllowedNoInfo,
 			BlockID:              "S931_-4-0-L-0-BraintreeQuincyCenter",
+			Route:                &Route{ID: "Red"},
 		},
 		&Trip{
 			ID:                   "40119998-L",
 			Name:                 "",
-			WheelchairAccessible: WheelchairBoardingACCESSIBLE,
+			WheelchairAccessible: WheelchairBoardingAccessible,
 			Headsign:             "Ashmont",
 			DirectionID:          0,
-			BikesAllowed:         BikesAllowedNOINFO,
+			BikesAllowed:         BikesAllowedNoInfo,
 			BlockID:              "S931_-4-0-L",
+			Route:                &Route{ID: "Red"},
 		},
 	}
 	server := httptest.NewServer(handlerForServer(t, tripsAPIPath))
