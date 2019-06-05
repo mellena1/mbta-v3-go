@@ -20,7 +20,7 @@ func TestGetLine(t *testing.T) {
 	defer server.Close()
 	mbtaClient := NewClient(ClientConfig{BaseURL: server.URL})
 	mbtaClient.client = server.Client()
-	actual, _, err := mbtaClient.Lines.GetLine("line-Green", GetLineRequestConfig{})
+	actual, _, err := mbtaClient.Lines.GetLine("line-Green", &GetLineRequestConfig{})
 	ok(t, err)
 	equals(t, expected, actual)
 }
@@ -50,7 +50,7 @@ func TestGetAllLines(t *testing.T) {
 	defer server.Close()
 	mbtaClient := NewClient(ClientConfig{BaseURL: server.URL})
 	mbtaClient.client = server.Client()
-	actual, _, err := mbtaClient.Lines.GetAllLines(GetAllLinesRequestConfig{})
+	actual, _, err := mbtaClient.Lines.GetAllLines(&GetAllLinesRequestConfig{})
 	ok(t, err)
 	equals(t, expected, actual)
 }
