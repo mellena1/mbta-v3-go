@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestGetRoute(t *testing.T) {
+func Test_GetRoute(t *testing.T) {
 	expected := &Route{
 		ID:                    "66",
 		Color:                 "FFC72C",
@@ -30,7 +30,7 @@ func TestGetRoute(t *testing.T) {
 	equals(t, expected, actual)
 }
 
-func TestGetAllRoutes(t *testing.T) {
+func Test_GetAllRoutes(t *testing.T) {
 	expected := []*Route{
 		&Route{
 			ID:                    "66",

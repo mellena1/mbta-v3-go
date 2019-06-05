@@ -65,7 +65,7 @@
                 "self": "/services/BUS22019-hbb29016-Saturday-02"
             },
             "type": "service"
-        },
+        }
     ],
     "jsonapi": {
         "version": "1.0"

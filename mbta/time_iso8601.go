@@ -54,7 +54,3 @@ func (t *TimeISO8601) EncodeValues(key string, v *url.Values) error {
 func parseISO8601Time(timeStr string) (time.Time, error) {
 	return time.Parse(iso8601Format, timeStr)
 }
-
-func timeToTimeISO8601(t time.Time) TimeISO8601 {
-	return TimeISO8601{Time: t}
-}

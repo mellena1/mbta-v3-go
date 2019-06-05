@@ -14,7 +14,7 @@ type ServicesService service
 type Weekday int
 
 const (
-	Monday = iota + 1
+	Monday Weekday = iota + 1
 	Tuesday
 	Wednesday
 	Thursday
@@ -23,20 +23,32 @@ const (
 	Sunday
 )
 
+// ScheduleTypicality Describes how well this schedule represents typical service for the listed schedule_type
+type Typicality int
+
+const (
+	Undefined Typicality = iota
+	Typical
+	SupplementalExtra
+	ReducedHoliday
+	PlannedMajorChange
+	UnplannedMajorReduction
+)
+
 // Service holds all the info about a given MBTA Service
 type Service struct {
-	ID                 string    `jsonapi:"primary,service"`
-	AddedDates         []string  `jsonapi:"attr,addded_dates"`
-	AddedDatesNotes    []string  `jsonapi:"attr,addded_dates_notes"`
-	Description        string    `jsonapi:"attr,description"`
-	EndDate            string    `jsonapi:"attr,end_date"`
-	RemovedDates       []string  `jsonapi:"attr,removed_dates"`
-	RemovedDatesNotes  []string  `jsonapi:"attr,removed_dates_notes"`
-	ScheduleName       string    `jsonapi:"attr,schedule_name"`
-	ScheduleType       string    `jsonapi:"attr,schedule_type"`
-	ScheduleTypicality string    `jsonapi:"attr,schedule_typicality"`
-	StartDate          string    `jsonapi:"attr,start_date"`
-	ValidDays          []Weekday `jsonapi:"attr,valid_days"`
+	ID         string        `jsonapi:"primary,service"`
+	AddedDates []TimeISO8601 `jsonapi:"attr,added_dates"`
+	// AddedDatesNotes    []string      `jsonapi:"attr,added_dates_notes"`
+	// Description        string        `jsonapi:"attr,description"`
+	// EndDate            TimeISO8601   `jsonapi:"attr,end_date"`
+	// RemovedDates       []TimeISO8601 `jsonapi:"attr,removed_dates"`
+	// RemovedDatesNotes  []string      `jsonapi:"attr,removed_dates_notes"`
+	// ScheduleName       string        `jsonapi:"attr,schedule_name"`
+	// ScheduleType       string        `jsonapi:"attr,schedule_type"`
+	// ScheduleTypicality Typicality           `jsonapi:"attr,schedule_typicality"`
+	// StartDate          TimeISO8601   `jsonapi:"attr,start_date"`
+	// ValidDays          []Weekday     `jsonapi:"attr,valid_days"`
 }
 
 // GetAllServicesSortByType all possible ways to sort /services request
