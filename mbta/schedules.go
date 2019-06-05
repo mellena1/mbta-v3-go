@@ -46,7 +46,7 @@ type Schedule struct {
 	// TODO: Prediction *Prediction `jsonapi:"relation,prediction"`
 }
 
-// ScheduleInclude all of the includes for a vehicle request
+// ScheduleInclude all of the includes for a schedule request
 type ScheduleInclude string
 
 const (
@@ -85,21 +85,21 @@ type GetAllSchedulesRequestConfig struct {
 	Include            []ScheduleInclude         `url:"include,comma,omitempty"`          // Include extra data in response (trip, stop, prediction, or route)
 	FilterDates        []TimeISO8601             `url:"filter[date],comma,omitempty"`     // Filter by multiple dates
 	FilterDirectionID  string                    `url:"filter[direction_id],omitempty"`   // Filter by Direction ID (Either "0" or "1")
-	FilterMinTime      []string                  `url:"filter[min_time],omitempty"`       // Time before which schedule should not be returned. To filter times after midnight use more than 24 hours. For example, min_time=24:00 will return schedule information for the next calendar day, since that service is considered part of the current service day. Additionally, min_time=00:00&max_time=02:00 will not return anything. The time format is HH:MM.
-	FilterMaxTime      []string                  `url:"filter[max_time],omitempty"`       // Time after which schedule should not be returned. To filter times after midnight use more than 24 hours. For example, min_time=24:00 will return schedule information for the next calendar day, since that service is considered part of the current service day. Additionally, min_time=00:00&max_time=02:00 will not return anything. The time format is HH:MM.
+	FilterMinTime      []string                  `url:"filter[min_time],comma,omitempty"` // Time before which schedule should not be returned. To filter times after midnight use more than 24 hours. For example, min_time=24:00 will return schedule information for the next calendar day, since that service is considered part of the current service day. Additionally, min_time=00:00&max_time=02:00 will not return anything. The time format is HH:MM.
+	FilterMaxTime      []string                  `url:"filter[max_time],comma,omitempty"` // Time after which schedule should not be returned. To filter times after midnight use more than 24 hours. For example, min_time=24:00 will return schedule information for the next calendar day, since that service is considered part of the current service day. Additionally, min_time=00:00&max_time=02:00 will not return anything. The time format is HH:MM.
 	FilterRouteIDs     []string                  `url:"filter[route],comma,omitempty"`    // Filter by route IDs
 	FilterStopIDs      []string                  `url:"filter[stop],comma,omitempty"`     // Filter by stop IDs
 	FilterTripIDs      []string                  `url:"filter[trip],comma,omitempty"`     // Filter by trip IDs
 	FilterStopSequence string                    `url:"filter[stop_sequence],omitempty"`  // Filter by the index of the stop in the trip. Symbolic values `first` and `last` can be used instead of numeric sequence number too.
 }
 
-// GetAllSchedules returns all vehicles from the mbta API
+// GetAllSchedules returns all schedules for a particular route, stop or trip from the mbta API
 // NOTE: filter[route], filter[stop], or filter[trip] MUST be present for any schedules to be returned.
 func (s *ScheduleService) GetAllSchedules(config *GetAllSchedulesRequestConfig) ([]*Schedule, *http.Response, error) {
 	return s.GetAllSchedulesWithContext(context.Background(), config)
 }
 
-// GetAllSchedulesWithContext returns all vehicles from the mbta API given a context
+// GetAllSchedulesWithContext returns all schedules for a particular route, stop or trip from the mbta API given a context
 // NOTE: filter[route], filter[stop], or filter[trip] MUST be present for any schedules to be returned.
 func (s *ScheduleService) GetAllSchedulesWithContext(ctx context.Context, config *GetAllSchedulesRequestConfig) ([]*Schedule, *http.Response, error) {
 	if len(config.FilterRouteIDs) == 0 && len(config.FilterStopIDs) == 0 && len(config.FilterTripIDs) == 0 {

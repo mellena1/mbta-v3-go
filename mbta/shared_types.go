@@ -25,12 +25,14 @@ const (
 )
 
 const (
+	includeAlerts        = "alerts"
 	includeLine          = "line"
 	includeStop          = "stop"
 	includeTrip          = "trip"
 	includeRoute         = "route"
 	includeParentStation = "parent_station"
 	includeVehicle       = "vehicle"
+	includeSchedule      = "schedule"
 	includeService       = "service"
 	includeShape         = "shape"
 	includePrediction    = "prediction"
