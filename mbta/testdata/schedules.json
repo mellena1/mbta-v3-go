@@ -1,0 +1,80 @@
+{
+    "data": [
+        {
+            "attributes": {
+                "arrival_time": "2019-06-03T05:01:00-04:00",
+                "departure_time": "2019-06-03T05:01:00-04:00",
+                "direction_id": 1,
+                "drop_off_type": 1,
+                "pickup_type": 0,
+                "stop_sequence": 180,
+                "timepoint": false
+            },
+            "id": "schedule-39988449-20:30-NewtonHighlandsRiverside-70238-180",
+            "relationships": {
+                "prediction": {},
+                "route": {
+                    "data": {
+                        "id": "Green-C",
+                        "type": "route"
+                    }
+                },
+                "stop": {
+                    "data": {
+                        "id": "70238",
+                        "type": "stop"
+                    }
+                },
+                "trip": {
+                    "data": {
+                        "id": "39988449-20:30-NewtonHighlandsRiverside",
+                        "type": "trip"
+                    }
+                }
+            },
+            "type": "schedule"
+        },
+        {
+            "attributes": {
+                "arrival_time": "2019-06-03T05:02:00-04:00",
+                "departure_time": "2019-06-03T05:02:00-04:00",
+                "direction_id": 1,
+                "drop_off_type": 0,
+                "pickup_type": 0,
+                "stop_sequence": 190,
+                "timepoint": false
+            },
+            "id": "schedule-39988449-20:30-NewtonHighlandsRiverside-70236-190",
+            "relationships": {
+                "prediction": {},
+                "route": {
+                    "data": {
+                        "id": "Green-C",
+                        "type": "route"
+                    }
+                },
+                "stop": {
+                    "data": {
+                        "id": "70236",
+                        "type": "stop"
+                    }
+                },
+                "trip": {
+                    "data": {
+                        "id": "39988449-20:30-NewtonHighlandsRiverside",
+                        "type": "trip"
+                    }
+                }
+            },
+            "type": "schedule"
+        }
+    ],
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "links": {
+        "first": "https://api-v3.mbta.com/schedules?filter[route]=Green-C&page[limit]=2&page[offset]=0",
+        "last": "https://api-v3.mbta.com/schedules?filter[route]=Green-C&page[limit]=2&page[offset]=6518",
+        "next": "https://api-v3.mbta.com/schedules?filter[route]=Green-C&page[limit]=2&page[offset]=2"
+    }
+}

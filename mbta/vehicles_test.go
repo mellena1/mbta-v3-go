@@ -21,6 +21,7 @@ func Test_GetVehicle(t *testing.T) {
 		Longitude:           -71.07652282714844,
 		Speed:               nil,
 		UpdatedAt:           timeToTimeISO8601(parsedTime),
+		Route:               &Route{ID: "10"},
 		Stop:                &Stop{ID: "178"},
 		Trip:                &Trip{ID: "39915343"},
 	}
@@ -50,6 +51,7 @@ func Test_GetAllVehicles(t *testing.T) {
 			Longitude:           -71.0453109741211,
 			Speed:               nil,
 			UpdatedAt:           timeToTimeISO8601(parsedTime1),
+			Route:               &Route{ID: "10"},
 			Stop:                &Stop{ID: "46"},
 			Trip:                &Trip{ID: "39915358"},
 		},
@@ -64,6 +66,7 @@ func Test_GetAllVehicles(t *testing.T) {
 			Longitude:           -71.07601165771484,
 			Speed:               nil,
 			UpdatedAt:           timeToTimeISO8601(parsedTime2),
+			Route:               &Route{ID: "1"},
 			Stop:                &Stop{ID: "10100"},
 			Trip:                &Trip{ID: "39914092"},
 		},

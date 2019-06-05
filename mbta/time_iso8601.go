@@ -2,6 +2,7 @@ package mbta
 
 import (
 	"fmt"
+	"net/url"
 	"strings"
 	"time"
 )
@@ -41,6 +42,12 @@ func (t *TimeISO8601) UnmarshalJSON(b []byte) error {
 	}
 
 	t.Time = parsed
+	return nil
+}
+
+// EncodeValues implement the "github.com/google/go-querystring/query" interface for encoding
+func (t *TimeISO8601) EncodeValues(key string, v *url.Values) error {
+	v.Add(key, t.FormatOnlyDate())
 	return nil
 }
 

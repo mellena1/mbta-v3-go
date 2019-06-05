@@ -15,12 +15,12 @@ type StopService service
 type StopLocationType int
 
 const (
-	// StopLocationSTOP A location where passengers board or disembark from a transit vehicle
-	StopLocationSTOP StopLocationType = iota
-	// StopLocationSTATION A physical structure or area that contains one or more stops
-	StopLocationSTATION
-	// StopLocationSTATIONENTRANCEEXIT A location where passengers can enter or exit a station from the street
-	StopLocationSTATIONENTRANCEEXIT
+	// StopLocationStop A location where passengers board or disembark from a transit vehicle
+	StopLocationStop StopLocationType = iota
+	// StopLocationStation A physical structure or area that contains one or more stops
+	StopLocationStation
+	// StopLocationStationEntranceExit A location where passengers can enter or exit a station from the street
+	StopLocationStationEntranceExit
 )
 
 // Stop holds all info about a given MBTA Stop

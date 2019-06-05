@@ -12,6 +12,7 @@ var (
 	ErrRateLimitExceeded = errors.New("you have exceeded your allowed usage rate")
 	ErrForbidden         = errors.New("forbidden")
 	ErrMustSpecifyID     = errors.New("must specify an id (cannot be an empty string)")
+	ErrInvalidConfig     = errors.New("config options are invalid")
 )
 
 // BadRequestError error type holding the returned info about the bad request

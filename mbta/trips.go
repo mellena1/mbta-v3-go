@@ -20,7 +20,7 @@ type Trip struct {
 	DirectionID          int                    `jsonapi:"attr,direction_id"`          // Direction in which trip is traveling: 0 or 1.
 	BlockID              string                 `jsonapi:"attr,block_id"`              // ID used to group sequential trips with the same vehicle for a given service_id
 	BikesAllowed         BikesAllowedType       `jsonapi:"attr,bikes_allowed"`         // Indicator of whether or not bikes are allowed on this trip
-	// TODO: Route                *Route                 `jsonapi:"relation,route"`
+	Route                *Route                 `jsonapi:"relation,route"`             // Trip that the current trip is linked with. Only includes id by default, use Include config option to get all data
 	// TODO: RoutePattern         *RoutePattern          `jsonapi:"relation,route_pattern"`
 	// TODO: Service              *Service               `jsonapi:"relation,service"`
 	// TODO: Shape                *Shape                 `jsonapi:"relation,shape"`
