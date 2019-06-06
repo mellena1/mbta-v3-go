@@ -1,0 +1,76 @@
+{
+    "data": [
+        {
+            "attributes": {
+                "direction_id": 1,
+                "name": "Dudley Station via Allston",
+                "priority": 3
+            },
+            "id": "660085",
+            "links": {
+                "self": "/shapes/660085"
+            },
+            "relationships": {
+                "route": {
+                    "data": {
+                        "id": "66",
+                        "type": "route"
+                    }
+                },
+                "stops": {
+                    "data": [
+                        {
+                            "id": "22549",
+                            "type": "stop"
+                        },
+                        {
+                            "id": "32549",
+                            "type": "stop"
+                        }
+                    ]
+                }
+            },
+            "type": "shape"
+        },
+        {
+            "attributes": {
+                "direction_id": 1,
+                "name": "Franklin Park via Dudley",
+                "priority": 2
+            },
+            "id": "660113-2",
+            "links": {
+                "self": "/shapes/660113-2"
+            },
+            "relationships": {
+                "route": {
+                    "data": {
+                        "id": "66",
+                        "type": "route"
+                    }
+                },
+                "stops": {
+                    "data": [
+                        {
+                            "id": "925",
+                            "type": "stop"
+                        },
+                        {
+                            "id": "926",
+                            "type": "stop"
+                        }
+                    ]
+                }
+            },
+            "type": "shape"
+        }
+    ],
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "links": {
+        "first": "https://api-v3.mbta.com/shapes?fields[shape]=priority%2Cname%2Cdirection_id&filter[route]=66&include=route&page[limit]=2&page[offset]=0",
+        "last": "https://api-v3.mbta.com/shapes?fields[shape]=priority%2Cname%2Cdirection_id&filter[route]=66&include=route&page[limit]=2&page[offset]=6",
+        "next": "https://api-v3.mbta.com/shapes?fields[shape]=priority%2Cname%2Cdirection_id&filter[route]=66&include=route&page[limit]=2&page[offset]=2"
+    }
+}
