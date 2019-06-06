@@ -25,7 +25,7 @@ func TestGetRoute(t *testing.T) {
 	mbtaClient := NewClient(ClientConfig{BaseURL: server.URL})
 	mbtaClient.client = server.Client()
 
-	actual, _, err := mbtaClient.Routes.GetRoute("66", GetRouteRequestConfig{})
+	actual, _, err := mbtaClient.Routes.GetRoute("66", &GetRouteRequestConfig{})
 	ok(t, err)
 	equals(t, expected, actual)
 }
@@ -63,7 +63,7 @@ func TestGetAllRoutes(t *testing.T) {
 	mbtaClient := NewClient(ClientConfig{BaseURL: server.URL})
 	mbtaClient.client = server.Client()
 
-	actual, _, err := mbtaClient.Routes.GetAllRoutes(GetAllRoutesRequestConfig{})
+	actual, _, err := mbtaClient.Routes.GetAllRoutes(&GetAllRoutesRequestConfig{})
 	ok(t, err)
 	equals(t, expected, actual)
 }
