@@ -32,6 +32,9 @@ func TestGetFacility(t *testing.T) {
 				Value: "781-455-7500",
 			},
 		},
+		Stop: &Stop{
+			ID: "place-NB-0127",
+		},
 	}
 	server := httptest.NewServer(handlerForServer(t, fmt.Sprintf("%s/%s", facilitiesAPIPath, "park-NB-0127")))
 	defer server.Close()
@@ -63,6 +66,9 @@ func TestGetAllFacilities(t *testing.T) {
 					Value: "23151",
 				},
 			},
+			Stop: &Stop{
+				ID: "place-portr",
+			},
 		},
 		&Facility{
 			ID:        "retailsale-302029",
@@ -81,6 +87,7 @@ func TestGetAllFacilities(t *testing.T) {
 					Value: "1",
 				},
 			},
+			Stop: nil,
 		},
 	}
 	server := httptest.NewServer(handlerForServer(t, facilitiesAPIPath))

@@ -64,6 +64,7 @@ type Facility struct {
 	Name       string             `jsonapi:"attr,name"`       // Name of the facility
 	Longitude  *float64           `jsonapi:"attr,longitude"`  // Longitude of the facility. Degrees East, in the WGS-84 coordinate system
 	Latitude   *float64           `jsonapi:"attr,latitude"`   // Latitude of the facility. Degrees North, in the WGS-84 coordinate system
+	Stop       *Stop              `jsonapi:"relation,stop"`   // Stop that the current facility is linked with. Only includes id by default, use Include config option to get all data
 }
 
 // FacilityInclude all of the includes for a facility request
