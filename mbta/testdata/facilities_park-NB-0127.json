@@ -1,0 +1,45 @@
+{
+    "data": {
+        "attributes": {
+            "latitude": 42.28123,
+            "longitude": -71.237271,
+            "name": "Needham Center Parking Lot",
+            "properties": [
+                {
+                    "name": "attended",
+                    "value": 2
+                },
+                {
+                    "name": "capacity",
+                    "value": 35
+                },
+                {
+                    "name": "contact",
+                    "value": "Town of Needham, Parking Clerk"
+                },
+                {
+                    "name": "contact-phone",
+                    "value": "781-455-7500"
+                }
+            ],
+            "short_name": "Parking Lot",
+            "type": "PARKING_AREA"
+        },
+        "id": "park-NB-0127",
+        "links": {
+            "self": "/facilities/park-NB-0127"
+        },
+        "relationships": {
+            "stop": {
+                "data": {
+                    "id": "place-NB-0127",
+                    "type": "stop"
+                }
+            }
+        },
+        "type": "facility"
+    },
+    "jsonapi": {
+        "version": "1.0"
+    }
+}

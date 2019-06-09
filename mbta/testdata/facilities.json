@@ -1,0 +1,73 @@
+{
+    "data": [
+        {
+            "attributes": {
+                "latitude": null,
+                "longitude": null,
+                "name": "Porter Elevator 986 (Commuter Rail platform to lobby)",
+                "properties": [
+                    {
+                        "name": "alternate-service-text",
+                        "value": "See station personnel or use the call box to request assistance."
+                    },
+                    {
+                        "name": "excludes-stop",
+                        "value": 23151
+                    }
+                ],
+                "short_name": "Commuter Rail platform to lobby",
+                "type": "ELEVATOR"
+            },
+            "id": "986",
+            "links": {
+                "self": "/facilities/986"
+            },
+            "relationships": {
+                "stop": {
+                    "data": {
+                        "id": "place-portr",
+                        "type": "stop"
+                    }
+                }
+            },
+            "type": "facility"
+        },
+        {
+            "attributes": {
+                "latitude": 42.3415202,
+                "longitude": -71.0868242,
+                "name": "Symphony Market",
+                "properties": [
+                    {
+                        "name": "address",
+                        "value": "291 Huntington Ave, Boston, MA 02115"
+                    },
+                    {
+                        "name": "enclosed",
+                        "value": 1
+                    }
+                ],
+                "short_name": "Symphony Market",
+                "type": "FARE_VENDING_RETAILER"
+            },
+            "id": "retailsale-302029",
+            "links": {
+                "self": "/facilities/retailsale-302029"
+            },
+            "relationships": {
+                "stop": {
+                    "data": null
+                }
+            },
+            "type": "facility"
+        }
+    ],
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "links": {
+        "first": "https://api-v3.mbta.com/facilities?page[limit]=2&page[offset]=0",
+        "last": "https://api-v3.mbta.com/facilities?page[limit]=2&page[offset]=1662",
+        "next": "https://api-v3.mbta.com/facilities?page[limit]=2&page[offset]=2"
+    }
+}
