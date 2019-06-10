@@ -80,7 +80,7 @@ func (s *LineService) GetAllLinesWithContext(ctx context.Context, config *GetAll
 	return lines, resp, err
 }
 
-// GetLineRequestConfig extra options for the GetAllLines request
+// GetLineRequestConfig extra options for the GetLine request
 type GetLineRequestConfig struct {
 	Fields  []string      `url:"fields[line],comma,omitempty"` // Fields to include with the response. Note that fields can also be selected for included data types// Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
 	Include []LineInclude `url:"include,comma,omitempty"`      // Include extra data in response
