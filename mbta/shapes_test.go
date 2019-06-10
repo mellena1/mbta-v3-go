@@ -24,7 +24,7 @@ func TestGetShape(t *testing.T) {
 	mbtaClient := NewClient(ClientConfig{BaseURL: server.URL})
 	mbtaClient.client = server.Client()
 
-	actual, _, err := mbtaClient.Shapes.GetShape("660085", GetShapeRequestConfig{})
+	actual, _, err := mbtaClient.Shapes.GetShape("660085", &GetShapeRequestConfig{})
 	ok(t, err)
 	equals(t, expected, actual)
 }
@@ -60,7 +60,7 @@ func TestGetAllShapes(t *testing.T) {
 	mbtaClient := NewClient(ClientConfig{BaseURL: server.URL})
 	mbtaClient.client = server.Client()
 
-	actual, _, err := mbtaClient.Shapes.GetAllShapes(GetAllShapesRequestConfig{})
+	actual, _, err := mbtaClient.Shapes.GetAllShapes(&GetAllShapesRequestConfig{})
 	ok(t, err)
 	equals(t, expected, actual)
 }

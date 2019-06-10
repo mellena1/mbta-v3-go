@@ -40,8 +40,8 @@ const (
 type ShapeInclude string
 
 const (
-	ShapeIncludeRoute ShapeInclude = includeRoute
-	ShapeIncludeStop               = includeStop
+	ShapeIncludeRoutes ShapeInclude = includeRoute
+	ShapeIncludeStops  ShapeInclude = includeStop
 )
 
 // GetAllShapesRequestConfig holds the request info for the GetAllShapes function
@@ -55,19 +55,13 @@ type GetAllShapesRequestConfig struct {
 	FilterDirectionID string                 `url:"filter[direction_id],omitempty"` // Filter by direction of travel along the route.
 }
 
-// GetShapeRequestConfig holds the request info for the GetShape function
-type GetShapeRequestConfig struct {
-	Fields  []string `url:"fields[shape],comma,omitempty"` // Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types: see the V3 API Best Practices for an example.
-	Include []string `url:"include,comma,omitempty"`       // Can include choose to include route and stop.
-}
-
 // GetAllShapes gets all the shapes based on the config info
-func (s *ShapeService) GetAllShapes(config GetAllShapesRequestConfig) ([]*Shape, *http.Response, error) {
+func (s *ShapeService) GetAllShapes(config *GetAllShapesRequestConfig) ([]*Shape, *http.Response, error) {
 	return s.GetAllShapesWithContext(context.Background(), config)
 }
 
 // GetAllShapesWithContext gets all the shapes based on the config info and accepts a context
-func (s *ShapeService) GetAllShapesWithContext(ctx context.Context, config GetAllShapesRequestConfig) ([]*Shape, *http.Response, error) {
+func (s *ShapeService) GetAllShapesWithContext(ctx context.Context, config *GetAllShapesRequestConfig) ([]*Shape, *http.Response, error) {
 	u, err := addOptions(shapesAPIPath, config)
 	if err != nil {
 		return nil, nil, err
@@ -86,14 +80,20 @@ func (s *ShapeService) GetAllShapesWithContext(ctx context.Context, config GetAl
 	return shapes, resp, err
 }
 
+// GetShapeRequestConfig holds the request info for the GetShape function
+type GetShapeRequestConfig struct {
+	Fields  []string       `url:"fields[shape],comma,omitempty"` // Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types: see the V3 API Best Practices for an example.
+	Include []ShapeInclude `url:"include,comma,omitempty"`       // Can include choose to include route and stop.
+}
+
 // GetShape gets the shape with the specified ID
-func (s *ShapeService) GetShape(id string, config GetShapeRequestConfig) (*Shape, *http.Response, error) {
+func (s *ShapeService) GetShape(id string, config *GetShapeRequestConfig) (*Shape, *http.Response, error) {
 	return s.GetShapeWithContext(context.Background(), id, config)
 
 }
 
 // GetShapeWithContext gets the shape with the specified ID and accepts context
-func (s *ShapeService) GetShapeWithContext(ctx context.Context, id string, config GetShapeRequestConfig) (*Shape, *http.Response, error) {
+func (s *ShapeService) GetShapeWithContext(ctx context.Context, id string, config *GetShapeRequestConfig) (*Shape, *http.Response, error) {
 	path := fmt.Sprintf("%s/%s", shapesAPIPath, id)
 	u, err := addOptions(path, config)
 	if err != nil {
