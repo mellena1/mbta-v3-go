@@ -144,7 +144,7 @@ type Alert struct {
 	Lifecycle      AlertLifecycleType    `jsonapi:"attr,lifecycle"`       // Identifies whether alert is a new or old, in effect or upcoming
 	InformedEntity []AlertInformedEntity `jsonapi:"attr,informed_entity"` // Object representing a particular part of the system affected by an alert
 	Header         string                `jsonapi:"attr,header"`          // This plain-text string will be highlighted, for example in boldface
-	Effect         AlertEffectType       `jsonapi:"attr,effect_name"`     // The effect of this problem on the affected entity
+	Effect         AlertEffectType       `jsonapi:"attr,effect"`          // The effect of this problem on the affected entity
 	Description    *string               `jsonapi:"attr,description"`     // This plain-text string will be formatted as the body of the alert (or shown on an explicit “expand” request by the user). The information in the description should add to the information of the header
 	CreatedAt      TimeISO8601           `jsonapi:"attr,created_at"`      // Date/Time alert created
 	Cause          AlertCauseType        `jsonapi:"attr,cause"`           // What is causing the alert
