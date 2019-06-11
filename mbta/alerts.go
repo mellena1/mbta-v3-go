@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"net/url"
 )
 
 const alertsAPIPath = "/alerts"
@@ -136,7 +135,7 @@ const (
 // Alert holds all the info about a given MBTA Alert
 type Alert struct {
 	ID             string                `jsonapi:"primary,alert"`
-	URL            *url.URL              `jsonapi:"attr,url"`             // A URL for extra details, such as outline construction or maintenance plans
+	URL            *JSONURL              `jsonapi:"attr,url"`             // A URL for extra details, such as outline construction or maintenance plans
 	UpdatedAt      TimeISO8601           `jsonapi:"attr,updated_at"`      // Date/Time alert last updated
 	Timeframe      *string               `jsonapi:"attr,timeframe"`       // Summarizes when an alert is in effect.
 	ShortHeader    string                `jsonapi:"attr,short_header"`    // A shortened version of */attributes/header.
