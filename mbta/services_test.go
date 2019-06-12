@@ -7,22 +7,22 @@ import (
 )
 
 func Test_GetService(t *testing.T) {
-	addedDates, _ := parseISO8601TimeArray([]string{"2019-05-28", "2019-05-29", "2019-05-30", "2019-05-31"})
-	// endDate, _ := parseISO8601Time("2019-06-21")
-	// startDate, _ := parseISO8601Time("2019-05-27")
-	// removedDates, _ := parseISO8601TimeArray([]string{"2019-05-27"})
+	addedDates, _ := parseISO8601TimeDateOnlySlice([]string{"2019-05-28", "2019-05-29", "2019-05-30", "2019-05-31"})
+	endDate, _ := parseISO8601TimeDateOnly("2019-06-21")
+	startDate, _ := parseISO8601TimeDateOnly("2019-05-27")
+	removedDates, _ := parseISO8601TimeDateOnlySlice([]string{"2019-05-27"})
 	expected := &Service{
 		ID:         "BUS22019-hbb29011-Weekday-02",
-		AddedDates: timeArrayToTimeISO8601(addedDates),
+		AddedDates: timeSliceToTimeISO8601Slice(addedDates),
 		// AddedDatesNotes:    []string{},
-		// Description:        "Weekday Schedule",
-		// EndDate:            timeToTimeISO8601(endDate),
-		// RemovedDates:       timeArrayToTimeISO8601(removedDates),
-		// RemovedDatesNotes:  []string{"Memorial Day"},
-		// ScheduleName:       "Weekday",
-		// ScheduleType:       "Weekday",
-		// ScheduleTypicality: 1,
-		// StartDate:          timeToTimeISO8601(startDate),
+		Description:        "Weekday schedule",
+		EndDate:            timeToTimeISO8601(endDate),
+		RemovedDates:       timeSliceToTimeISO8601Slice(removedDates),
+		RemovedDatesNotes:  []string{"Memorial Day"},
+		ScheduleName:       "Weekday",
+		ScheduleType:       "Weekday",
+		ScheduleTypicality: 1,
+		StartDate:          timeToTimeISO8601(startDate),
 		// ValidDays:          []Weekday{Monday, Tuesday, Wednesday, Thursday, Friday},
 	}
 	server := httptest.NewServer(handlerForServer(t, fmt.Sprintf("%s/%s", servicesAPIPath, "BUS22019-hbb29011-Weekday-02")))

@@ -40,14 +40,14 @@ type Service struct {
 	ID         string        `jsonapi:"primary,service"`
 	AddedDates []TimeISO8601 `jsonapi:"attr,added_dates"`
 	// AddedDatesNotes    []string      `jsonapi:"attr,added_dates_notes"`
-	// Description        string        `jsonapi:"attr,description"`
-	// EndDate            TimeISO8601   `jsonapi:"attr,end_date"`
-	// RemovedDates       []TimeISO8601 `jsonapi:"attr,removed_dates"`
-	// RemovedDatesNotes  []string      `jsonapi:"attr,removed_dates_notes"`
-	// ScheduleName       string        `jsonapi:"attr,schedule_name"`
-	// ScheduleType       string        `jsonapi:"attr,schedule_type"`
-	// ScheduleTypicality Typicality           `jsonapi:"attr,schedule_typicality"`
-	// StartDate          TimeISO8601   `jsonapi:"attr,start_date"`
+	Description        string        `jsonapi:"attr,description"`
+	EndDate            TimeISO8601   `jsonapi:"attr,end_date"`
+	RemovedDates       []TimeISO8601 `jsonapi:"attr,removed_dates"`
+	RemovedDatesNotes  []string      `jsonapi:"attr,removed_dates_notes"`
+	ScheduleName       string        `jsonapi:"attr,schedule_name"`
+	ScheduleType       string        `jsonapi:"attr,schedule_type"`
+	ScheduleTypicality Typicality    `jsonapi:"attr,schedule_typicality"`
+	StartDate          TimeISO8601   `jsonapi:"attr,start_date"`
 	// ValidDays          []Weekday     `jsonapi:"attr,valid_days"`
 }
 
@@ -105,6 +105,7 @@ func (s *ServicesService) GetAllServicesWithContext(ctx context.Context, config 
 		return nil, nil, err
 	}
 	req = req.WithContext(ctx)
+
 	untypedServices, resp, err := s.client.doManyPayload(req, &Service{})
 	services := make([]*Service, len(untypedServices))
 	for i := 0; i < len(untypedServices); i++ {
@@ -135,6 +136,7 @@ func (s *ServicesService) GetServiceWithContext(ctx context.Context, id string, 
 		return nil, nil, err
 	}
 	req = req.WithContext(ctx)
+
 	var service Service
 	resp, err := s.client.doSinglePayload(req, &service)
 	return &service, resp, err
