@@ -48,7 +48,7 @@ type Service struct {
 	ScheduleType       string        `jsonapi:"attr,schedule_type"`
 	ScheduleTypicality Typicality    `jsonapi:"attr,schedule_typicality"`
 	StartDate          TimeISO8601   `jsonapi:"attr,start_date"`
-	// ValidDays          []Weekday     `jsonapi:"attr,valid_days"`
+	ValidDays          []Weekday     `jsonapi:"attr,valid_days"`
 }
 
 // GetAllServicesSortByType all possible ways to sort /services request

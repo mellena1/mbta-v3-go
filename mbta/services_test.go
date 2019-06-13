@@ -23,7 +23,7 @@ func Test_GetService(t *testing.T) {
 		ScheduleType:       "Weekday",
 		ScheduleTypicality: 1,
 		StartDate:          timeToTimeISO8601(startDate),
-		// ValidDays:          []Weekday{Monday, Tuesday, Wednesday, Thursday, Friday},
+		ValidDays:          []Weekday{Monday, Tuesday, Wednesday, Thursday, Friday},
 	}
 	server := httptest.NewServer(handlerForServer(t, fmt.Sprintf("%s/%s", servicesAPIPath, "BUS22019-hbb29011-Weekday-02")))
 	defer server.Close()
