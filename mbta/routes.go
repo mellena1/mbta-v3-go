@@ -88,7 +88,7 @@ type GetAllRoutesRequestConfig struct {
 	PageLimit         string                 `url:"page[limit],omitempty"`          // Max number of elements to return// Max number of elements to return
 	Sort              GetAllRoutesSortByType `url:"sort,omitempty"`                 // Results can be sorted by the id or any GetAllRoutesSortByType
 	Include           []RouteInclude         `url:"include,comma,omitempty"`        // Include extra data in response
-	Fields            []string               `url:"fields[stop],comma,omitempty"`   // Fields to include with the response. Note that fields can also be selected for included data types// Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
+	Fields            []string               `url:"fields[route],comma,omitempty"`  // Fields to include with the response. Note that fields can also be selected for included data types// Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
 	FilterDirectionID string                 `url:"filter[direction_id],omitempty"` // Filter by Direction ID (Either "0" or "1")
 	FilterDate        string                 `url:"filter[data],omitempty"`         // Filter by date that route is active
 	FilterIDs         []string               `url:"filter[id],comma,omitempty"`     // Filter by multiple IDs
@@ -103,12 +103,12 @@ type GetRouteRequestConfig struct {
 }
 
 // GetAllRoutes returns all routes from the mbta API
-func (s *RouteService) GetAllRoutes(config GetAllRoutesRequestConfig) ([]*Route, *http.Response, error) {
+func (s *RouteService) GetAllRoutes(config *GetAllRoutesRequestConfig) ([]*Route, *http.Response, error) {
 	return s.GetAllRoutesWithContext(context.Background(), config)
 }
 
 // GetAllRoutesWithContext returns all routes from the mbta API given a context
-func (s *RouteService) GetAllRoutesWithContext(ctx context.Context, config GetAllRoutesRequestConfig) ([]*Route, *http.Response, error) {
+func (s *RouteService) GetAllRoutesWithContext(ctx context.Context, config *GetAllRoutesRequestConfig) ([]*Route, *http.Response, error) {
 	u, err := addOptions(routesAPIPath, config)
 	if err != nil {
 		return nil, nil, err
@@ -128,12 +128,12 @@ func (s *RouteService) GetAllRoutesWithContext(ctx context.Context, config GetAl
 }
 
 // GetRoute return a route from the mbta API
-func (s *RouteService) GetRoute(id string, config GetRouteRequestConfig) (*Route, *http.Response, error) {
+func (s *RouteService) GetRoute(id string, config *GetRouteRequestConfig) (*Route, *http.Response, error) {
 	return s.GetRouteWithContext(context.Background(), id, config)
 }
 
 // GetRouteWithContext return a route from the mbta API given a context
-func (s *RouteService) GetRouteWithContext(ctx context.Context, id string, config GetRouteRequestConfig) (*Route, *http.Response, error) {
+func (s *RouteService) GetRouteWithContext(ctx context.Context, id string, config *GetRouteRequestConfig) (*Route, *http.Response, error) {
 	path := fmt.Sprintf("%s/%s", routesAPIPath, id)
 	u, err := addOptions(path, config)
 	if err != nil {
