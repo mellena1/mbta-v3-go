@@ -39,7 +39,7 @@ const (
 type Service struct {
 	ID         string        `jsonapi:"primary,service"`
 	AddedDates []TimeISO8601 `jsonapi:"attr,added_dates"`
-	// AddedDatesNotes    []string      `jsonapi:"attr,added_dates_notes"`
+	AddedDatesNotes    []*string      `jsonapi:"attr,added_dates_notes"`
 	Description        string        `jsonapi:"attr,description"`
 	EndDate            TimeISO8601   `jsonapi:"attr,end_date"`
 	RemovedDates       []TimeISO8601 `jsonapi:"attr,removed_dates"`

@@ -12,9 +12,9 @@ func Test_GetService(t *testing.T) {
 	startDate, _ := parseISO8601TimeDateOnly("2019-05-27")
 	removedDates, _ := parseISO8601TimeDateOnlySlice([]string{"2019-05-27"})
 	expected := &Service{
-		ID:         "BUS22019-hbb29011-Weekday-02",
-		AddedDates: timeSliceToTimeISO8601Slice(addedDates),
-		// AddedDatesNotes:    []string{},
+		ID:                 "BUS22019-hbb29011-Weekday-02",
+		AddedDates:         timeSliceToTimeISO8601Slice(addedDates),
+		AddedDatesNotes:    []*string{nil, nil, nil, nil},
 		Description:        "Weekday schedule",
 		EndDate:            timeToTimeISO8601(endDate),
 		RemovedDates:       timeSliceToTimeISO8601Slice(removedDates),
