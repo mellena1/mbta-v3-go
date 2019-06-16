@@ -24,10 +24,10 @@ const (
 )
 
 // ScheduleTypicality Describes how well this schedule represents typical service for the listed schedule_type
-type Typicality int
+type ScheduleTypicality int
 
 const (
-	Undefined Typicality = iota
+	Undefined ScheduleTypicality = iota
 	Typical
 	SupplementalExtra
 	ReducedHoliday
@@ -37,18 +37,18 @@ const (
 
 // Service holds all the info about a given MBTA Service
 type Service struct {
-	ID         string        `jsonapi:"primary,service"`
-	AddedDates []TimeISO8601 `jsonapi:"attr,added_dates"`
-	AddedDatesNotes    []*string      `jsonapi:"attr,added_dates_notes"`
-	Description        string        `jsonapi:"attr,description"`
-	EndDate            TimeISO8601   `jsonapi:"attr,end_date"`
-	RemovedDates       []TimeISO8601 `jsonapi:"attr,removed_dates"`
-	RemovedDatesNotes  []string      `jsonapi:"attr,removed_dates_notes"`
-	ScheduleName       string        `jsonapi:"attr,schedule_name"`
-	ScheduleType       string        `jsonapi:"attr,schedule_type"`
-	ScheduleTypicality Typicality    `jsonapi:"attr,schedule_typicality"`
-	StartDate          TimeISO8601   `jsonapi:"attr,start_date"`
-	ValidDays          []Weekday     `jsonapi:"attr,valid_days"`
+	ID                 string             `jsonapi:"primary,service"`
+	AddedDates         []TimeISO8601      `jsonapi:"attr,added_dates"`
+	AddedDatesNotes    []*string          `jsonapi:"attr,added_dates_notes"`
+	Description        string             `jsonapi:"attr,description"`
+	EndDate            TimeISO8601        `jsonapi:"attr,end_date"`
+	RemovedDates       []TimeISO8601      `jsonapi:"attr,removed_dates"`
+	RemovedDatesNotes  []string           `jsonapi:"attr,removed_dates_notes"`
+	ScheduleName       string             `jsonapi:"attr,schedule_name"`
+	ScheduleType       string             `jsonapi:"attr,schedule_type"`
+	ScheduleTypicality ScheduleTypicality `jsonapi:"attr,schedule_typicality"`
+	StartDate          TimeISO8601        `jsonapi:"attr,start_date"`
+	ValidDays          []Weekday          `jsonapi:"attr,valid_days"`
 }
 
 // GetAllServicesSortByType all possible ways to sort /services request
@@ -81,10 +81,10 @@ const (
 
 // GetAllServicesRequestConfig extra options for GetAllServices Request
 type GetAllServicesRequestConfig struct {
-	PageOffset   string                   `url:"page[offset],omitempty"`          // Offset (0-based) of first element in the page// Offset (0-based) of first element in the page
-	PageLimit    string                   `url:"page[limit],omitempty"`           // Max number of elements to return// Max number of elements to return
+	PageOffset   string                   `url:"page[offset],omitempty"`          // Offset (0-based) of first element in the page
+	PageLimit    string                   `url:"page[limit],omitempty"`           // Max number of elements to return
 	Sort         GetAllServicesSortByType `url:"sort,omitempty"`                  // Results can be sorted by the id or any GetAllRoutesSortByType
-	Fields       []string                 `url:"fields[service],comma,omitempty"` // Fields to include with the response. Note that fields can also be selected for included data types// Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
+	Fields       []string                 `url:"fields[service],comma,omitempty"` // Fields to include with the response. Note that fields can also be selected for included data types
 	FilterIDs    []string                 `url:"filter[id],comma,omitempty"`      // Filter by multiple IDs
 	FilterRoutes []Route                  `url:"filter[route],comma,omitempty"`   // Filter by Routes
 }
@@ -116,7 +116,7 @@ func (s *ServicesService) GetAllServicesWithContext(ctx context.Context, config 
 
 // GetServiceRequestConfig extra options for GetService Request
 type GetServiceRequestConfig struct {
-	Fields []string `url:"fields[service],comma,omitempty"` // Fields to include with the response. Note that fields can also be selected for included data types// Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
+	Fields []string `url:"fields[service],comma,omitempty"` // Fields to include with the response. Note that fields can also be selected for included data types
 }
 
 // GetService returns a service from the mbta API
