@@ -64,3 +64,7 @@ func handlerForServer(t *testing.T, path string) http.HandlerFunc {
 func strPtr(s string) *string {
 	return &s
 }
+
+func float64Ptr(f float64) *float64 {
+	return &f
+}
