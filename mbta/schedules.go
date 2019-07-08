@@ -46,7 +46,7 @@ type Schedule struct {
 	// TODO: Prediction *Prediction `jsonapi:"relation,prediction"`
 }
 
-// ScheduleInclude all of the includes for a vehicle request
+// ScheduleInclude all of the includes for a schedule request
 type ScheduleInclude string
 
 const (

@@ -35,10 +35,13 @@ type Client struct {
 	UserAgent string
 
 	common        service // Reuse a single struct instead of allocating one for each service on the heap. (same as github.com/google/go-github)
-	Lines         *LineService
+	Alerts        *AlertService
+  Lines         *LineService
 	Routes        *RouteService
 	RoutePatterns *RoutePatternsService
 	Schedules     *ScheduleService
+  Services      *ServicesService
+  Shapes        *ShapeService
 	Stops         *StopService
 	Trips         *TripService
 	Vehicles      *VehicleService
@@ -67,13 +70,16 @@ func NewClient(config ClientConfig) *Client {
 	}
 
 	c.common.client = c
+	c.Alerts = (*AlertService)(&c.common)
 	c.Lines = (*LineService)(&c.common)
 	c.Routes = (*RouteService)(&c.common)
 	c.RoutePatterns = (*RoutePatternsService)(&c.common)
 	c.Schedules = (*ScheduleService)(&c.common)
+	c.Services = (*ServicesService)(&c.common)
 	c.Stops = (*StopService)(&c.common)
 	c.Trips = (*TripService)(&c.common)
 	c.Vehicles = (*VehicleService)(&c.common)
+	c.Shapes = (*ShapeService)(&c.common)
 
 	return c
 }

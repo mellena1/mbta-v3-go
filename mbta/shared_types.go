@@ -27,7 +27,9 @@ const (
 const (
 	includeLine               = "line"
 	includeStop               = "stop"
+  includeStops              = "stops"
 	includeTrip               = "trip"
+  includeTrips              = "trips"
 	includeRoute              = "route"
 	includeRoutes             = "routes"
 	includeParentStation      = "parent_station"
@@ -39,4 +41,5 @@ const (
 	includeRepresentativeTrip = "representative_trip"
 	includeRoutePattern       = "route_pattern"
 	includeRoutePatterns      = "route_patterns"
+  includeFacilities         = "facilities"
 )
