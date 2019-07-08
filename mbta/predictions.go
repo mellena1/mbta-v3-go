@@ -37,7 +37,7 @@ type Prediction struct {
 	Stop                 *Stop                               `jsonapi:"relation,stop"`              // Stop that the prediction is linked with. Only includes id by default, use Include config option to get all data
 	Trip                 *Trip                               `jsonapi:"relation,trip"`              // Trip that the prediction is linked with. Only includes id by default, use Include config option to get all data
 	Vehicle              *Vehicle                            `jsonapi:"relation,vehicle"`           // Vehicle that the prediction is linked with. Only includes id by default, use Include config option to get all data
-	//TODO: Alerts               []Alert                             `jsonapi:"relation,alerts"`
+	Alerts               []*Alert                            `jsonapi:"relation,alerts"`
 }
 
 // PredictionInclude all of the includes for a prediction request

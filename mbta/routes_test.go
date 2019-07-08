@@ -18,6 +18,9 @@ func Test_GetRoute(t *testing.T) {
 		TextColor:             "000000",
 		Type:                  RouteTypeBus,
 		ShortName:             "66",
+		Line: &Line{
+			ID: "line-66",
+		},
 	}
 	server := httptest.NewServer(handlerForServer(t, fmt.Sprintf("%s/%s", routesAPIPath, "66")))
 	defer server.Close()
@@ -43,6 +46,9 @@ func Test_GetAllRoutes(t *testing.T) {
 			TextColor:             "000000",
 			Type:                  RouteTypeBus,
 			ShortName:             "66",
+			Line: &Line{
+				ID: "line-66",
+			},
 		},
 		&Route{
 			ID:                    "39",
@@ -55,6 +61,9 @@ func Test_GetAllRoutes(t *testing.T) {
 			TextColor:             "000000",
 			Type:                  RouteTypeBus,
 			ShortName:             "39",
+			Line: &Line{
+				ID: "line-39",
+			},
 		},
 	}
 	server := httptest.NewServer(handlerForServer(t, routesAPIPath))

@@ -39,7 +39,7 @@ type Route struct {
 	TextColor             string    `jsonapi:"attr,text_color"`
 	Type                  RouteType `jsonapi:"attr,type"`
 	ShortName             string    `jsonapi:"attr,short_name"`
-	// Line				  Line	    `jsonapi:"relation,line"`
+	Line                  *Line     `jsonapi:"relation,line"`
 }
 
 // RouteInclude all of the includes for a route request

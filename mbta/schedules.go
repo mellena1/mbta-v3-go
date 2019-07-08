@@ -43,7 +43,7 @@ type Schedule struct {
 	Route         *Route             `jsonapi:"relation,route"`      // Route that the current schedule is linked with. Only includes id by default, use Include config option to get all data
 	Stop          *Stop              `jsonapi:"relation,stop"`       // Stop that the schedule is linked with. Only includes id by default, use Include config option to get all data
 	Trip          *Trip              `jsonapi:"relation,trip"`       // Trip that the current schedule is linked with. Only includes id by default, use Include config option to get all data
-	// TODO: Prediction *Prediction `jsonapi:"relation,prediction"`
+	Prediction    *Prediction        `jsonapi:"relation,prediction"`
 }
 
 // ScheduleInclude all of the includes for a schedule request

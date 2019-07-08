@@ -13,13 +13,13 @@ type LineService service
 
 // Line holds all the info about a given MBTA Route
 type Line struct {
-	ID        string  `jsonapi:"primary,line"`
-	Color     string  `jsonapi:"attr,color"`
-	LongName  string  `jsonapi:"attr,long_name"`
-	ShortName string  `jsonapi:"attr,short_name"`
-	SortOrder int     `jsonapi:"attr,sort_order"`
-	TextColor string  `jsonapi:"attr,text_color"`
-	Routes    []Route `jsonapi:"relation,route`
+	ID        string   `jsonapi:"primary,line"`
+	Color     string   `jsonapi:"attr,color"`
+	LongName  string   `jsonapi:"attr,long_name"`
+	ShortName string   `jsonapi:"attr,short_name"`
+	SortOrder int      `jsonapi:"attr,sort_order"`
+	TextColor string   `jsonapi:"attr,text_color"`
+	Routes    []*Route `jsonapi:"relation,route`
 }
 
 type LineInclude string
