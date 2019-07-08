@@ -1,0 +1,68 @@
+{
+    "data": [
+        {
+            "attributes": {
+                "direction_id": 0,
+                "name": "Ashmont",
+                "sort_order": 10010051,
+                "time_desc": null,
+                "typicality": 1
+            },
+            "id": "Red-1-0",
+            "links": {
+                "self": "/route-patterns/Red-1-0"
+            },
+            "relationships": {
+                "representative_trip": {
+                    "data": {
+                        "id": "40132582-L",
+                        "type": "trip"
+                    }
+                },
+                "route": {
+                    "data": {
+                        "id": "Red",
+                        "type": "route"
+                    }
+                }
+            },
+            "type": "route_pattern"
+        },
+        {
+            "attributes": {
+                "direction_id": 0,
+                "name": "Braintree",
+                "sort_order": 10010052,
+                "time_desc": null,
+                "typicality": 1
+            },
+            "id": "Red-3-0",
+            "links": {
+                "self": "/route-patterns/Red-3-0"
+            },
+            "relationships": {
+                "representative_trip": {
+                    "data": {
+                        "id": "40132593-L",
+                        "type": "trip"
+                    }
+                },
+                "route": {
+                    "data": {
+                        "id": "Red",
+                        "type": "route"
+                    }
+                }
+            },
+            "type": "route_pattern"
+        }
+    ],
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "links": {
+        "first": "https://api-v3.mbta.com/route-patterns?page[limit]=2&page[offset]=0",
+        "last": "https://api-v3.mbta.com/route-patterns?page[limit]=2&page[offset]=998",
+        "next": "https://api-v3.mbta.com/route-patterns?page[limit]=2&page[offset]=2"
+    }
+}
