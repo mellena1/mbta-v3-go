@@ -1,0 +1,102 @@
+{
+    "data": [
+        {
+            "attributes": {
+                "active_period": [
+                    {
+                        "end": null,
+                        "start": "2019-06-08T16:35:24-04:00"
+                    }
+                ],
+                "banner": null,
+                "cause": "MAINTENANCE",
+                "created_at": "2019-06-08T16:35:24-04:00",
+                "description": null,
+                "effect": "ESCALATOR_CLOSURE",
+                "header": "Porter Escalator 511 (Ashmont/Braintree platform to paid lobby) unavailable due to maintenance",
+                "informed_entity": [
+                    {
+                        "activities": [
+                            "USING_ESCALATOR"
+                        ],
+                        "facility": "511",
+                        "stop": "70065"
+                    },
+                    {
+                        "activities": [
+                            "USING_ESCALATOR"
+                        ],
+                        "facility": "511",
+                        "stop": "place-portr"
+                    },
+                    {
+                        "activities": [
+                            "USING_ESCALATOR"
+                        ],
+                        "facility": "511",
+                        "stop": "70066"
+                    }
+                ],
+                "lifecycle": "NEW",
+                "service_effect": "Porter escalator unavailable",
+                "severity": 3,
+                "short_header": "Porter Escalator 511 (Ashmont/Braintree platform to paid lobby) unavailable due to maintenance",
+                "timeframe": null,
+                "updated_at": "2019-06-08T16:35:24-04:00",
+                "url": null
+            },
+            "id": "315463",
+            "links": {
+                "self": "/alerts/315463"
+            },
+            "type": "alert"
+        },
+        {
+            "attributes": {
+                "active_period": [
+                    {
+                        "end": "2019-07-08T02:30:00-04:00",
+                        "start": "2019-06-23T04:30:00-04:00"
+                    }
+                ],
+                "banner": null,
+                "cause": "UNKNOWN_CAUSE",
+                "created_at": "2019-05-28T22:28:16-04:00",
+                "description": "Weekday, Saturday, and Sunday schedule changes throughout the day. Due to Harvard Busway Renovation, inbound service will operate via Brattle Street.\r\n\r\nPlease find your route at mbta.com/bus-schedule-changes and check the June 23 schedule for specific changes. You can also ask your bus driver for a printed summer schedule.",
+                "effect": "SCHEDULE_CHANGE",
+                "header": "Beginning Sunday, June 23, the Route 78 summer bus schedule will take effect with weekday, Saturday, and Sunday schedule changes throughout the day.",
+                "informed_entity": [
+                    {
+                        "activities": [
+                            "BOARD",
+                            "EXIT",
+                            "RIDE"
+                        ],
+                        "route": "78",
+                        "route_type": 3
+                    }
+                ],
+                "lifecycle": "UPCOMING",
+                "service_effect": "Route 78 schedule change",
+                "severity": 3,
+                "short_header": "Beginning Sun, Jun 23, the Route 78 summer bus schedule will take effect with weekday, Sat, and Sun schedule changes throughout the day",
+                "timeframe": "starting June 23",
+                "updated_at": "2019-06-06T16:48:11-04:00",
+                "url": "https://www.mbta.com/bus-schedule-changes"
+            },
+            "id": "313136",
+            "links": {
+                "self": "/alerts/313136"
+            },
+            "type": "alert"
+        }
+    ],
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "links": {
+        "first": "https://api-v3.mbta.com/alerts?page[limit]=2&page[offset]=0",
+        "last": "https://api-v3.mbta.com/alerts?page[limit]=2&page[offset]=126",
+        "next": "https://api-v3.mbta.com/alerts?page[limit]=2&page[offset]=2"
+    }
+}

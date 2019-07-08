@@ -85,7 +85,7 @@ type GetAllVehiclesRequestConfig struct {
 	FilterLabels      []string                 `url:"filter[label],comma,omitempty"`      // Filter by label
 	FilterRouteIDs    []string                 `url:"filter[route],comma,omitempty"`      // Filter by route IDs. If the vehicle is on a multi-route trip, it will be returned for any of the routes
 	FilterDirectionID string                   `url:"filter[direction_id],omitempty"`     // Filter by Direction ID (Either "0" or "1")
-	FilterRouteTypes  []string                 `url:"filter[route_type],comma,omitempty"` // Filter by route type(s)
+	FilterRouteTypes  []RouteType              `url:"filter[route_type],comma,omitempty"` // Filter by route type(s)
 }
 
 // GetAllVehicles returns all vehicles from the mbta API

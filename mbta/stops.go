@@ -83,7 +83,7 @@ type GetAllStopsRequestConfig struct {
 	FilterLongitude    string                `url:"filter[longitude],omitempty"`           // Longitude in degrees East in the WGS-84 coordinate system to search filter[radius] degrees around with filter[latitude]
 	FilterRadius       string                `url:"filter[radius],omitempty"`              // The distance is in degrees as if latitude and longitude were on a flat 2D plane and normal Pythagorean distance was calculated. Over the region MBTA serves, 0.02 degrees is approximately 1 mile. Defaults to 0.01 degrees (approximately a half mile)
 	FilterIDs          []string              `url:"filter[id],comma,omitempty"`            // Filter by multiple IDs
-	FilterRouteTypes   []string              `url:"filter[route_type],comma,omitempty"`    // Filter by route type(s)
+	FilterRouteTypes   []RouteType           `url:"filter[route_type],comma,omitempty"`    // Filter by route type(s)
 	FilterRouteIDs     []string              `url:"filter[route],comma,omitempty"`         // Filter by route IDs. If the vehicle is on a multi-route trip, it will be returned for any of the routes
 	FilterLocationType []string              `url:"filter[location_type],comma,omitempty"` // Filter by location type
 }
