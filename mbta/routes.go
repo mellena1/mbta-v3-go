@@ -17,20 +17,14 @@ type RouteType int
 const (
 	// RouteTypeLightRail ...
 	RouteTypeLightRail RouteType = iota
-	// RouteTypeSubway ...
-	RouteTypeSubway
-	// RouteTypeRail ...
-	RouteTypeRail
+	// RouteTypeHeavyRail ...
+	RouteTypeHeavyRail
+	// RouteTypeCommuterRail ...
+	RouteTypeCommuterRail
 	// RouteTypeBus ...
 	RouteTypeBus
 	// RouteTypeFerry ...
 	RouteTypeFerry
-	// RouteTypeCableCar ...
-	RouteTypeCableCar
-	// RouteTypeGondola ...
-	RouteTypeGondola
-	// RouteTypeFunicular ...
-	RouteTypeFunicular
 )
 
 // Route holds all the info about a given MBTA Route
@@ -48,6 +42,7 @@ type Route struct {
 	// Line				  Line	    `jsonapi:"relation,line"`
 }
 
+// RouteInclude all of the includes for a route request
 type RouteInclude string
 
 const (
@@ -84,22 +79,16 @@ const (
 
 // GetAllRoutesRequestConfig extra options for the GetAllRoutes request
 type GetAllRoutesRequestConfig struct {
-	PageOffset        string                 `url:"page[offset],omitempty"`         // Offset (0-based) of first element in the page// Offset (0-based) of first element in the page
-	PageLimit         string                 `url:"page[limit],omitempty"`          // Max number of elements to return// Max number of elements to return
+	PageOffset        string                 `url:"page[offset],omitempty"`         // Offset (0-based) of first element in the page
+	PageLimit         string                 `url:"page[limit],omitempty"`          // Max number of elements to return
 	Sort              GetAllRoutesSortByType `url:"sort,omitempty"`                 // Results can be sorted by the id or any GetAllRoutesSortByType
 	Include           []RouteInclude         `url:"include,comma,omitempty"`        // Include extra data in response
-	Fields            []string               `url:"fields[route],comma,omitempty"`  // Fields to include with the response. Note that fields can also be selected for included data types// Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
+	Fields            []string               `url:"fields[route],comma,omitempty"`  // Fields to include with the response. Note that fields can also be selected for included data types
 	FilterDirectionID string                 `url:"filter[direction_id],omitempty"` // Filter by Direction ID (Either "0" or "1")
 	FilterDate        string                 `url:"filter[data],omitempty"`         // Filter by date that route is active
 	FilterIDs         []string               `url:"filter[id],comma,omitempty"`     // Filter by multiple IDs
 	FilterStop        string                 `url:"filter[stop],omitempty"`         // Filter by stops
 	FilterRouteTypes  []RouteType            `url:"filter[type],comma,omitempty"`   // Filter by different route types
-}
-
-// GetRouteRequestConfig extra options for GetRoute request
-type GetRouteRequestConfig struct {
-	Fields  []string       `url:"fields[stop],comma,omitempty"` // Fields to include with the response. Note that fields can also be selected for included data types// Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
-	Include []RouteInclude `url:"include,comma,omitempty"`      // Include extra data in response
 }
 
 // GetAllRoutes returns all routes from the mbta API
@@ -125,6 +114,12 @@ func (s *RouteService) GetAllRoutesWithContext(ctx context.Context, config *GetA
 		routes[i] = untypedRoutes[i].(*Route)
 	}
 	return routes, resp, err
+}
+
+// GetRouteRequestConfig extra options for GetRoute request
+type GetRouteRequestConfig struct {
+	Fields  []string       `url:"fields[route],comma,omitempty"` // Fields to include with the response. Note that fields can also be selected for included data types
+	Include []RouteInclude `url:"include,comma,omitempty"`       // Include extra data in response
 }
 
 // GetRoute return a route from the mbta API
