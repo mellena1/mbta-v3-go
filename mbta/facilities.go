@@ -74,33 +74,33 @@ const (
 	FacilityIncludeStop FacilityInclude = includeStop
 )
 
-// GetAllFacilitiesSortByType all of the possible ways to sort by for a GetAllFacilities request
-type GetAllFacilitiesSortByType string
+// FacilitiesSortByType all of the possible ways to sort by for a GetAllFacilities request
+type FacilitiesSortByType string
 
 const (
-	GetAllFacilitiesSortByLatitudeAscending    GetAllFacilitiesSortByType = "latitude"
-	GetAllFacilitiesSortByLatitudeDescending   GetAllFacilitiesSortByType = "-latitude"
-	GetAllFacilitiesSortByLongitudeAscending   GetAllFacilitiesSortByType = "longitude"
-	GetAllFacilitiesSortByLongitudeDescending  GetAllFacilitiesSortByType = "-longitude"
-	GetAllFacilitiesSortByNameAscending        GetAllFacilitiesSortByType = "name"
-	GetAllFacilitiesSortByNameDescending       GetAllFacilitiesSortByType = "-name"
-	GetAllFacilitiesSortByPropertiesAscending  GetAllFacilitiesSortByType = "properties"
-	GetAllFacilitiesSortByPropertiesDescending GetAllFacilitiesSortByType = "-properties"
-	GetAllFacilitiesSortByShortNameAscending   GetAllFacilitiesSortByType = "short_name"
-	GetAllFacilitiesSortByShortNameDescending  GetAllFacilitiesSortByType = "-short_name"
-	GetAllFacilitiesSortByTypeAscending        GetAllFacilitiesSortByType = "type"
-	GetAllFacilitiesSortByTypeDescending       GetAllFacilitiesSortByType = "-type"
+	FacilitiesSortByLatitudeAscending    FacilitiesSortByType = "latitude"
+	FacilitiesSortByLatitudeDescending   FacilitiesSortByType = "-latitude"
+	FacilitiesSortByLongitudeAscending   FacilitiesSortByType = "longitude"
+	FacilitiesSortByLongitudeDescending  FacilitiesSortByType = "-longitude"
+	FacilitiesSortByNameAscending        FacilitiesSortByType = "name"
+	FacilitiesSortByNameDescending       FacilitiesSortByType = "-name"
+	FacilitiesSortByPropertiesAscending  FacilitiesSortByType = "properties"
+	FacilitiesSortByPropertiesDescending FacilitiesSortByType = "-properties"
+	FacilitiesSortByShortNameAscending   FacilitiesSortByType = "short_name"
+	FacilitiesSortByShortNameDescending  FacilitiesSortByType = "-short_name"
+	FacilitiesSortByTypeAscending        FacilitiesSortByType = "type"
+	FacilitiesSortByTypeDescending       FacilitiesSortByType = "-type"
 )
 
 // GetAllFacilitiesRequestConfig extra options for the GetAllFacilities request
 type GetAllFacilitiesRequestConfig struct {
-	PageOffset    string                     `url:"page[offset],omitempty"`           // Offset (0-based) of first element in the page
-	PageLimit     string                     `url:"page[limit],omitempty"`            // Max number of elements to return
-	Sort          GetAllFacilitiesSortByType `url:"sort,omitempty"`                   // Results can be sorted by the id or any GetAllStopsSortByType
-	Fields        []string                   `url:"fields[facility],comma,omitempty"` // Fields to include with the response. Note that fields can also be selected for included data types
-	Include       []FacilityInclude          `url:"include,comma,omitempty"`          // Include extra data in response
-	FilterStopIDs []string                   `url:"filter[stop],comma,omitempty"`     // Filter by stop ID
-	FilterTypes   []string                   `url:"filter[type],comma,omitempty"`     // Filter by multiple types
+	PageOffset    string               `url:"page[offset],omitempty"`           // Offset (0-based) of first element in the page
+	PageLimit     string               `url:"page[limit],omitempty"`            // Max number of elements to return
+	Sort          FacilitiesSortByType `url:"sort,omitempty"`                   // Results can be sorted by the id or any StopsSortByType
+	Fields        []string             `url:"fields[facility],comma,omitempty"` // Fields to include with the response. Note that fields can also be selected for included data types
+	Include       []FacilityInclude    `url:"include,comma,omitempty"`          // Include extra data in response
+	FilterStopIDs []string             `url:"filter[stop],comma,omitempty"`     // Filter by stop ID
+	FilterTypes   []string             `url:"filter[type],comma,omitempty"`     // Filter by multiple types
 }
 
 // GetAllFacilities returns all facilities from the mbta API

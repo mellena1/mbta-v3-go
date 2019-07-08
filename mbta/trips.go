@@ -38,37 +38,37 @@ const (
 	TripIncludePredictions  TripInclude = includePredictions
 )
 
-// GetAllTripsSortByType all of the possible ways to sort by for a GetAllTrips request
-type GetAllTripsSortByType string
+// TripsSortByType all of the possible ways to sort by for a GetAllTrips request
+type TripsSortByType string
 
 const (
-	GetAllTripsSortByBikesAllowedAscending          GetAllTripsSortByType = "bikes_allowed"
-	GetAllTripsSortByBikesAllowedDescending         GetAllTripsSortByType = "-bikes_allowed"
-	GetAllTripsSortByBlockIDAscending               GetAllTripsSortByType = "block_id"
-	GetAllTripsSortByBlockIDDescending              GetAllTripsSortByType = "-block_id"
-	GetAllTripsSortByDirectionIDAscending           GetAllTripsSortByType = "direction_id"
-	GetAllTripsSortByDirectionIDDescending          GetAllTripsSortByType = "-direction_id"
-	GetAllTripsSortByHeadsignAscending              GetAllTripsSortByType = "headsign"
-	GetAllTripsSortByHeadsignDescending             GetAllTripsSortByType = "-headsign"
-	GetAllTripsSortByNameAscending                  GetAllTripsSortByType = "name"
-	GetAllTripsSortByNameDescending                 GetAllTripsSortByType = "-name"
-	GetAllTripsSortByWheelchairAccessibleAscending  GetAllTripsSortByType = "wheelchair_accessible"
-	GetAllTripsSortByWheelchairAccessibleDescending GetAllTripsSortByType = "-wheelchair_accessible"
+	TripsSortByBikesAllowedAscending          TripsSortByType = "bikes_allowed"
+	TripsSortByBikesAllowedDescending         TripsSortByType = "-bikes_allowed"
+	TripsSortByBlockIDAscending               TripsSortByType = "block_id"
+	TripsSortByBlockIDDescending              TripsSortByType = "-block_id"
+	TripsSortByDirectionIDAscending           TripsSortByType = "direction_id"
+	TripsSortByDirectionIDDescending          TripsSortByType = "-direction_id"
+	TripsSortByHeadsignAscending              TripsSortByType = "headsign"
+	TripsSortByHeadsignDescending             TripsSortByType = "-headsign"
+	TripsSortByNameAscending                  TripsSortByType = "name"
+	TripsSortByNameDescending                 TripsSortByType = "-name"
+	TripsSortByWheelchairAccessibleAscending  TripsSortByType = "wheelchair_accessible"
+	TripsSortByWheelchairAccessibleDescending TripsSortByType = "-wheelchair_accessible"
 )
 
 // GetAllTripsRequestConfig extra options for the GetAllTrips request
 type GetAllTripsRequestConfig struct {
-	PageOffset            string                `url:"page[offset],omitempty"`                // Offset (0-based) of first element in the page
-	PageLimit             string                `url:"page[limit],omitempty"`                 // Max number of elements to return
-	Sort                  GetAllTripsSortByType `url:"sort,omitempty"`                        // Results can be sorted by the id or any GetAllTripsSortByType
-	Fields                []string              `url:"fields[trip],comma,omitempty"`          // Fields to include with the response. Note that fields can also be selected for included data types
-	Include               []TripInclude         `url:"include,comma,omitempty"`               // Include extra data in response (route, vehicle, service, shape, route_pattern, predictions)
-	FilterDate            *TimeISO8601          `url:"filter[date],omitempty"`                // Filter by trips on a particular date The active date is the service date. Trips that begin between midnight and 3am are considered part of the previous service day
-	FilterDirectionID     string                `url:"filter[direction_id],omitempty"`        // Filter by direction of travel along the route
-	FilterRouteIDs        []string              `url:"filter[route],comma,omitempty"`         // Filter by route id(s)
-	FilterRoutePatternIDs []string              `url:"filter[route_pattern],comma,omitempty"` // Filter by route pattern id(s)
-	FilterIDs             []string              `url:"filter[id],comma,omitempty"`            // Filter by id(s)
-	FilterNames           []string              `url:"filter[name],comma,omitempty"`          // Filter by names
+	PageOffset            string          `url:"page[offset],omitempty"`                // Offset (0-based) of first element in the page
+	PageLimit             string          `url:"page[limit],omitempty"`                 // Max number of elements to return
+	Sort                  TripsSortByType `url:"sort,omitempty"`                        // Results can be sorted by the id or any TripsSortByType
+	Fields                []string        `url:"fields[trip],comma,omitempty"`          // Fields to include with the response. Note that fields can also be selected for included data types
+	Include               []TripInclude   `url:"include,comma,omitempty"`               // Include extra data in response (route, vehicle, service, shape, route_pattern, predictions)
+	FilterDate            *TimeISO8601    `url:"filter[date],omitempty"`                // Filter by trips on a particular date The active date is the service date. Trips that begin between midnight and 3am are considered part of the previous service day
+	FilterDirectionID     string          `url:"filter[direction_id],omitempty"`        // Filter by direction of travel along the route
+	FilterRouteIDs        []string        `url:"filter[route],comma,omitempty"`         // Filter by route id(s)
+	FilterRoutePatternIDs []string        `url:"filter[route_pattern],comma,omitempty"` // Filter by route pattern id(s)
+	FilterIDs             []string        `url:"filter[id],comma,omitempty"`            // Filter by id(s)
+	FilterNames           []string        `url:"filter[name],comma,omitempty"`          // Filter by names
 }
 
 // GetAllTrips returns all vehicles from the mbta API

@@ -56,41 +56,41 @@ const (
 	ScheduleIncludeTrip       ScheduleInclude = includeTrip
 )
 
-// GetAllSchedulesSortByType all of the possible ways to sort by for a GetAllSchedules request
-type GetAllSchedulesSortByType string
+// SchedulesSortByType all of the possible ways to sort by for a GetAllSchedules request
+type SchedulesSortByType string
 
 const (
-	GetAllSchedulesSortByArrivalTimeAscending    GetAllSchedulesSortByType = "arrival_time"
-	GetAllSchedulesSortByArrivalTimeDescending   GetAllSchedulesSortByType = "-arrival_time"
-	GetAllSchedulesSortByDepartureTimeAscending  GetAllSchedulesSortByType = "departure_time"
-	GetAllSchedulesSortByDepartureTimeDescending GetAllSchedulesSortByType = "-departure_time"
-	GetAllSchedulesSortByDirectionIDAscending    GetAllSchedulesSortByType = "direction_id"
-	GetAllSchedulesSortByDirectionIDDescending   GetAllSchedulesSortByType = "-direction_id"
-	GetAllSchedulesSortByDropOffTypeAscending    GetAllSchedulesSortByType = "drop_off_type"
-	GetAllSchedulesSortByDropOffTypeDescending   GetAllSchedulesSortByType = "-drop_off_type"
-	GetAllSchedulesSortByPickupTypeAscending     GetAllSchedulesSortByType = "pickup_type"
-	GetAllSchedulesSortByPickupTypeDescending    GetAllSchedulesSortByType = "-pickup_type"
-	GetAllSchedulesSortByStopSequenceAscending   GetAllSchedulesSortByType = "stop_sequence"
-	GetAllSchedulesSortByStopSequenceDescending  GetAllSchedulesSortByType = "-stop_sequence"
-	GetAllSchedulesSortByTimepointAscending      GetAllSchedulesSortByType = "timepoint"
-	GetAllSchedulesSortByTimepointDescending     GetAllSchedulesSortByType = "-timepoint"
+	SchedulesSortByArrivalTimeAscending    SchedulesSortByType = "arrival_time"
+	SchedulesSortByArrivalTimeDescending   SchedulesSortByType = "-arrival_time"
+	SchedulesSortByDepartureTimeAscending  SchedulesSortByType = "departure_time"
+	SchedulesSortByDepartureTimeDescending SchedulesSortByType = "-departure_time"
+	SchedulesSortByDirectionIDAscending    SchedulesSortByType = "direction_id"
+	SchedulesSortByDirectionIDDescending   SchedulesSortByType = "-direction_id"
+	SchedulesSortByDropOffTypeAscending    SchedulesSortByType = "drop_off_type"
+	SchedulesSortByDropOffTypeDescending   SchedulesSortByType = "-drop_off_type"
+	SchedulesSortByPickupTypeAscending     SchedulesSortByType = "pickup_type"
+	SchedulesSortByPickupTypeDescending    SchedulesSortByType = "-pickup_type"
+	SchedulesSortByStopSequenceAscending   SchedulesSortByType = "stop_sequence"
+	SchedulesSortByStopSequenceDescending  SchedulesSortByType = "-stop_sequence"
+	SchedulesSortByTimepointAscending      SchedulesSortByType = "timepoint"
+	SchedulesSortByTimepointDescending     SchedulesSortByType = "-timepoint"
 )
 
 // GetAllSchedulesRequestConfig extra options for the GetAllSchedules request
 type GetAllSchedulesRequestConfig struct {
-	PageOffset         string                    `url:"page[offset],omitempty"`           // Offset (0-based) of first element in the page
-	PageLimit          string                    `url:"page[limit],omitempty"`            // Max number of elements to return
-	Sort               GetAllSchedulesSortByType `url:"sort,omitempty"`                   // Results can be sorted by the id or any GetAllSchedulesSortByType
-	Fields             []string                  `url:"fields[schedule],comma,omitempty"` // Fields to include with the response. Note that fields can also be selected for included data types
-	Include            []ScheduleInclude         `url:"include,comma,omitempty"`          // Include extra data in response (trip, stop, prediction, or route)
-	FilterDates        []TimeISO8601             `url:"filter[date],comma,omitempty"`     // Filter by multiple dates
-	FilterDirectionID  string                    `url:"filter[direction_id],omitempty"`   // Filter by Direction ID (Either "0" or "1")
-	FilterMinTime      []string                  `url:"filter[min_time],comma,omitempty"` // Time before which schedule should not be returned. To filter times after midnight use more than 24 hours. For example, min_time=24:00 will return schedule information for the next calendar day, since that service is considered part of the current service day. Additionally, min_time=00:00&max_time=02:00 will not return anything. The time format is HH:MM.
-	FilterMaxTime      []string                  `url:"filter[max_time],comma,omitempty"` // Time after which schedule should not be returned. To filter times after midnight use more than 24 hours. For example, min_time=24:00 will return schedule information for the next calendar day, since that service is considered part of the current service day. Additionally, min_time=00:00&max_time=02:00 will not return anything. The time format is HH:MM.
-	FilterRouteIDs     []string                  `url:"filter[route],comma,omitempty"`    // Filter by route IDs
-	FilterStopIDs      []string                  `url:"filter[stop],comma,omitempty"`     // Filter by stop IDs
-	FilterTripIDs      []string                  `url:"filter[trip],comma,omitempty"`     // Filter by trip IDs
-	FilterStopSequence string                    `url:"filter[stop_sequence],omitempty"`  // Filter by the index of the stop in the trip. Symbolic values `first` and `last` can be used instead of numeric sequence number too.
+	PageOffset         string              `url:"page[offset],omitempty"`           // Offset (0-based) of first element in the page
+	PageLimit          string              `url:"page[limit],omitempty"`            // Max number of elements to return
+	Sort               SchedulesSortByType `url:"sort,omitempty"`                   // Results can be sorted by the id or any SchedulesSortByType
+	Fields             []string            `url:"fields[schedule],comma,omitempty"` // Fields to include with the response. Note that fields can also be selected for included data types
+	Include            []ScheduleInclude   `url:"include,comma,omitempty"`          // Include extra data in response (trip, stop, prediction, or route)
+	FilterDates        []TimeISO8601       `url:"filter[date],comma,omitempty"`     // Filter by multiple dates
+	FilterDirectionID  string              `url:"filter[direction_id],omitempty"`   // Filter by Direction ID (Either "0" or "1")
+	FilterMinTime      []string            `url:"filter[min_time],comma,omitempty"` // Time before which schedule should not be returned. To filter times after midnight use more than 24 hours. For example, min_time=24:00 will return schedule information for the next calendar day, since that service is considered part of the current service day. Additionally, min_time=00:00&max_time=02:00 will not return anything. The time format is HH:MM.
+	FilterMaxTime      []string            `url:"filter[max_time],comma,omitempty"` // Time after which schedule should not be returned. To filter times after midnight use more than 24 hours. For example, min_time=24:00 will return schedule information for the next calendar day, since that service is considered part of the current service day. Additionally, min_time=00:00&max_time=02:00 will not return anything. The time format is HH:MM.
+	FilterRouteIDs     []string            `url:"filter[route],comma,omitempty"`    // Filter by route IDs
+	FilterStopIDs      []string            `url:"filter[stop],comma,omitempty"`     // Filter by stop IDs
+	FilterTripIDs      []string            `url:"filter[trip],comma,omitempty"`     // Filter by trip IDs
+	FilterStopSequence string              `url:"filter[stop_sequence],omitempty"`  // Filter by the index of the stop in the trip. Symbolic values `first` and `last` can be used instead of numeric sequence number too.
 }
 
 // GetAllSchedules returns all schedules for a particular route, stop or trip from the mbta API
