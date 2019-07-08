@@ -15,6 +15,7 @@ const (
 // TimeISO8601 wrapper for a time.Time struct so that the Unmarshal works
 type TimeISO8601 struct {
 	Time time.Time
+	Now  bool // Used for when "NOW" is an option in filters
 }
 
 // Format the time as ISO8601
@@ -50,6 +51,10 @@ func (t *TimeISO8601) UnmarshalJSON(b []byte) error {
 
 // EncodeValues implement the "github.com/google/go-querystring/query" interface for encoding
 func (t *TimeISO8601) EncodeValues(key string, v *url.Values) error {
+	if t.Now {
+		v.Add(key, "NOW")
+		return nil
+	}
 	v.Add(key, t.FormatOnlyDate())
 	return nil
 }
