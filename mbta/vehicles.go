@@ -31,7 +31,7 @@ type Vehicle struct {
 	CurrentStopSequence int           `jsonapi:"attr,current_stop_sequence"` // not sure on this one yet
 	DirectionID         int           `jsonapi:"attr,direction_id"`          // Direction in which trip is traveling: 0 or 1.
 	Label               string        `jsonapi:"attr,label"`                 // User visible label, such as the one of on the signage on the vehicle
-	Latitute            float64       `jsonapi:"attr,latitude"`              // Degrees North, in the WGS-84 coordinate system
+	Latitude            float64       `jsonapi:"attr,latitude"`              // Degrees North, in the WGS-84 coordinate system
 	Longitude           float64       `jsonapi:"attr,longitude"`             // Degrees East, in the WGS-84 coordinate system
 	Speed               *float32      `jsonapi:"attr,speed"`                 // meters per second
 	UpdatedAt           TimeISO8601   `jsonapi:"attr,updated_at"`            // Time at which vehicle information was last updated. Format is ISO8601

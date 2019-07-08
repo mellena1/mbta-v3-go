@@ -25,6 +25,7 @@ const (
 )
 
 const (
+  includeAlerts        = "alerts"
 	includeLine               = "line"
 	includeStop               = "stop"
   includeStops              = "stops"

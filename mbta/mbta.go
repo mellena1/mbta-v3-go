@@ -38,6 +38,7 @@ type Client struct {
 	Alerts        *AlertService
   Facilities    *FacilityService
   Lines         *LineService
+  Predictions *PredictionService
 	Routes        *RouteService
 	RoutePatterns *RoutePatternsService
 	Schedules     *ScheduleService
@@ -73,6 +74,7 @@ func NewClient(config ClientConfig) *Client {
 	c.common.client = c
 	c.Alerts = (*AlertService)(&c.common)
 	c.Lines = (*LineService)(&c.common)
+	c.Predictions = (*PredictionService)(&c.common)
 	c.Facilities = (*FacilityService)(&c.common)
 	c.Routes = (*RouteService)(&c.common)
 	c.RoutePatterns = (*RoutePatternsService)(&c.common)

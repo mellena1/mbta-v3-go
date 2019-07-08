@@ -28,7 +28,7 @@ type Stop struct {
 	ID                 string                 `jsonapi:"primary,stop"`
 	Address            *string                `jsonapi:"attr,address"`             // A street address for the station
 	Description        *string                `jsonapi:"attr,description"`         // Description of the stop
-	Latitute           float64                `jsonapi:"attr,latitude"`            // Degrees North, in the WGS-84 coordinate system
+	Latitude           float64                `jsonapi:"attr,latitude"`            // Degrees North, in the WGS-84 coordinate system
 	LocationType       StopLocationType       `jsonapi:"attr,location_type"`       // The type of the stop
 	Longitude          float64                `jsonapi:"attr,longitude"`           // Degrees East, in the WGS-84 coordinate system
 	Name               string                 `jsonapi:"attr,name"`                // Name of a stop or station in the local and tourist vernacular
