@@ -22,18 +22,18 @@ type Shape struct {
 	Route       *Route  `jsonapi:"relation,route"`
 }
 
-// GetAllShapesSortByType is an enumerable for all the ways you can sort shapes
-type GetAllShapesSortByType string
+// ShapesSortByType is an enumerable for all the ways you can sort shapes
+type ShapesSortByType string
 
 const (
-	GetAllShapesSortByDirectionIDAscending GetAllShapesSortByType = "direction_id"
-	GetAllShapesSortByDirectionIDDecending GetAllShapesSortByType = "-direction_id"
-	GetAllShapesSortByNameAscending        GetAllShapesSortByType = "name"
-	GetAllShapesSortByNameDecending        GetAllShapesSortByType = "-name"
-	GetAllShapesSortByPolylineAscending    GetAllShapesSortByType = "polyline"
-	GetAllShapesSortByPolylineDecending    GetAllShapesSortByType = "-polyline"
-	GetAllShapesSortByPriorityAscending    GetAllShapesSortByType = "priority"
-	GetAllShapesSortByPriorityDecending    GetAllShapesSortByType = "-priority"
+	ShapesSortByDirectionIDAscending ShapesSortByType = "direction_id"
+	ShapesSortByDirectionIDDecending ShapesSortByType = "-direction_id"
+	ShapesSortByNameAscending        ShapesSortByType = "name"
+	ShapesSortByNameDecending        ShapesSortByType = "-name"
+	ShapesSortByPolylineAscending    ShapesSortByType = "polyline"
+	ShapesSortByPolylineDecending    ShapesSortByType = "-polyline"
+	ShapesSortByPriorityAscending    ShapesSortByType = "priority"
+	ShapesSortByPriorityDecending    ShapesSortByType = "-priority"
 )
 
 // ShapeInclude is an enumerable for all the includes for shape
@@ -46,13 +46,13 @@ const (
 
 // GetAllShapesRequestConfig holds the request info for the GetAllShapes function
 type GetAllShapesRequestConfig struct {
-	PageOffset        int                    `url:"page[offset],omitempty"`         // Offset (0-based) of first element in the page
-	PageLimit         int                    `url:"page[limit],omitempty"`          // Max number of elements to return
-	Sort              GetAllShapesSortByType `url:"sort,omitempty"`                 // Results can be sorted by the id or any /data/{index}/attributes key. Assumes ascending; may be prefixed with '-' for descending
-	Fields            []string               `url:"fields[shape],comma,omitempty"`  // Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types: see the V3 API Best Practices (https://www.mbta.com/developers/v3-api/best-practices) for an example.
-	Include           []ShapeInclude         `url:"include,comma,omitempty"`        // Can include choose to include route and stop.
-	FilterRoute       []string               `url:"filter[route],comma,omitempty"`  // Filter by /data/{index}/relationships/route/data/id.
-	FilterDirectionID string                 `url:"filter[direction_id],omitempty"` // Filter by direction of travel along the route.
+	PageOffset        int              `url:"page[offset],omitempty"`         // Offset (0-based) of first element in the page
+	PageLimit         int              `url:"page[limit],omitempty"`          // Max number of elements to return
+	Sort              ShapesSortByType `url:"sort,omitempty"`                 // Results can be sorted by the id or any /data/{index}/attributes key. Assumes ascending; may be prefixed with '-' for descending
+	Fields            []string         `url:"fields[shape],comma,omitempty"`  // Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types: see the V3 API Best Practices (https://www.mbta.com/developers/v3-api/best-practices) for an example.
+	Include           []ShapeInclude   `url:"include,comma,omitempty"`        // Can include choose to include route and stop.
+	FilterRoute       []string         `url:"filter[route],comma,omitempty"`  // Filter by /data/{index}/relationships/route/data/id.
+	FilterDirectionID string           `url:"filter[direction_id],omitempty"` // Filter by direction of travel along the route.
 }
 
 // GetAllShapes gets all the shapes based on the config info

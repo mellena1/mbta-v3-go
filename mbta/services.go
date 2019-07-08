@@ -51,42 +51,42 @@ type Service struct {
 	ValidDays          []Weekday          `jsonapi:"attr,valid_days"`
 }
 
-// GetAllServicesSortByType all possible ways to sort /services request
-type GetAllServicesSortByType string
+// ServicesSortByType all possible ways to sort /services request
+type ServicesSortByType string
 
 const (
-	GetAllServicesSortAddedDatesByAscending          GetAllServicesSortByType = "added_dates"
-	GetAllServicesSortAddedDatesByDescending         GetAllServicesSortByType = "-added_dates"
-	GetAllServicesSortAddedDatesNotesByAscending     GetAllServicesSortByType = "added_dates_notes"
-	GetAllServicesSortAddedDatesNotesByDescending    GetAllServicesSortByType = "-added_dates_notes"
-	GetAllServicesSortDescriptionByAscending         GetAllServicesSortByType = "description"
-	GetAllServicesSortDescriptionByDescending        GetAllServicesSortByType = "-description"
-	GetAllServicesSortEndDateByAscending             GetAllServicesSortByType = "end_date"
-	GetAllServicesSortEndDateByDescending            GetAllServicesSortByType = "-end_date"
-	GetAllServicesSortRemovedDatesByAscending        GetAllServicesSortByType = "removed_dates"
-	GetAllServicesSortRemovedDatesByDescending       GetAllServicesSortByType = "-removed_dates"
-	GetAllServicesSortRemovedDatesNotesByAscending   GetAllServicesSortByType = "removed_dates_notes"
-	GetAllServicesSortRemovedDatesNotesByDescending  GetAllServicesSortByType = "-removed_dates_notes"
-	GetAllServicesSortScheduleNameByAscending        GetAllServicesSortByType = "schedule_name"
-	GetAllServicesSortScheduleNameByDescending       GetAllServicesSortByType = "-schedule_name"
-	GetAllServicesSortScheduleTypeByAscending        GetAllServicesSortByType = "schedule_type"
-	GetAllServicesSortScheduleTypeByDescending       GetAllServicesSortByType = "-schedule_type"
-	GetAllServicesSortScheduleTypicalityByAscending  GetAllServicesSortByType = "schedule_typicality"
-	GetAllServicesSortScheduleTypicalityByDescending GetAllServicesSortByType = "-schedule_typicality"
-	GetAllServicesSortStartDateByAscending           GetAllServicesSortByType = "start_date"
-	GetAllServicesSortStartDateByDescending          GetAllServicesSortByType = "-start_date"
-	GetAllServicesSortValidDaysByAscending           GetAllServicesSortByType = "valid_days"
-	GetAllServicesSortValidDaysByDescending          GetAllServicesSortByType = "-valid_days"
+	ServicesSortAddedDatesByAscending          ServicesSortByType = "added_dates"
+	ServicesSortAddedDatesByDescending         ServicesSortByType = "-added_dates"
+	ServicesSortAddedDatesNotesByAscending     ServicesSortByType = "added_dates_notes"
+	ServicesSortAddedDatesNotesByDescending    ServicesSortByType = "-added_dates_notes"
+	ServicesSortDescriptionByAscending         ServicesSortByType = "description"
+	ServicesSortDescriptionByDescending        ServicesSortByType = "-description"
+	ServicesSortEndDateByAscending             ServicesSortByType = "end_date"
+	ServicesSortEndDateByDescending            ServicesSortByType = "-end_date"
+	ServicesSortRemovedDatesByAscending        ServicesSortByType = "removed_dates"
+	ServicesSortRemovedDatesByDescending       ServicesSortByType = "-removed_dates"
+	ServicesSortRemovedDatesNotesByAscending   ServicesSortByType = "removed_dates_notes"
+	ServicesSortRemovedDatesNotesByDescending  ServicesSortByType = "-removed_dates_notes"
+	ServicesSortScheduleNameByAscending        ServicesSortByType = "schedule_name"
+	ServicesSortScheduleNameByDescending       ServicesSortByType = "-schedule_name"
+	ServicesSortScheduleTypeByAscending        ServicesSortByType = "schedule_type"
+	ServicesSortScheduleTypeByDescending       ServicesSortByType = "-schedule_type"
+	ServicesSortScheduleTypicalityByAscending  ServicesSortByType = "schedule_typicality"
+	ServicesSortScheduleTypicalityByDescending ServicesSortByType = "-schedule_typicality"
+	ServicesSortStartDateByAscending           ServicesSortByType = "start_date"
+	ServicesSortStartDateByDescending          ServicesSortByType = "-start_date"
+	ServicesSortValidDaysByAscending           ServicesSortByType = "valid_days"
+	ServicesSortValidDaysByDescending          ServicesSortByType = "-valid_days"
 )
 
 // GetAllServicesRequestConfig extra options for GetAllServices Request
 type GetAllServicesRequestConfig struct {
-	PageOffset   string                   `url:"page[offset],omitempty"`          // Offset (0-based) of first element in the page
-	PageLimit    string                   `url:"page[limit],omitempty"`           // Max number of elements to return
-	Sort         GetAllServicesSortByType `url:"sort,omitempty"`                  // Results can be sorted by the id or any GetAllRoutesSortByType
-	Fields       []string                 `url:"fields[service],comma,omitempty"` // Fields to include with the response. Note that fields can also be selected for included data types
-	FilterIDs    []string                 `url:"filter[id],comma,omitempty"`      // Filter by multiple IDs
-	FilterRoutes []Route                  `url:"filter[route],comma,omitempty"`   // Filter by Routes
+	PageOffset   string             `url:"page[offset],omitempty"`          // Offset (0-based) of first element in the page
+	PageLimit    string             `url:"page[limit],omitempty"`           // Max number of elements to return
+	Sort         ServicesSortByType `url:"sort,omitempty"`                  // Results can be sorted by the id or any RoutesSortByType
+	Fields       []string           `url:"fields[service],comma,omitempty"` // Fields to include with the response. Note that fields can also be selected for included data types
+	FilterIDs    []string           `url:"filter[id],comma,omitempty"`      // Filter by multiple IDs
+	FilterRoutes []Route            `url:"filter[route],comma,omitempty"`   // Filter by Routes
 }
 
 // GetAllServices returns all services from the mbta API

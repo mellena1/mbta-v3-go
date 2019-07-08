@@ -18,6 +18,9 @@ func Test_GetTrip(t *testing.T) {
 		BikesAllowed:         BikesAllowedNoInfo,
 		BlockID:              "S931_-5-0-L-0-BraintreeQuincyCenter",
 		Route:                &Route{ID: "Red"},
+		RoutePattern:         &RoutePattern{ID: "Red-1-0"},
+		Service:              &Service{ID: "RTL22019-hms29016-Saturday-01-BraintreeQuincyCenterL"},
+		Shape:                &Shape{ID: "931_0009"},
 	}
 	server := httptest.NewServer(handlerForServer(t, fmt.Sprintf("%s/%s", tripsAPIPath, id)))
 	defer server.Close()
@@ -41,6 +44,9 @@ func Test_GetAllTrips(t *testing.T) {
 			BikesAllowed:         BikesAllowedNoInfo,
 			BlockID:              "S931_-4-0-L-0-BraintreeQuincyCenter",
 			Route:                &Route{ID: "Red"},
+			RoutePattern:         &RoutePattern{ID: "Red-1-0"},
+			Service:              &Service{ID: "RTL22019-hms29016-Saturday-01-BraintreeQuincyCenterL"},
+			Shape:                &Shape{ID: "931_0009"},
 		},
 		&Trip{
 			ID:                   "40119998-L",
@@ -51,6 +57,9 @@ func Test_GetAllTrips(t *testing.T) {
 			BikesAllowed:         BikesAllowedNoInfo,
 			BlockID:              "S931_-4-0-L",
 			Route:                &Route{ID: "Red"},
+			RoutePattern:         &RoutePattern{ID: "Red-1-0"},
+			Service:              &Service{ID: "RTL22019-hms29016-Saturday-01-L"},
+			Shape:                &Shape{ID: "931_0009"},
 		},
 	}
 	server := httptest.NewServer(handlerForServer(t, tripsAPIPath))

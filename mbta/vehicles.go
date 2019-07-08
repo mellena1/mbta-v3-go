@@ -49,43 +49,43 @@ const (
 	VehicleIncludeRoute VehicleInclude = includeRoute
 )
 
-// GetAllVehiclesSortByType all of the possible ways to sort by for a GetAllVehicles request
-type GetAllVehiclesSortByType string
+// VehiclesSortByType all of the possible ways to sort by for a GetAllVehicles request
+type VehiclesSortByType string
 
 const (
-	GetAllVehiclesSortByBearingAscending              GetAllVehiclesSortByType = "bearing"
-	GetAllVehiclesSortByBearingDescending             GetAllVehiclesSortByType = "-bearing"
-	GetAllVehiclesSortByCurrentStatusAscending        GetAllVehiclesSortByType = "current_status"
-	GetAllVehiclesSortByCurrentStatusDescending       GetAllVehiclesSortByType = "-current_status"
-	GetAllVehiclesSortByCurrentStopSequenceAscending  GetAllVehiclesSortByType = "current_stop_sequence"
-	GetAllVehiclesSortByCurrentStopSequenceDescending GetAllVehiclesSortByType = "-current_stop_sequence"
-	GetAllVehiclesSortByDirectionIDAscending          GetAllVehiclesSortByType = "direction_id"
-	GetAllVehiclesSortByDirectionIDDescending         GetAllVehiclesSortByType = "-direction_id"
-	GetAllVehiclesSortByLabelAscending                GetAllVehiclesSortByType = "label"
-	GetAllVehiclesSortByLabelDescending               GetAllVehiclesSortByType = "-label"
-	GetAllVehiclesSortByLatitudeAscending             GetAllVehiclesSortByType = "latitude"
-	GetAllVehiclesSortByLatitudeDescending            GetAllVehiclesSortByType = "-latitude"
-	GetAllVehiclesSortByLongitudeAscending            GetAllVehiclesSortByType = "longitude"
-	GetAllVehiclesSortByLongitudeDescending           GetAllVehiclesSortByType = "-longitude"
-	GetAllVehiclesSortBySpeedAscending                GetAllVehiclesSortByType = "speed"
-	GetAllVehiclesSortBySpeedDescending               GetAllVehiclesSortByType = "-speed"
-	GetAllVehiclesSortByUpdatedAtAscending            GetAllVehiclesSortByType = "updated_at"
-	GetAllVehiclesSortByUpdatedAtDescending           GetAllVehiclesSortByType = "-updated_at"
+	VehiclesSortByBearingAscending              VehiclesSortByType = "bearing"
+	VehiclesSortByBearingDescending             VehiclesSortByType = "-bearing"
+	VehiclesSortByCurrentStatusAscending        VehiclesSortByType = "current_status"
+	VehiclesSortByCurrentStatusDescending       VehiclesSortByType = "-current_status"
+	VehiclesSortByCurrentStopSequenceAscending  VehiclesSortByType = "current_stop_sequence"
+	VehiclesSortByCurrentStopSequenceDescending VehiclesSortByType = "-current_stop_sequence"
+	VehiclesSortByDirectionIDAscending          VehiclesSortByType = "direction_id"
+	VehiclesSortByDirectionIDDescending         VehiclesSortByType = "-direction_id"
+	VehiclesSortByLabelAscending                VehiclesSortByType = "label"
+	VehiclesSortByLabelDescending               VehiclesSortByType = "-label"
+	VehiclesSortByLatitudeAscending             VehiclesSortByType = "latitude"
+	VehiclesSortByLatitudeDescending            VehiclesSortByType = "-latitude"
+	VehiclesSortByLongitudeAscending            VehiclesSortByType = "longitude"
+	VehiclesSortByLongitudeDescending           VehiclesSortByType = "-longitude"
+	VehiclesSortBySpeedAscending                VehiclesSortByType = "speed"
+	VehiclesSortBySpeedDescending               VehiclesSortByType = "-speed"
+	VehiclesSortByUpdatedAtAscending            VehiclesSortByType = "updated_at"
+	VehiclesSortByUpdatedAtDescending           VehiclesSortByType = "-updated_at"
 )
 
 // GetAllVehiclesRequestConfig extra options for the GetAllVehicles request
 type GetAllVehiclesRequestConfig struct {
-	PageOffset        string                   `url:"page[offset],omitempty"`             // Offset (0-based) of first element in the page
-	PageLimit         string                   `url:"page[limit],omitempty"`              // Max number of elements to return
-	Sort              GetAllVehiclesSortByType `url:"sort,omitempty"`                     // Results can be sorted by the id or any GetAllVehiclesSortByType
-	Fields            []string                 `url:"fields[vehicle],comma,omitempty"`    // Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
-	Include           []VehicleInclude         `url:"include,comma,omitempty"`            // Include extra data in response (trip, stop, or route)
-	FilterIDs         []string                 `url:"filter[id],comma,omitempty"`         // Filter by multiple IDs
-	FilterTripIDs     []string                 `url:"filter[trip],comma,omitempty"`       // Filter by trip IDs
-	FilterLabels      []string                 `url:"filter[label],comma,omitempty"`      // Filter by label
-	FilterRouteIDs    []string                 `url:"filter[route],comma,omitempty"`      // Filter by route IDs. If the vehicle is on a multi-route trip, it will be returned for any of the routes
-	FilterDirectionID string                   `url:"filter[direction_id],omitempty"`     // Filter by Direction ID (Either "0" or "1")
-	FilterRouteTypes  []RouteType              `url:"filter[route_type],comma,omitempty"` // Filter by route type(s)
+	PageOffset        string             `url:"page[offset],omitempty"`             // Offset (0-based) of first element in the page
+	PageLimit         string             `url:"page[limit],omitempty"`              // Max number of elements to return
+	Sort              VehiclesSortByType `url:"sort,omitempty"`                     // Results can be sorted by the id or any VehiclesSortByType
+	Fields            []string           `url:"fields[vehicle],comma,omitempty"`    // Fields to include with the response. Multiple fields MUST be a comma-separated (U+002C COMMA, “,”) list. Note that fields can also be selected for included data types
+	Include           []VehicleInclude   `url:"include,comma,omitempty"`            // Include extra data in response (trip, stop, or route)
+	FilterIDs         []string           `url:"filter[id],comma,omitempty"`         // Filter by multiple IDs
+	FilterTripIDs     []string           `url:"filter[trip],comma,omitempty"`       // Filter by trip IDs
+	FilterLabels      []string           `url:"filter[label],comma,omitempty"`      // Filter by label
+	FilterRouteIDs    []string           `url:"filter[route],comma,omitempty"`      // Filter by route IDs. If the vehicle is on a multi-route trip, it will be returned for any of the routes
+	FilterDirectionID string             `url:"filter[direction_id],omitempty"`     // Filter by Direction ID (Either "0" or "1")
+	FilterRouteTypes  []RouteType        `url:"filter[route_type],comma,omitempty"` // Filter by route type(s)
 }
 
 // GetAllVehicles returns all vehicles from the mbta API

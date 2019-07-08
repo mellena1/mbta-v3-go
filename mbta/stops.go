@@ -45,47 +45,47 @@ const (
 	StopIncludeParentStation StopInclude = includeParentStation
 )
 
-// GetAllStopsSortByType all of the possible ways to sort by for a GetAllStops request
-type GetAllStopsSortByType string
+// StopsSortByType all of the possible ways to sort by for a GetAllStops request
+type StopsSortByType string
 
 const (
-	GetAllStopsSortByAddressAscending             GetAllStopsSortByType = "address"
-	GetAllStopsSortByAddressDescending            GetAllStopsSortByType = "-address"
-	GetAllStopsSortByDescriptionAscending         GetAllStopsSortByType = "description"
-	GetAllStopsSortByDescriptionDescending        GetAllStopsSortByType = "-description"
-	GetAllStopsSortByLatitudeAscending            GetAllStopsSortByType = "latitude"
-	GetAllStopsSortByLatitudeDescending           GetAllStopsSortByType = "-latitude"
-	GetAllStopsSortByLocationTypeAscending        GetAllStopsSortByType = "location_type"
-	GetAllStopsSortByLocationTypeDescending       GetAllStopsSortByType = "-location_type"
-	GetAllStopsSortByLongitudeAscending           GetAllStopsSortByType = "longitude"
-	GetAllStopsSortByLongitudeDescending          GetAllStopsSortByType = "-longitude"
-	GetAllStopsSortByNameAscending                GetAllStopsSortByType = "name"
-	GetAllStopsSortByNameDescending               GetAllStopsSortByType = "-name"
-	GetAllStopsSortByPlatformCodeAscending        GetAllStopsSortByType = "platform_code"
-	GetAllStopsSortByPlatformCodeDescending       GetAllStopsSortByType = "-platform_code"
-	GetAllStopsSortByPlatformNameAscending        GetAllStopsSortByType = "platform_name"
-	GetAllStopsSortByPlatformNameDescending       GetAllStopsSortByType = "-platform_name"
-	GetAllStopsSortByWheelchairBoardingAscending  GetAllStopsSortByType = "wheelchair_boarding"
-	GetAllStopsSortByWheelchairBoardingDescending GetAllStopsSortByType = "-wheelchair_boarding"
-	GetAllStopsSortByDistanceAscending            GetAllStopsSortByType = "distance"
-	GetAllStopsSortByDistanceDescending           GetAllStopsSortByType = "-distance"
+	StopsSortByAddressAscending             StopsSortByType = "address"
+	StopsSortByAddressDescending            StopsSortByType = "-address"
+	StopsSortByDescriptionAscending         StopsSortByType = "description"
+	StopsSortByDescriptionDescending        StopsSortByType = "-description"
+	StopsSortByLatitudeAscending            StopsSortByType = "latitude"
+	StopsSortByLatitudeDescending           StopsSortByType = "-latitude"
+	StopsSortByLocationTypeAscending        StopsSortByType = "location_type"
+	StopsSortByLocationTypeDescending       StopsSortByType = "-location_type"
+	StopsSortByLongitudeAscending           StopsSortByType = "longitude"
+	StopsSortByLongitudeDescending          StopsSortByType = "-longitude"
+	StopsSortByNameAscending                StopsSortByType = "name"
+	StopsSortByNameDescending               StopsSortByType = "-name"
+	StopsSortByPlatformCodeAscending        StopsSortByType = "platform_code"
+	StopsSortByPlatformCodeDescending       StopsSortByType = "-platform_code"
+	StopsSortByPlatformNameAscending        StopsSortByType = "platform_name"
+	StopsSortByPlatformNameDescending       StopsSortByType = "-platform_name"
+	StopsSortByWheelchairBoardingAscending  StopsSortByType = "wheelchair_boarding"
+	StopsSortByWheelchairBoardingDescending StopsSortByType = "-wheelchair_boarding"
+	StopsSortByDistanceAscending            StopsSortByType = "distance"
+	StopsSortByDistanceDescending           StopsSortByType = "-distance"
 )
 
 // GetAllStopsRequestConfig extra options for the GetAllStops request
 type GetAllStopsRequestConfig struct {
-	PageOffset         string                `url:"page[offset],omitempty"`                // Offset (0-based) of first element in the page
-	PageLimit          string                `url:"page[limit],omitempty"`                 // Max number of elements to return
-	Sort               GetAllStopsSortByType `url:"sort,omitempty"`                        // Results can be sorted by the id or any GetAllStopsSortByType
-	Fields             []string              `url:"fields[stop],comma,omitempty"`          // Fields to include with the response. Note that fields can also be selected for included data types
-	Include            []StopInclude         `url:"include,comma,omitempty"`               // Include extra data in response (parentstation)
-	FilterDirectionID  string                `url:"filter[direction_id],omitempty"`        // Filter by Direction ID (Either "0" or "1")
-	FilterLatitude     string                `url:"filter[latitude],omitempty"`            // Latitude in degrees North in the WGS-84 coordinate system to search filter[radius] degrees around with filter[longitude]
-	FilterLongitude    string                `url:"filter[longitude],omitempty"`           // Longitude in degrees East in the WGS-84 coordinate system to search filter[radius] degrees around with filter[latitude]
-	FilterRadius       string                `url:"filter[radius],omitempty"`              // The distance is in degrees as if latitude and longitude were on a flat 2D plane and normal Pythagorean distance was calculated. Over the region MBTA serves, 0.02 degrees is approximately 1 mile. Defaults to 0.01 degrees (approximately a half mile)
-	FilterIDs          []string              `url:"filter[id],comma,omitempty"`            // Filter by multiple IDs
-	FilterRouteTypes   []RouteType           `url:"filter[route_type],comma,omitempty"`    // Filter by route type(s)
-	FilterRouteIDs     []string              `url:"filter[route],comma,omitempty"`         // Filter by route IDs. If the vehicle is on a multi-route trip, it will be returned for any of the routes
-	FilterLocationType []string              `url:"filter[location_type],comma,omitempty"` // Filter by location type
+	PageOffset         string          `url:"page[offset],omitempty"`                // Offset (0-based) of first element in the page
+	PageLimit          string          `url:"page[limit],omitempty"`                 // Max number of elements to return
+	Sort               StopsSortByType `url:"sort,omitempty"`                        // Results can be sorted by the id or any StopsSortByType
+	Fields             []string        `url:"fields[stop],comma,omitempty"`          // Fields to include with the response. Note that fields can also be selected for included data types
+	Include            []StopInclude   `url:"include,comma,omitempty"`               // Include extra data in response (parentstation)
+	FilterDirectionID  string          `url:"filter[direction_id],omitempty"`        // Filter by Direction ID (Either "0" or "1")
+	FilterLatitude     string          `url:"filter[latitude],omitempty"`            // Latitude in degrees North in the WGS-84 coordinate system to search filter[radius] degrees around with filter[longitude]
+	FilterLongitude    string          `url:"filter[longitude],omitempty"`           // Longitude in degrees East in the WGS-84 coordinate system to search filter[radius] degrees around with filter[latitude]
+	FilterRadius       string          `url:"filter[radius],omitempty"`              // The distance is in degrees as if latitude and longitude were on a flat 2D plane and normal Pythagorean distance was calculated. Over the region MBTA serves, 0.02 degrees is approximately 1 mile. Defaults to 0.01 degrees (approximately a half mile)
+	FilterIDs          []string        `url:"filter[id],comma,omitempty"`            // Filter by multiple IDs
+	FilterRouteTypes   []RouteType     `url:"filter[route_type],comma,omitempty"`    // Filter by route type(s)
+	FilterRouteIDs     []string        `url:"filter[route],comma,omitempty"`         // Filter by route IDs. If the vehicle is on a multi-route trip, it will be returned for any of the routes
+	FilterLocationType []string        `url:"filter[location_type],comma,omitempty"` // Filter by location type
 }
 
 // GetAllStops returns all stops from the mbta API

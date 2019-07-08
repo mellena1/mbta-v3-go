@@ -179,61 +179,61 @@ const (
 	AlertIncludeFacilities AlertInclude = includeFacilities
 )
 
-// GetAllAlertsSortByType all of the possible ways to sort by for a GetAllAlerts request
-type GetAllAlertsSortByType string
+// AlertsSortByType all of the possible ways to sort by for a GetAllAlerts request
+type AlertsSortByType string
 
 const (
-	GetAllAlertsSortByActivePeriodAscending    GetAllAlertsSortByType = "active_period"
-	GetAllAlertsSortByActivePeriodDescending   GetAllAlertsSortByType = "-active_period"
-	GetAllAlertsSortByBannerDesending          GetAllAlertsSortByType = "banner"
-	GetAllAlertsSortByBannerDescending         GetAllAlertsSortByType = "-banner"
-	GetAllAlertsSortByCauseAscending           GetAllAlertsSortByType = "cause"
-	GetAllAlertsSortByCauseDescending          GetAllAlertsSortByType = "-cause"
-	GetAllAlertsSortByCreatedAtAscending       GetAllAlertsSortByType = "created_at"
-	GetAllAlertsSortByCreatedAtDescending      GetAllAlertsSortByType = "-created_at"
-	GetAllAlertsSortByDescriptionAscending     GetAllAlertsSortByType = "description"
-	GetAllAlertsSortByDescriptionDescending    GetAllAlertsSortByType = "-description"
-	GetAllAlertsSortByEffectAscending          GetAllAlertsSortByType = "effect"
-	GetAllAlertsSortByEffectDescending         GetAllAlertsSortByType = "-effect"
-	GetAllAlertsSortByHeaderAscending          GetAllAlertsSortByType = "header"
-	GetAllAlertsSortByHeaderDescending         GetAllAlertsSortByType = "-header"
-	GetAllAlertsSortByInformedEntityAscending  GetAllAlertsSortByType = "informed_entity"
-	GetAllAlertsSortByInformedEntityDescending GetAllAlertsSortByType = "-informed_entity"
-	GetAllAlertsSortByLifecycleAscending       GetAllAlertsSortByType = "lifecycle"
-	GetAllAlertsSortByLifecycleDescending      GetAllAlertsSortByType = "-lifecycle"
-	GetAllAlertsSortByServiceEffectAscending   GetAllAlertsSortByType = "service_effect"
-	GetAllAlertsSortByServiceEffectDescending  GetAllAlertsSortByType = "-service_effect"
-	GetAllAlertsSortBySeverityAscending        GetAllAlertsSortByType = "severity"
-	GetAllAlertsSortBySeverityDescending       GetAllAlertsSortByType = "-severity"
-	GetAllAlertsSortByShortHeaderAscending     GetAllAlertsSortByType = "short_header"
-	GetAllAlertsSortByShortHeaderDescending    GetAllAlertsSortByType = "-short_header"
-	GetAllAlertsSortByTimeframeAscending       GetAllAlertsSortByType = "timeframe"
-	GetAllAlertsSortByTimeframeDescending      GetAllAlertsSortByType = "-timeframe"
-	GetAllAlertsSortByUpdatedAtAscending       GetAllAlertsSortByType = "updated_at"
-	GetAllAlertsSortByUpdatedAtDescending      GetAllAlertsSortByType = "-updated_at"
-	GetAllAlertsSortByURLAscending             GetAllAlertsSortByType = "url"
-	GetAllAlertsSortByURLDescending            GetAllAlertsSortByType = "-url"
+	AlertsSortByActivePeriodAscending    AlertsSortByType = "active_period"
+	AlertsSortByActivePeriodDescending   AlertsSortByType = "-active_period"
+	AlertsSortByBannerDesending          AlertsSortByType = "banner"
+	AlertsSortByBannerDescending         AlertsSortByType = "-banner"
+	AlertsSortByCauseAscending           AlertsSortByType = "cause"
+	AlertsSortByCauseDescending          AlertsSortByType = "-cause"
+	AlertsSortByCreatedAtAscending       AlertsSortByType = "created_at"
+	AlertsSortByCreatedAtDescending      AlertsSortByType = "-created_at"
+	AlertsSortByDescriptionAscending     AlertsSortByType = "description"
+	AlertsSortByDescriptionDescending    AlertsSortByType = "-description"
+	AlertsSortByEffectAscending          AlertsSortByType = "effect"
+	AlertsSortByEffectDescending         AlertsSortByType = "-effect"
+	AlertsSortByHeaderAscending          AlertsSortByType = "header"
+	AlertsSortByHeaderDescending         AlertsSortByType = "-header"
+	AlertsSortByInformedEntityAscending  AlertsSortByType = "informed_entity"
+	AlertsSortByInformedEntityDescending AlertsSortByType = "-informed_entity"
+	AlertsSortByLifecycleAscending       AlertsSortByType = "lifecycle"
+	AlertsSortByLifecycleDescending      AlertsSortByType = "-lifecycle"
+	AlertsSortByServiceEffectAscending   AlertsSortByType = "service_effect"
+	AlertsSortByServiceEffectDescending  AlertsSortByType = "-service_effect"
+	AlertsSortBySeverityAscending        AlertsSortByType = "severity"
+	AlertsSortBySeverityDescending       AlertsSortByType = "-severity"
+	AlertsSortByShortHeaderAscending     AlertsSortByType = "short_header"
+	AlertsSortByShortHeaderDescending    AlertsSortByType = "-short_header"
+	AlertsSortByTimeframeAscending       AlertsSortByType = "timeframe"
+	AlertsSortByTimeframeDescending      AlertsSortByType = "-timeframe"
+	AlertsSortByUpdatedAtAscending       AlertsSortByType = "updated_at"
+	AlertsSortByUpdatedAtDescending      AlertsSortByType = "-updated_at"
+	AlertsSortByURLAscending             AlertsSortByType = "url"
+	AlertsSortByURLDescending            AlertsSortByType = "-url"
 )
 
 // GetAllAlertsRequestConfig extra options for the GetAllAlerts request
 type GetAllAlertsRequestConfig struct {
-	PageOffset        string                 `url:"page[offset],omitempty"`             // Offset (0-based) of first element in the page// Offset (0-based) of first element in the page
-	PageLimit         string                 `url:"page[limit],omitempty"`              // Max number of elements to return// Max number of elements to return
-	Sort              GetAllAlertsSortByType `url:"sort,omitempty"`                     // Results can be sorted by the id or any GetAllRoutesSortByType
-	Fields            []string               `url:"fields[alert],comma,omitempty"`      // Fields to include with the response. Note that fields can also be selected for included data types
-	Include           []AlertInclude         `url:"include,comma,omitempty"`            // Include extra data in response
-	FilterActivity    []AlertActivityType    `url:"filter[activity],comma,omitempty"`   // Filter to alerts for only those activities If the filter is not given OR it is empty, then defaults to ["BOARD", "EXIT", “RIDE”]. If the value AlertActivityFilterAll is used then all alerts will be returned, not just those with the default activities
-	FilterRouteType   []RouteType            `url:"filter[route_type],comma,omitempty"` // Filter by route_type
-	FilterDirectionID string                 `url:"filter[direction_id],omitempty"`     // Filter by direction of travel along the route
-	FilterRouteIDs    []string               `url:"filter[route],omitempty"`            // Filter by route IDs
-	FilterStopIDs     []string               `url:"filter[stop],omitempty"`             // Filter by stop IDs
-	FilterTripIDs     []string               `url:"filter[trip],omitempty"`             // Filter by trip IDs
-	FilterFacilityIDs []string               `url:"filter[facility],omitempty"`         // Filter by facility IDs
-	FilterIDs         []string               `url:"filter[id],comma,omitempty"`         // Filter by multiple IDs
-	FilterBanner      string                 `url:"filter[banner],comma,omitempty"`     // When combined with other filters, filters by alerts with or without a banner. MUST be “true” or "false"
-	FilterDateTime    *TimeISO8601           `url:"filter[datetime],omitempty"`         // Filter to alerts that are active at a given time. Additionally, set `TimeISO8601.Now = true` to filter to alerts that are currently active.
-	FilterLifecycle   []string               `url:"filter[lifecycle],comma,omitempty"`  // Filters by an alert’s lifecycle
-	FilterSeverity    []string               `url:"filter[severity],comma,omitempty"`   // Filters alerts by list of severities
+	PageOffset        string              `url:"page[offset],omitempty"`             // Offset (0-based) of first element in the page
+	PageLimit         string              `url:"page[limit],omitempty"`              // Max number of elements to return
+	Sort              AlertsSortByType    `url:"sort,omitempty"`                     // Results can be sorted by the id or any RoutesSortByType
+	Fields            []string            `url:"fields[alert],comma,omitempty"`      // Fields to include with the response. Note that fields can also be selected for included data types
+	Include           []AlertInclude      `url:"include,comma,omitempty"`            // Include extra data in response
+	FilterActivity    []AlertActivityType `url:"filter[activity],comma,omitempty"`   // Filter to alerts for only those activities If the filter is not given OR it is empty, then defaults to ["BOARD", "EXIT", “RIDE”]. If the value AlertActivityFilterAll is used then all alerts will be returned, not just those with the default activities
+	FilterRouteType   []RouteType         `url:"filter[route_type],comma,omitempty"` // Filter by route_type
+	FilterDirectionID string              `url:"filter[direction_id],omitempty"`     // Filter by direction of travel along the route
+	FilterRouteIDs    []string            `url:"filter[route],omitempty"`            // Filter by route IDs
+	FilterStopIDs     []string            `url:"filter[stop],omitempty"`             // Filter by stop IDs
+	FilterTripIDs     []string            `url:"filter[trip],omitempty"`             // Filter by trip IDs
+	FilterFacilityIDs []string            `url:"filter[facility],omitempty"`         // Filter by facility IDs
+	FilterIDs         []string            `url:"filter[id],comma,omitempty"`         // Filter by multiple IDs
+	FilterBanner      string              `url:"filter[banner],comma,omitempty"`     // When combined with other filters, filters by alerts with or without a banner. MUST be “true” or "false"
+	FilterDateTime    *TimeISO8601        `url:"filter[datetime],omitempty"`         // Filter to alerts that are active at a given time. Additionally, set `TimeISO8601.Now = true` to filter to alerts that are currently active.
+	FilterLifecycle   []string            `url:"filter[lifecycle],comma,omitempty"`  // Filters by an alert’s lifecycle
+	FilterSeverity    []string            `url:"filter[severity],comma,omitempty"`   // Filters alerts by list of severities
 }
 
 // GetAllAlerts returns all alerts from the mbta API

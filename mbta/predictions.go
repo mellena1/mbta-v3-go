@@ -37,7 +37,7 @@ type Prediction struct {
 	Stop                 *Stop                               `jsonapi:"relation,stop"`              // Stop that the prediction is linked with. Only includes id by default, use Include config option to get all data
 	Trip                 *Trip                               `jsonapi:"relation,trip"`              // Trip that the prediction is linked with. Only includes id by default, use Include config option to get all data
 	Vehicle              *Vehicle                            `jsonapi:"relation,vehicle"`           // Vehicle that the prediction is linked with. Only includes id by default, use Include config option to get all data
-	//TODO: Alerts               []Alert                             `jsonapi:"relation,alerts"`
+	Alerts               []*Alert                            `jsonapi:"relation,alerts"`
 }
 
 // PredictionInclude all of the includes for a prediction request
@@ -52,39 +52,39 @@ const (
 	PredictionIncludeAlerts   PredictionInclude = includeAlerts
 )
 
-// GetAllPredictionsSortByType all of the possible ways to sort by for a GetAllPredictions request
-type GetAllPredictionsSortByType string
+// PredictionsSortByType all of the possible ways to sort by for a GetAllPredictions request
+type PredictionsSortByType string
 
 const (
-	GetAllPredictionsSortByArrivalTimeAscending           GetAllPredictionsSortByType = "arrival_time"
-	GetAllPredictionsSortByArrivalTimeDescending          GetAllPredictionsSortByType = "-arrival_time"
-	GetAllPredictionsSortByDepartureTimeAscending         GetAllPredictionsSortByType = "departure_time"
-	GetAllPredictionsSortByDepartureTimeDescending        GetAllPredictionsSortByType = "-departure_time"
-	GetAllPredictionsSortByDirectionIDAscending           GetAllPredictionsSortByType = "direction_id"
-	GetAllPredictionsSortByDirectionIDDescending          GetAllPredictionsSortByType = "-direction_id"
-	GetAllPredictionsSortByScheduleRelationshipAscending  GetAllPredictionsSortByType = "schedule_relationship"
-	GetAllPredictionsSortByScheduleRelationshipDescending GetAllPredictionsSortByType = "-schedule_relationship"
-	GetAllPredictionsSortByStatusAscending                GetAllPredictionsSortByType = "status"
-	GetAllPredictionsSortByStatusDescending               GetAllPredictionsSortByType = "-status"
-	GetAllPredictionsSortByStopSequenceAscending          GetAllPredictionsSortByType = "stop_sequence"
-	GetAllPredictionsSortByStopSequenceDescending         GetAllPredictionsSortByType = "-stop_sequence"
+	PredictionsSortByArrivalTimeAscending           PredictionsSortByType = "arrival_time"
+	PredictionsSortByArrivalTimeDescending          PredictionsSortByType = "-arrival_time"
+	PredictionsSortByDepartureTimeAscending         PredictionsSortByType = "departure_time"
+	PredictionsSortByDepartureTimeDescending        PredictionsSortByType = "-departure_time"
+	PredictionsSortByDirectionIDAscending           PredictionsSortByType = "direction_id"
+	PredictionsSortByDirectionIDDescending          PredictionsSortByType = "-direction_id"
+	PredictionsSortByScheduleRelationshipAscending  PredictionsSortByType = "schedule_relationship"
+	PredictionsSortByScheduleRelationshipDescending PredictionsSortByType = "-schedule_relationship"
+	PredictionsSortByStatusAscending                PredictionsSortByType = "status"
+	PredictionsSortByStatusDescending               PredictionsSortByType = "-status"
+	PredictionsSortByStopSequenceAscending          PredictionsSortByType = "stop_sequence"
+	PredictionsSortByStopSequenceDescending         PredictionsSortByType = "-stop_sequence"
 )
 
 // GetAllPredictionsRequestConfig extra options for the GetAllPredictions request
 type GetAllPredictionsRequestConfig struct {
-	PageOffset        string                      `url:"page[offset],omitempty"`             // Offset (0-based) of first element in the page
-	PageLimit         string                      `url:"page[limit],omitempty"`              // Max number of elements to return
-	Sort              GetAllPredictionsSortByType `url:"sort,omitempty"`                     // Results can be sorted by the id or any GetAllPredictionsSortByType
-	Fields            []string                    `url:"fields[prediction],comma,omitempty"` // Fields to include with the response. Note that fields can also be selected for included data types
-	Include           []PredictionInclude         `url:"include,comma,omitempty"`            // Include extra data in response
-	FilterLatitude    string                      `url:"filter[latitude],omitempty"`         // Latitude/Longitude must be both present or both absent
-	FilterLongitude   string                      `url:"filter[longitude],omitempty"`        // Latitude/Longitude must be both present or both absent
-	FilterRadius      string                      `url:"filter[radius],omitempty"`           // Radius accepts a floating point number, and the default is 0.01. For example, if you query for: latitude: 42, longitude: -71, radius: 0.05 then you will filter between latitudes 41.95 and 42.05, and longitudes -70.95 and -71.05
-	FilterDirectionID string                      `url:"filter[direction_id],omitempty"`     // Filter by Direction ID (Either "0" or "1")
-	FilterRouteType   []string                    `url:"filter[route_type],comma,omitempty"` // Filter by route_type
-	FilterRouteIDs    []string                    `url:"filter[route],comma,omitempty"`      // Filter by route IDs
-	FilterStopIDs     []string                    `url:"filter[stop],comma,omitempty"`       // Filter by stop IDs
-	FilterTripIDs     []string                    `url:"filter[trip],comma,omitempty"`       // Filter by trip IDs
+	PageOffset        string                `url:"page[offset],omitempty"`             // Offset (0-based) of first element in the page
+	PageLimit         string                `url:"page[limit],omitempty"`              // Max number of elements to return
+	Sort              PredictionsSortByType `url:"sort,omitempty"`                     // Results can be sorted by the id or any PredictionsSortByType
+	Fields            []string              `url:"fields[prediction],comma,omitempty"` // Fields to include with the response. Note that fields can also be selected for included data types
+	Include           []PredictionInclude   `url:"include,comma,omitempty"`            // Include extra data in response
+	FilterLatitude    string                `url:"filter[latitude],omitempty"`         // Latitude/Longitude must be both present or both absent
+	FilterLongitude   string                `url:"filter[longitude],omitempty"`        // Latitude/Longitude must be both present or both absent
+	FilterRadius      string                `url:"filter[radius],omitempty"`           // Radius accepts a floating point number, and the default is 0.01. For example, if you query for: latitude: 42, longitude: -71, radius: 0.05 then you will filter between latitudes 41.95 and 42.05, and longitudes -70.95 and -71.05
+	FilterDirectionID string                `url:"filter[direction_id],omitempty"`     // Filter by Direction ID (Either "0" or "1")
+	FilterRouteType   []string              `url:"filter[route_type],comma,omitempty"` // Filter by route_type
+	FilterRouteIDs    []string              `url:"filter[route],comma,omitempty"`      // Filter by route IDs
+	FilterStopIDs     []string              `url:"filter[stop],comma,omitempty"`       // Filter by stop IDs
+	FilterTripIDs     []string              `url:"filter[trip],comma,omitempty"`       // Filter by trip IDs
 }
 
 // GetAllPredictions returns all predictions from the mbta API

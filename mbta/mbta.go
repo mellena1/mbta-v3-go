@@ -36,14 +36,14 @@ type Client struct {
 
 	common        service // Reuse a single struct instead of allocating one for each service on the heap. (same as github.com/google/go-github)
 	Alerts        *AlertService
-  Facilities    *FacilityService
-  Lines         *LineService
-  Predictions *PredictionService
+	Facilities    *FacilityService
+	Lines         *LineService
+	Predictions   *PredictionService
 	Routes        *RouteService
 	RoutePatterns *RoutePatternsService
 	Schedules     *ScheduleService
-  Services      *ServicesService
-  Shapes        *ShapeService
+	Services      *ServicesService
+	Shapes        *ShapeService
 	Stops         *StopService
 	Trips         *TripService
 	Vehicles      *VehicleService

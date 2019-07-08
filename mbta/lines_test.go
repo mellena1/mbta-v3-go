@@ -14,7 +14,7 @@ func TestGetLine(t *testing.T) {
 		ShortName: "",
 		SortOrder: 10032,
 		TextColor: "FFFFFF",
-		Routes:    []Route(nil),
+		Routes:    []*Route(nil),
 	}
 	server := httptest.NewServer(handlerForServer(t, fmt.Sprintf("%s/%s", linesAPIPath, "line-Green")))
 	defer server.Close()
@@ -34,7 +34,7 @@ func TestGetAllLines(t *testing.T) {
 			ShortName: "",
 			SortOrder: 10032,
 			TextColor: "FFFFFF",
-			Routes:    []Route(nil),
+			Routes:    []*Route(nil),
 		},
 		&Line{
 			ID:        "line-Mattapan",
@@ -43,7 +43,7 @@ func TestGetAllLines(t *testing.T) {
 			ShortName: "",
 			SortOrder: 10011,
 			TextColor: "FFFFFF",
-			Routes:    []Route(nil),
+			Routes:    []*Route(nil),
 		},
 	}
 	server := httptest.NewServer(handlerForServer(t, linesAPIPath))

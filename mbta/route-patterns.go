@@ -47,31 +47,31 @@ const (
 	RoutePatternIncludeRepresentativeTrip RoutePatternInclude = includeRepresentativeTrip
 )
 
-// GetAllRoutePatternsSortByType all of the possible ways to sort by for a GetAllRoutePatterns request
-type GetAllRoutePatternsSortByType string
+// RoutePatternsSortByType all of the possible ways to sort by for a GetAllRoutePatterns request
+type RoutePatternsSortByType string
 
 const (
-	GetAllRoutePatternsSortByDirectionIDAscending  GetAllRoutePatternsSortByType = "direction_id"
-	GetAllRoutePatternsSortByDirectionIDDescending GetAllRoutePatternsSortByType = "-direction_id"
-	GetAllRoutePatternsSortByNameAscending         GetAllRoutePatternsSortByType = "name"
-	GetAllRoutePatternsSortByNameDescending        GetAllRoutePatternsSortByType = "-name"
-	GetAllRoutePatternsSortBySortOrderAscending    GetAllRoutePatternsSortByType = "sort_order"
-	GetAllRoutePatternsSortBySortOrderDescending   GetAllRoutePatternsSortByType = "-sort_order"
-	GetAllRoutePatternsSortByTimeDescAscending     GetAllRoutePatternsSortByType = "time_desc"
-	GetAllRoutePatternsSortByTimeDescDescending    GetAllRoutePatternsSortByType = "-time_desc"
-	GetAllRoutePatternsSortByTypicalityAscending   GetAllRoutePatternsSortByType = "typicality"
-	GetAllRoutePatternsSortByTypicalityDescending  GetAllRoutePatternsSortByType = "-typicality"
+	RoutePatternsSortByDirectionIDAscending  RoutePatternsSortByType = "direction_id"
+	RoutePatternsSortByDirectionIDDescending RoutePatternsSortByType = "-direction_id"
+	RoutePatternsSortByNameAscending         RoutePatternsSortByType = "name"
+	RoutePatternsSortByNameDescending        RoutePatternsSortByType = "-name"
+	RoutePatternsSortBySortOrderAscending    RoutePatternsSortByType = "sort_order"
+	RoutePatternsSortBySortOrderDescending   RoutePatternsSortByType = "-sort_order"
+	RoutePatternsSortByTimeDescAscending     RoutePatternsSortByType = "time_desc"
+	RoutePatternsSortByTimeDescDescending    RoutePatternsSortByType = "-time_desc"
+	RoutePatternsSortByTypicalityAscending   RoutePatternsSortByType = "typicality"
+	RoutePatternsSortByTypicalityDescending  RoutePatternsSortByType = "-typicality"
 )
 
 // GetAllRoutePatternsRequestConfig extra options for the GetAllRoutePatterns request
 type GetAllRoutePatternsRequestConfig struct {
-	PageOffset        string                        `url:"page[offset],omitempty"`         // Offset (0-based) of first element in the page
-	PageLimit         string                        `url:"page[limit],omitempty"`          // Max number of elements to return
-	Sort              GetAllRoutePatternsSortByType `url:"sort,omitempty"`                 // Results can be sorted by the id or any GetAllRoutesSortByType
-	Include           []RoutePatternInclude         `url:"include,comma,omitempty"`        // Include extra data in response
-	FilterDirectionID string                        `url:"filter[direction_id],omitempty"` // Filter by Direction ID (Either "0" or "1")
-	FilterIDs         []string                      `url:"filter[id],comma,omitempty"`     // Filter by multiple IDs
-	FilterRouteIDs    []string                      `url:"filter[route],comma,omitempty"`  // Filter by stops
+	PageOffset        string                  `url:"page[offset],omitempty"`         // Offset (0-based) of first element in the page
+	PageLimit         string                  `url:"page[limit],omitempty"`          // Max number of elements to return
+	Sort              RoutePatternsSortByType `url:"sort,omitempty"`                 // Results can be sorted by the id or any RoutesSortByType
+	Include           []RoutePatternInclude   `url:"include,comma,omitempty"`        // Include extra data in response
+	FilterDirectionID string                  `url:"filter[direction_id],omitempty"` // Filter by Direction ID (Either "0" or "1")
+	FilterIDs         []string                `url:"filter[id],comma,omitempty"`     // Filter by multiple IDs
+	FilterRouteIDs    []string                `url:"filter[route],comma,omitempty"`  // Filter by stops
 }
 
 // GetAllRoutePatterns returns all routes from the mbta API

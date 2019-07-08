@@ -39,7 +39,7 @@ type Route struct {
 	TextColor             string    `jsonapi:"attr,text_color"`
 	Type                  RouteType `jsonapi:"attr,type"`
 	ShortName             string    `jsonapi:"attr,short_name"`
-	// Line				  Line	    `jsonapi:"relation,line"`
+	Line                  *Line     `jsonapi:"relation,line"`
 }
 
 // RouteInclude all of the includes for a route request
@@ -51,44 +51,44 @@ const (
 	RouteIncludeRoutePatterns RouteInclude = includeRoutePatterns
 )
 
-// GetAllRoutesSortByType all of the possible ways to sort by for a GetAllRoutes request
-type GetAllRoutesSortByType string
+// RoutesSortByType all of the possible ways to sort by for a GetAllRoutes request
+type RoutesSortByType string
 
 const (
-	GetAllRoutesSortByColorAscending                 GetAllRoutesSortByType = "color"
-	GetAllRoutesSortByColorDescending                GetAllRoutesSortByType = "-color"
-	GetAllRoutesSortByDescriptionAscending           GetAllRoutesSortByType = "description"
-	GetAllRoutesSortByDescriptionDescending          GetAllRoutesSortByType = "-description"
-	GetAllRoutesSortByDirectionDestinationAscending  GetAllRoutesSortByType = "direction_destinations"
-	GetAllRoutesSortByDirectionDestinationDescending GetAllRoutesSortByType = "-direction_destinations"
-	GetAllRoutesSortByDirectionNameAscending         GetAllRoutesSortByType = "direction_names"
-	GetAllRoutesSortByDirectionNameDescending        GetAllRoutesSortByType = "-direction_names"
-	GetAllRoutesSortByFareClassAscending             GetAllRoutesSortByType = "fare_class"
-	GetAllRoutesSortByFareClassDescending            GetAllRoutesSortByType = "-fare_class"
-	GetAllRoutesSortByLongNameDesending              GetAllRoutesSortByType = "long_name"
-	GetAllRoutesSortByLongNameDescending             GetAllRoutesSortByType = "-long_name"
-	GetAllRoutesSortByShortNameAscending             GetAllRoutesSortByType = "short_name"
-	GetAllRoutesSortByShortNameDescending            GetAllRoutesSortByType = "-short_name"
-	GetAllRoutesSortBySortOrderAscending             GetAllRoutesSortByType = "sort_order"
-	GetAllRoutesSortBySortOrderDescending            GetAllRoutesSortByType = "-sort_order"
-	GetAllRoutesSortByTextColorAscending             GetAllRoutesSortByType = "text_color"
-	GetAllRoutesSortByTextColorDescending            GetAllRoutesSortByType = "-text_color"
-	GetAllRoutesSortByTypeAscending                  GetAllRoutesSortByType = "type"
-	GetAllRoutesSortByTypeDescending                 GetAllRoutesSortByType = "-type"
+	RoutesSortByColorAscending                 RoutesSortByType = "color"
+	RoutesSortByColorDescending                RoutesSortByType = "-color"
+	RoutesSortByDescriptionAscending           RoutesSortByType = "description"
+	RoutesSortByDescriptionDescending          RoutesSortByType = "-description"
+	RoutesSortByDirectionDestinationAscending  RoutesSortByType = "direction_destinations"
+	RoutesSortByDirectionDestinationDescending RoutesSortByType = "-direction_destinations"
+	RoutesSortByDirectionNameAscending         RoutesSortByType = "direction_names"
+	RoutesSortByDirectionNameDescending        RoutesSortByType = "-direction_names"
+	RoutesSortByFareClassAscending             RoutesSortByType = "fare_class"
+	RoutesSortByFareClassDescending            RoutesSortByType = "-fare_class"
+	RoutesSortByLongNameDesending              RoutesSortByType = "long_name"
+	RoutesSortByLongNameDescending             RoutesSortByType = "-long_name"
+	RoutesSortByShortNameAscending             RoutesSortByType = "short_name"
+	RoutesSortByShortNameDescending            RoutesSortByType = "-short_name"
+	RoutesSortBySortOrderAscending             RoutesSortByType = "sort_order"
+	RoutesSortBySortOrderDescending            RoutesSortByType = "-sort_order"
+	RoutesSortByTextColorAscending             RoutesSortByType = "text_color"
+	RoutesSortByTextColorDescending            RoutesSortByType = "-text_color"
+	RoutesSortByTypeAscending                  RoutesSortByType = "type"
+	RoutesSortByTypeDescending                 RoutesSortByType = "-type"
 )
 
 // GetAllRoutesRequestConfig extra options for the GetAllRoutes request
 type GetAllRoutesRequestConfig struct {
-	PageOffset        string                 `url:"page[offset],omitempty"`         // Offset (0-based) of first element in the page
-	PageLimit         string                 `url:"page[limit],omitempty"`          // Max number of elements to return
-	Sort              GetAllRoutesSortByType `url:"sort,omitempty"`                 // Results can be sorted by the id or any GetAllRoutesSortByType
-	Include           []RouteInclude         `url:"include,comma,omitempty"`        // Include extra data in response
-	Fields            []string               `url:"fields[route],comma,omitempty"`  // Fields to include with the response. Note that fields can also be selected for included data types
-	FilterDirectionID string                 `url:"filter[direction_id],omitempty"` // Filter by Direction ID (Either "0" or "1")
-	FilterDate        string                 `url:"filter[data],omitempty"`         // Filter by date that route is active
-	FilterIDs         []string               `url:"filter[id],comma,omitempty"`     // Filter by multiple IDs
-	FilterStop        string                 `url:"filter[stop],omitempty"`         // Filter by stops
-	FilterRouteTypes  []RouteType            `url:"filter[type],comma,omitempty"`   // Filter by different route types
+	PageOffset        string           `url:"page[offset],omitempty"`         // Offset (0-based) of first element in the page
+	PageLimit         string           `url:"page[limit],omitempty"`          // Max number of elements to return
+	Sort              RoutesSortByType `url:"sort,omitempty"`                 // Results can be sorted by the id or any RoutesSortByType
+	Include           []RouteInclude   `url:"include,comma,omitempty"`        // Include extra data in response
+	Fields            []string         `url:"fields[route],comma,omitempty"`  // Fields to include with the response. Note that fields can also be selected for included data types
+	FilterDirectionID string           `url:"filter[direction_id],omitempty"` // Filter by Direction ID (Either "0" or "1")
+	FilterDate        string           `url:"filter[data],omitempty"`         // Filter by date that route is active
+	FilterIDs         []string         `url:"filter[id],comma,omitempty"`     // Filter by multiple IDs
+	FilterStop        string           `url:"filter[stop],omitempty"`         // Filter by stops
+	FilterRouteTypes  []RouteType      `url:"filter[type],comma,omitempty"`   // Filter by different route types
 }
 
 // GetAllRoutes returns all routes from the mbta API
